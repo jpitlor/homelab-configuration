@@ -1,0 +1,1 @@
+mod 'puppetlabs-host_core', '1.2.0'
