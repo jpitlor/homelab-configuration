@@ -1,0 +1,10 @@
+FORGE
+  remote: https://forgeapi.puppetlabs.com
+  specs:
+    puppetlabs-host_core (1.2.0)
+    puppetlabs-vcsrepo (6.1.0)
+
+DEPENDENCIES
+  puppetlabs-host_core (= 1.2.0)
+  puppetlabs-vcsrepo (= 6.1.0)
+
