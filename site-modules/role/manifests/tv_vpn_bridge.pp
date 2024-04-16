@@ -1,3 +1,3 @@
-class role::tv_vp_bridge {
+class role::tv_vpn_bridge {
 
 }

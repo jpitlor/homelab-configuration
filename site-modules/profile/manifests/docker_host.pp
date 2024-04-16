@@ -15,11 +15,11 @@ class profile::docker_host {
     ensure   => present,
     provider => git,
     source   => 'https://github.com/jpitlor/homelab-containers',
-    revision => 'TODO',
+    revision => '$HOMELAB_REPO_COMMIT',
   }
 
   docker_compose { 'homelab':
-    compose_files => ['/var/data/dev.pitlor.homelab-containers/docker-compose.yml'],
+    compose_files => ['/var/data/dev.pitlor/homelab-containers/docker-compose.yml'],
     ensure        => present,
   }
 }
