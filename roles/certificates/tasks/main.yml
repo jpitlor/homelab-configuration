@@ -1,0 +1,4 @@
+---
+- name: Trust Root HTTPS CA
+- name: Trust Intermediate HTTPS CA
+- name: Trust SSH CA
