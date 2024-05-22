@@ -1,1 +1,6 @@
 ---
+domains:
+  - nas.pitlor.local
+  - proxmox.pitlor.local
+  - containers.pitlor.local
+  - proxy.pitlor.local
