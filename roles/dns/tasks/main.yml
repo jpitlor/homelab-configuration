@@ -1,2 +1,16 @@
 ---
+- name: Set Windows hosts
+  when: ansible_facts['os_family'] == "Windows"
+  community.windows.win_hosts:
+    state: present
+    canonical_name: localhost
+    ip_address: 127.0.0.1
+- name: Set Linux hosts
+  when: ansible_facts['os_family'] != "Windows"
+  lineinfile:
+    dest: /etc/hosts
+    regexp: '.*{{ item }}$'
+    line: "{{ hostvars[item].ansible_default_ipv4.address }} {{item}}"
+    state: present
+    with_items:
 
