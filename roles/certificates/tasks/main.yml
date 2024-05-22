@@ -1,4 +1,15 @@
 ---
-- name: Trust Root HTTPS CA
-- name: Trust Intermediate HTTPS CA
-- name: Trust SSH CA
+- name: "Trust {{ item.name }}"
+  when: ansible_facts['os_family'] != "Windows"
+  ansible.builtin.copy:
+    src: "{{ item.file }}"
+    dest: "/etc/ssl/certs/{{ item.file }}"
+  loop: certs
+
+- name: "Trust {{ item.name }}"
+  when: ansible_facts['os_family'] == "Windows"
+  ansible.windows.win_certificate_store:
+    path: "{{ item.file }}"
+    state: present
+    key_exportable: false
+  loop: certs

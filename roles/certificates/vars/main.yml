@@ -1,0 +1,12 @@
+---
+certs:
+  - name: pitlor.dev Root CA
+    file: pitlor-dev-root-ca.crt
+  - name: pitlor.dev Intermediate CA
+    file: pitlor-dev-intermediate-ca.crt
+  - name: pitlor.local Root CA
+    file: pitlor-local-root-ca.crt
+  - name: pitlor.local Intermediate CA
+    file: pitlor-local-intermediate-ca.crt
+  - name: SSH CA
+    file: ssh-ca.crt
