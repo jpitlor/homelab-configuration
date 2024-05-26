@@ -13,3 +13,5 @@
     state: present
     key_exportable: false
   loop: certs
+
+# TODO SSH certificate

@@ -21,7 +21,7 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;git@github.com:jpitlor/homelab-deployment.git&quot;,
+    &quot;url&quot;: &quot;git@github.com:jpitlor/homelab-configuration.git&quot;,
     &quot;accountId&quot;: &quot;32c68407-dfe2-429c-99fc-f89099207599&quot;
   }
 }</component>
@@ -38,30 +38,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/jpitlor/Code/homelab-deployment/roles",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/jpitlor/Code/homelab-configuration/playbooks&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;GitStage.ChangesTree.GroupingKeys&quot;: [
+      &quot;directory&quot;,
+      &quot;module&quot;,
+      &quot;repository&quot;
+    ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\jpitlor\Code\homelab-configuration\playbooks" />
+      <recent name="C:\Users\jpitlor\Code\homelab-configuration\roles" />
+      <recent name="C:\Users\jpitlor\Code\homelab-deployment\roles\certificates\files" />
       <recent name="C:\Users\jpitlor\Code\homelab-deployment\roles" />
     </key>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
-        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17011.79" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17011.79" />
       </set>
     </attachedChunks>
   </component>
@@ -76,11 +86,35 @@
       <workItem from="1714160771514" duration="35270000" />
       <workItem from="1715889044773" duration="1657000" />
       <workItem from="1716317785335" duration="2444000" />
-      <workItem from="1716346664684" duration="2412000" />
+      <workItem from="1716346664684" duration="11973000" />
+      <workItem from="1716469342361" duration="4715000" />
+      <workItem from="1716482468292" duration="5615000" />
     </task>
+    <task id="LOCAL-00001" summary="yank out the rest of puppet">
+      <option name="closed" value="true" />
+      <created>1716349900410</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1716349900410</updated>
+    </task>
+    <task id="LOCAL-00002" summary="add local DNS and certificate roles">
+      <option name="closed" value="true" />
+      <created>1716407801458</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1716407801459</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="yank out the rest of puppet" />
+    <MESSAGE value="add local DNS and certificate roles" />
+    <option name="LAST_COMMIT_MESSAGE" value="add local DNS and certificate roles" />
   </component>
 </project>

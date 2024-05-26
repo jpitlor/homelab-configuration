@@ -1,0 +1,11 @@
+---
+
+# TODO set SSH server settings
+
+
+- name: Give no password sudo access
+  lineinfile:
+    dest: /etc/sudoers.d/jpitlor
+    regexp: '^jpitlor.*$'
+    line: "jpitlor ALL=(ALL:ALL) NOPASSWD: ALL"
+    state: present
