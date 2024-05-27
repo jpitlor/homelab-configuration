@@ -1,0 +1,64 @@
+client
+dev tun
+proto udp
+remote {{ vpn_server_ip }} 1194
+resolv-retry infinite
+nobind
+{% if ansible_facts['os_family'] != "Windows" %}
+user nobody
+group nogroup
+{% endif %}
+persist-key
+persist-tun
+
+# SSL/TLS parms.
+# See the server config file for more
+# description.  It's best to use
+# a separate .crt/.key file pair
+# for each client.  A single ca
+# file can be used for all clients.
+;ca ca.crt
+;cert client.crt
+;key client.key
+
+# To use this feature, you will need to generate
+# your server certificates with the keyUsage set to
+#   digitalSignature, keyEncipherment
+# and the extendedKeyUsage to
+#   serverAuth
+# EasyRSA can do this for you.
+remote-cert-tls server
+
+# If a tls-auth key is used on the server
+# then every client must also have the key.
+;tls-auth ta.key 1
+
+cipher AES-256-GCM
+auth SHA-256
+verb 3
+key-direction 1
+script-security 2
+
+{% if use_resolvconf == true %}
+up /etc/openvpn/update-resolv-conf
+down /etc/openvpn/update-resolv-conf
+{% else %}
+up /etc/openvpn/update-systemd-resolved
+down /etc/openvpn/update-systemd-resolved
+down-pre
+dhcp-option DOMAIN-ROUTE
+{% endif %}
+
+; Is this needed? Or can we just use the commented out options above?
+<ca>
+
+</ca>
+<cert>
+
+</cert>
+<key>
+
+</key>
+<tls-crypt>
+
+</tls-crypt>

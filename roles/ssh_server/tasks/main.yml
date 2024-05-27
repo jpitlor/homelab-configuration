@@ -1,11 +1,55 @@
 ---
+- name: "Copy SSH CA"
+  when: ansible_facts['os_family'] != "Windows"
+  ansible.builtin.copy:
+    src: "pitlor-ssh-ca.pub"
+    dest: "/etc/dev.pitlor/pitlor-ssh-ca.pub"
 
-# TODO set SSH server settings
+- name: "Set SSH security"
+  when: ansible_facts['os_family'] != "Windows"
+  ansible.builtin.copy:
+    src: "200-sshd-security.conf"
+    dest: "/etc/ssh/sshd_config.d/200-sshd-security.conf"
 
+- name: "Trust SSH CA"
+  when: ansible_facts['os_family'] != "Windows"
+  ansible.builtin.copy:
+    src: "201-sshd-pitlor-ca.conf"
+    dest: "/etc/ssh/sshd_config.d/201-sshd-pitlor-ca.conf"
 
 - name: Give no password sudo access
-  lineinfile:
-    dest: /etc/sudoers.d/jpitlor
-    regexp: '^jpitlor.*$'
-    line: "jpitlor ALL=(ALL:ALL) NOPASSWD: ALL"
-    state: present
+  ansible.builtin.copy:
+    src: "sudoers-jpitlor"
+    dest: "/etc/sudoers.d/jpitlor"
+
+- name: Install system packages
+  apt:
+    pkg:
+      - git
+      - vim
+      - build-essential
+      - wget
+      - zsh
+    state: latest
+    update_cache: true
+
+# TODO: Oh My Zsh
+
+- name: Clone dotfiles
+  ansible.builtin.git:
+    repo: 'https://github.com/jpitlor/.files'
+    dest: '{{ DOTFILES_FOLDER }}'
+    version: '{{ DOTFILES_REPO_COMMIT }}'
+
+- name: Add dotfiles autoupdate cronjob
+  when: ansible_facts['os_family'] != "Windows"
+  ansible.builtin.copy:
+    src: "dotfiles-auto-update"
+    dest: "/etc/cron.d/dotfiles-auto-update"
+
+- name: "Symlink {{ item }}"
+  file:
+    src: "{{ DOTFILES_FOLDER }}/{{ item }}"
+    dest: "/home/{{ USER }}/{{ item }}"
+    state: link
+    loop: dotfiles

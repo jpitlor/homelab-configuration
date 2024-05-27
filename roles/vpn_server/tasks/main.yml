@@ -1,2 +1,7 @@
 ---
-
+ansible.builtin.lineinfile:
+  dest: /etc/hosts
+  regexp: '.*{{ item }}$'
+  line: "10.1.0.7 {{ item }}"
+  state: present
+  loop: domains

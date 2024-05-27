@@ -4,7 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="28a3bada-cde0-427c-9b36-d3800818e3c4" name="Changes" comment="" />
+    <list default="true" id="28a3bada-cde0-427c-9b36-d3800818e3c4" name="Changes" comment="hosts">
+      <change afterPath="$PROJECT_DIR$/requirements.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roles/ssh_server/files/200-sshd-security.conf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roles/ssh_server/files/201-sshd-pitlor-ca.conf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roles/ssh_server/files/dotfiles-auto-update" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roles/ssh_server/files/pitlor-ssh-ca.pub" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roles/ssh_server/files/sudoers-jpitlor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roles/vpn_client/templates/client.ovpn.j2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roles/vpn_server/files/route-up.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roles/vpn_server/files/server.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roles/certificates/tasks/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/roles/certificates/tasks/main.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roles/certificates/vars/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/roles/certificates/vars/main.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roles/dotfiles/meta/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/roles/dev_playground/meta/main.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roles/dotfiles/tasks/main.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/roles/dotfiles/vars/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/roles/ssh_server/vars/main.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roles/homeassistant/meta/main.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/roles/homeassistant/tasks/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/roles/dev_playground/tasks/main.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roles/internal_dns/tasks/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/roles/internal_dns/tasks/main.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roles/internal_dns/vars/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/roles/internal_dns/vars/main.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roles/ssh_server/tasks/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/roles/ssh_server/tasks/main.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roles/vpn_server/tasks/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/roles/vpn_server/tasks/main.yml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,33 +60,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/jpitlor/Code/homelab-configuration/playbooks&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/jpitlor/Code/homelab-deployment/roles",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;GitStage.ChangesTree.GroupingKeys&quot;: [
-      &quot;directory&quot;,
-      &quot;module&quot;,
-      &quot;repository&quot;
+  "keyToStringList": {
+    "GitStage.ChangesTree.GroupingKeys": [
+      "directory",
+      "module",
+      "repository"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/roles" />
+      <recent name="$PROJECT_DIR$/roles/certificates/files" />
       <recent name="C:\Users\jpitlor\Code\homelab-configuration\playbooks" />
       <recent name="C:\Users\jpitlor\Code\homelab-configuration\roles" />
       <recent name="C:\Users\jpitlor\Code\homelab-deployment\roles\certificates\files" />
-      <recent name="C:\Users\jpitlor\Code\homelab-deployment\roles" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/roles/ssh_server" />
+      <recent name="$PROJECT_DIR$/roles/vpn_client" />
+      <recent name="$PROJECT_DIR$/roles/ssh_server/files" />
     </key>
   </component>
   <component name="SharedIndexes">

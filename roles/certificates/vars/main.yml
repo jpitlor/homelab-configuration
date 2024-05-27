@@ -8,5 +8,3 @@ certs:
     file: pitlor-local-root-ca.crt
   - name: pitlor.local Intermediate CA
     file: pitlor-local-intermediate-ca.crt
-  - name: SSH CA
-    file: ssh-ca.crt

@@ -1,0 +1,9 @@
+---
+DOTFILES_REPO_COMMIT: TODO
+DOTFILES_FOLDER: TODO
+dotfiles:
+  - .gitconfig
+  - .tmux.conf
+  - .vimrc
+  - .zshrc
+USER: jpitlor

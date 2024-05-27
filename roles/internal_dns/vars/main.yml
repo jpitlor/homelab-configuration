@@ -4,3 +4,4 @@ domains:
   - proxmox.pitlor.local
   - containers.pitlor.local
   - proxy.pitlor.local
+docker_host_vpn_ip: 10.1.0.7

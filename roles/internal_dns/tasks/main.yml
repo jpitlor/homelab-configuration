@@ -4,14 +4,15 @@
   community.windows.win_hosts:
     state: present
     canonical_name: "{{ item }}"
-    ip_address: '10.1.0.7'
+    ip_address: "{{ docker_host_vpn_ip }}"
     loop: domains
+
 - name: Set Linux hosts
   when: ansible_facts['os_family'] != "Windows"
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/hosts
     regexp: '.*{{ item }}$'
-    line: "10.1.0.7 {{ item }}"
+    line: "{{ docker_host_vpn_ip }} {{ item }}"
     state: present
     loop: domains
 

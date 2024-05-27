@@ -1,0 +1,30 @@
+---
+- name: Install required system packages
+  apt:
+    pkg:
+      - git
+      - vim
+      - build-essential
+      - wget
+      - zsh
+      - sl
+      - toilet
+      - cowsay
+      - fortune
+      - imagemagick
+      - x11-apps
+      - ruby-full
+      - maven
+      - dnsutils
+    state: latest
+    update_cache: true
+
+# Jetbrains IDE Backends
+
+# Java
+
+# Node.js
+
+# Ruby
+
+# Python
