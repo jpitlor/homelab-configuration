@@ -9,10 +9,10 @@
 
 - name: Set Linux hosts
   when: ansible_facts['os_family'] != "Windows"
-  ansible.builtin.lineinfile:
+  `ansible.builtin.lineinfile:
     dest: /etc/hosts
     regexp: '.*{{ item }}$'
     line: "{{ docker_host_vpn_ip }} {{ item }}"
-    state: present
+    state: present`
     loop: domains
 

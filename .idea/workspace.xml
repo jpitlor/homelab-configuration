@@ -4,8 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="28a3bada-cde0-427c-9b36-d3800818e3c4" name="Changes" comment="add a butt ton of new tasks!">
+    <list default="true" id="28a3bada-cde0-427c-9b36-d3800818e3c4" name="Changes" comment="remove metas">
+      <change afterPath="$PROJECT_DIR$/roles/vpn_client/files/cron-vpn-connect" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roles/internal_dns/tasks/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/roles/internal_dns/tasks/main.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roles/ssh_server/files/dotfiles-auto-update" beforeDir="false" afterPath="$PROJECT_DIR$/roles/ssh_server/files/cron-dotfiles-auto-update" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roles/ssh_server/tasks/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/roles/ssh_server/tasks/main.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roles/vpn_client/tasks/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/roles/vpn_client/tasks/main.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roles/vpn_server/tasks/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/roles/vpn_server/tasks/main.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +129,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716818783184</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="remove metas">
+      <option name="closed" value="true" />
+      <created>1716825497695</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1716825497695</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -133,6 +147,7 @@
     <MESSAGE value="yank out the rest of puppet" />
     <MESSAGE value="add local DNS and certificate roles" />
     <MESSAGE value="add a butt ton of new tasks!" />
-    <option name="LAST_COMMIT_MESSAGE" value="add a butt ton of new tasks!" />
+    <MESSAGE value="remove metas" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove metas" />
   </component>
 </project>

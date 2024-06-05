@@ -1,2 +1,19 @@
 ---
+- name: Install required system packages
+  apt:
+    pkg:
+      - openvpn
+      - openvpn-systemd-resolvd
+    state: latest
+    update_cache: true
 
+- name: Template a file, using symbolic modes (equivalent to 0644)
+  ansible.builtin.template:
+    src: client.ovpn.j2
+    dest: /etc/dev.pitlor/client.ovpn
+
+- name: Add OpenVPN autoconnect cronjob
+  when: ansible_facts['os_family'] != "Windows"
+  ansible.builtin.copy:
+    src: "cron-vpn-connect"
+    dest: "/etc/cron.d/cron-vpn-connect"

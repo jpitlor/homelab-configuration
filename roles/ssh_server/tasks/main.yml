@@ -44,8 +44,8 @@
 - name: Add dotfiles autoupdate cronjob
   when: ansible_facts['os_family'] != "Windows"
   ansible.builtin.copy:
-    src: "dotfiles-auto-update"
-    dest: "/etc/cron.d/dotfiles-auto-update"
+    src: "cron-dotfiles-auto-update"
+    dest: "/etc/cron.d/cron-dotfiles-auto-update"
 
 - name: "Symlink {{ item }}"
   file:

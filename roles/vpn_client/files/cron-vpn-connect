@@ -1,0 +1,1 @@
+@reboot openvpn --config /etc/dev.pitlor/client.ovpn
