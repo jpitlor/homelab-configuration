@@ -1,0 +1,6 @@
+{% for port in ports %}
+*.pitlor.dev:{{ port }} {
+    reverse_proxy {{ docker_host }}:{{ port }}
+}
+{% endfor %}
+

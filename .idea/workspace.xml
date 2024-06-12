@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="28a3bada-cde0-427c-9b36-d3800818e3c4" name="Changes" comment="remove metas">
-      <change afterPath="$PROJECT_DIR$/roles/vpn_client/files/cron-vpn-connect" afterDir="false" />
+    <list default="true" id="28a3bada-cde0-427c-9b36-d3800818e3c4" name="Changes" comment="add some VPN and SSH config">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_21_2024_10_33_PM.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_21_2024_10_33_PM/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/internal_dns/tasks/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/roles/internal_dns/tasks/main.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/ssh_server/files/dotfiles-auto-update" beforeDir="false" afterPath="$PROJECT_DIR$/roles/ssh_server/files/cron-dotfiles-auto-update" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/ssh_server/tasks/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/roles/ssh_server/tasks/main.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/vpn_client/tasks/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/roles/vpn_client/tasks/main.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/vpn_server/tasks/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/roles/vpn_server/tasks/main.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,27 +42,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/jpitlor/Code/homelab-deployment/roles",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/jpitlor/Code/homelab-deployment/roles&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "GitStage.ChangesTree.GroupingKeys": [
-      "directory",
-      "module",
-      "repository"
+  &quot;keyToStringList&quot;: {
+    &quot;GitStage.ChangesTree.GroupingKeys&quot;: [
+      &quot;directory&quot;,
+      &quot;module&quot;,
+      &quot;repository&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/roles" />
@@ -84,8 +80,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17011.79" />
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17011.79" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17890.1" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17890.1" />
       </set>
     </attachedChunks>
   </component>
@@ -103,6 +99,11 @@
       <workItem from="1716346664684" duration="11973000" />
       <workItem from="1716469342361" duration="4715000" />
       <workItem from="1716482468292" duration="5615000" />
+      <workItem from="1717270068401" duration="1399000" />
+      <workItem from="1717375381596" duration="603000" />
+      <workItem from="1717880021973" duration="66000" />
+      <workItem from="1718139941800" duration="5000" />
+      <workItem from="1718139957002" duration="6000000" />
     </task>
     <task id="LOCAL-00001" summary="yank out the rest of puppet">
       <option name="closed" value="true" />
@@ -136,7 +137,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716825497695</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="add some VPN and SSH config">
+      <option name="closed" value="true" />
+      <created>1716985791719</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1716985791719</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -147,6 +156,7 @@
     <MESSAGE value="add local DNS and certificate roles" />
     <MESSAGE value="add a butt ton of new tasks!" />
     <MESSAGE value="remove metas" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove metas" />
+    <MESSAGE value="add some VPN and SSH config" />
+    <option name="LAST_COMMIT_MESSAGE" value="add some VPN and SSH config" />
   </component>
 </project>
