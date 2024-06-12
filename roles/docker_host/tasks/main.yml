@@ -40,7 +40,11 @@
     dest: '{{ CONTAINER_CONFIG_FOLDER }}'
     version: '{{ CONTAINER_REPO_COMMIT }}'
 
+- name: Create docker network
+  community.docker.docker_network:
+    name: homelab
 
 - name: Run docker containers
   community.docker.docker_compose_v2:
-    project_src: '{{ CONTAINER_CONFIG_FOLDER }}'
+    project_src: '{{ CONTAINER_CONFIG_FOLDER }}/{{ item }}'
+  loop: CONTAINER_STACKS
