@@ -4,7 +4,7 @@
 
 # Naming Scheme
 
-Servers: Restaurants with servers
+Servers: Elements, in the order of Tom Lehrer's Elements Song
 Wireless Networks: Advanced Placement (AP) classes
 Client Devices (PCs, phones, etc): Jewish characters in musicals
 
