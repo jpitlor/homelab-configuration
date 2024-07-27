@@ -17,5 +17,5 @@ Twinsburg VPN: 10.0.3.0/24 \
 Pittsburgh VPN: 10.0.4.0/24
 
 **Home: 10.1.0.0/16** \
-Home DMZ: 10.1.0.0/24 \
-Home LAN: 10.1.1.0/23
+Home DMZ: 10.1.0.0/23 \
+Home LAN: 10.1.2.0/23

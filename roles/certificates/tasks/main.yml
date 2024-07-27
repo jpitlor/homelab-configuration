@@ -1,16 +1,18 @@
 ---
-- name: "Trust {{ item.name }}"
+- name: Trust certificates (Unix)
   when: ansible_facts['os_family'] != "Windows"
+  become: true
   ansible.builtin.copy:
     src: "{{ item.file }}"
     dest: "/etc/ssl/certs/{{ item.file }}"
-  loop: certs
+  loop: "{{ certs }}"
 
-- name: "Trust {{ item.name }}"
+- name: Trust certificates (Windows)
   when: ansible_facts['os_family'] == "Windows"
+  become: true
   ansible.windows.win_certificate_store:
     path: "{{ item.file }}"
     state: present
     key_exportable: false
-  loop: certs
+  loop: "{{ certs }}"
 

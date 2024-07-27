@@ -47,4 +47,4 @@
 - name: Run docker containers
   community.docker.docker_compose_v2:
     project_src: '{{ CONTAINER_CONFIG_FOLDER }}/{{ item }}'
-  loop: CONTAINER_STACKS
+  loop: "{{ CONTAINER_STACKS }}"

@@ -1,2 +1,12 @@
 ---
-# TODO
+- name: Configure DNS and certificates
+  hosts: all
+  roles:
+    - internal_dns
+    - certificates
+
+- name: Configure VPS
+  hosts: vps
+  roles:
+    - vps
+    - vpn_server

@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="28a3bada-cde0-427c-9b36-d3800818e3c4" name="Changes" comment="add some VPN and SSH config">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homelab.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/homelab.drawio" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,27 +41,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/jpitlor/Code/homelab-deployment/roles&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/jpitlor/Code/homelab-deployment/roles",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;GitStage.ChangesTree.GroupingKeys&quot;: [
-      &quot;directory&quot;,
-      &quot;module&quot;,
-      &quot;repository&quot;
+  "keyToStringList": {
+    "GitStage.ChangesTree.GroupingKeys": [
+      "directory",
+      "module",
+      "repository"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/roles" />
@@ -70,6 +72,7 @@
       <recent name="C:\Users\jpitlor\Code\homelab-deployment\roles\certificates\files" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/roles/certificates/files" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/roles/ssh_server" />
       <recent name="$PROJECT_DIR$/roles/vpn_client" />
@@ -79,8 +82,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17890.1" />
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17890.1" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
       </set>
     </attachedChunks>
   </component>
@@ -104,7 +107,12 @@
       <workItem from="1718139941800" duration="5000" />
       <workItem from="1718139957002" duration="6894000" />
       <workItem from="1718212211850" duration="1796000" />
-      <workItem from="1718375868167" duration="221000" />
+      <workItem from="1718375868167" duration="249000" />
+      <workItem from="1718826371964" duration="1109000" />
+      <workItem from="1718985339179" duration="588000" />
+      <workItem from="1718998907615" duration="490000" />
+      <workItem from="1719102039237" duration="601000" />
+      <workItem from="1721529858918" duration="17753000" />
     </task>
     <task id="LOCAL-00001" summary="yank out the rest of puppet">
       <option name="closed" value="true" />
@@ -154,7 +162,23 @@
       <option name="project" value="LOCAL" />
       <updated>1718208852709</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="move playbook.yml">
+      <option name="closed" value="true" />
+      <created>1718376106747</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1718376106747</updated>
+    </task>
+    <task id="LOCAL-00008" summary="update server naming scheme">
+      <option name="closed" value="true" />
+      <created>1721616923996</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1721616923997</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -167,6 +191,8 @@
     <MESSAGE value="remove metas" />
     <MESSAGE value="add some VPN and SSH config" />
     <MESSAGE value="update readme and some roles" />
-    <option name="LAST_COMMIT_MESSAGE" value="update readme and some roles" />
+    <MESSAGE value="move playbook.yml" />
+    <MESSAGE value="update server naming scheme" />
+    <option name="LAST_COMMIT_MESSAGE" value="update server naming scheme" />
   </component>
 </project>

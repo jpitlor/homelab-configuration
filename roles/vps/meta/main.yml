@@ -1,0 +1,5 @@
+---
+dependencies:
+  - role: nvjacobo.caddy
+    become: true
+    caddy_config: "{{ lookup('template', 'templates/Caddyfile.j2') }}"
