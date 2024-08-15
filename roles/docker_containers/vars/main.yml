@@ -1,4 +1,3 @@
 ---
 CONTAINER_REPO_COMMIT: foobar
 CONTAINER_CONFIG_FOLDER: /var/dev.pitlor/homelab-container
-CONTAINER_STACKS: []

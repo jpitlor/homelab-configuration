@@ -1,0 +1,21 @@
+---
+# Required for Ansible Docker collection
+- name: Install Docker Module for Python
+  pip:
+    name: docker
+
+- name: Clone docker-compose files
+  ansible.builtin.git:
+    repo: 'https://github.com/jpitlor/homelab-containers'
+    dest: '{{ CONTAINER_CONFIG_FOLDER }}'
+    version: '{{ CONTAINER_REPO_COMMIT }}'
+
+- name: Create docker network
+  community.docker.docker_network:
+    name: homelab
+
+- name: Run docker containers
+  community.docker.docker_compose_v2:
+    project_src: '{{ CONTAINER_CONFIG_FOLDER }}/{{ item }}'
+  with_fileglob:
+    - "{{ CONTAINER_CONFIG_FOLDER }}/*"

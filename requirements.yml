@@ -2,3 +2,7 @@
 - name: ansible-role-nvm
   src: https://github.com/morgangraphics/ansible-role-nvm
 - src: nvjacobo.caddy
+- src: ansible.posix
+- src: community.general
+- src: kyl191.openvpn
+- src: geerlingguy.docker

@@ -5,8 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="28a3bada-cde0-427c-9b36-d3800818e3c4" name="Changes" comment="add some VPN and SSH config">
+      <change afterPath="$PROJECT_DIR$/roles/docker_host/meta/main.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/homelab.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/homelab.drawio" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/playbook.yml" beforeDir="false" afterPath="$PROJECT_DIR$/playbook.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.yml" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roles/docker_host/tasks/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/roles/docker_host/tasks/main.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roles/vpn_server/files/route-up.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/roles/vpn_server/files/server.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/roles/vpn_server/tasks/main.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/roles/vps/meta/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/roles/vps/meta/main.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +55,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/jpitlor/Code/homelab-deployment/roles",
+    "last_opened_file_path": "/Users/jpitlor/Code/homelab-deployment",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -65,18 +74,18 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/roles" />
       <recent name="$PROJECT_DIR$/roles/certificates/files" />
       <recent name="C:\Users\jpitlor\Code\homelab-configuration\playbooks" />
       <recent name="C:\Users\jpitlor\Code\homelab-configuration\roles" />
-      <recent name="C:\Users\jpitlor\Code\homelab-deployment\roles\certificates\files" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/inventory" />
       <recent name="$PROJECT_DIR$/roles/certificates/files" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/roles/ssh_server" />
       <recent name="$PROJECT_DIR$/roles/vpn_client" />
-      <recent name="$PROJECT_DIR$/roles/ssh_server/files" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -112,7 +121,11 @@
       <workItem from="1718985339179" duration="588000" />
       <workItem from="1718998907615" duration="490000" />
       <workItem from="1719102039237" duration="601000" />
-      <workItem from="1721529858918" duration="17753000" />
+      <workItem from="1721529858918" duration="18557000" />
+      <workItem from="1722121187785" duration="705000" />
+      <workItem from="1722691710615" duration="598000" />
+      <workItem from="1722904289853" duration="8419000" />
+      <workItem from="1723669345887" duration="2337000" />
     </task>
     <task id="LOCAL-00001" summary="yank out the rest of puppet">
       <option name="closed" value="true" />
@@ -178,7 +191,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721616923997</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="VPS config works!">
+      <option name="closed" value="true" />
+      <created>1722101038694</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1722101038694</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -193,6 +214,7 @@
     <MESSAGE value="update readme and some roles" />
     <MESSAGE value="move playbook.yml" />
     <MESSAGE value="update server naming scheme" />
-    <option name="LAST_COMMIT_MESSAGE" value="update server naming scheme" />
+    <MESSAGE value="VPS config works!" />
+    <option name="LAST_COMMIT_MESSAGE" value="VPS config works!" />
   </component>
 </project>

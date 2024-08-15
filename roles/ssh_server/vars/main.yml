@@ -1,7 +1,7 @@
 ---
 DOTFILES_REPO_COMMIT: TODO
 DOTFILES_FOLDER: TODO
-dotfiles:
+DOTFILES:
   - .gitconfig
   - .tmux.conf
   - .vimrc

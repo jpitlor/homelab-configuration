@@ -1,12 +1,28 @@
 ---
-- name: Configure DNS and certificates
+- name: Bootstrap all machines
   hosts: all
   roles:
     - internal_dns
     - certificates
+    - ssh_server
 
 - name: Configure VPS
   hosts: vps
+  gather_facts: true
   roles:
     - vps
-    - vpn_server
+
+- name: Configure Docker Containers
+  hosts: docker_containers
+  roles:
+    - docker_containers
+
+- name: Configure dev playground
+  hosts: dev_playground
+  roles:
+    - dev_playground
+
+- name: Configure vault
+  hosts: vault
+  roles:
+    - vault

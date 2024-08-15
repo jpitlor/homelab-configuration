@@ -52,4 +52,4 @@
     src: "{{ DOTFILES_FOLDER }}/{{ item }}"
     dest: "/home/{{ USER }}/{{ item }}"
     state: link
-  loop: "{{ dotfiles }}"
+  loop: "{{ DOTFILES }}"
