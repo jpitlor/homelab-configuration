@@ -6,3 +6,4 @@
 - src: community.general
 - src: kyl191.openvpn
 - src: geerlingguy.docker
+- src: gantsign.oh-my-zsh

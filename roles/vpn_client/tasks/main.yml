@@ -7,13 +7,14 @@
     state: latest
     update_cache: true
 
-- name: Template a file, using symbolic modes (equivalent to 0644)
+# TODO - somehow generate ta.key and ca.key and obtain client.crt and client.key
+
+- name: Write ovpn file
   ansible.builtin.template:
     src: client.ovpn.j2
     dest: /etc/dev.pitlor/client.ovpn
 
 - name: Add OpenVPN autoconnect cronjob
-  when: ansible_facts['os_family'] != "Windows"
   ansible.builtin.copy:
     src: "cron-vpn-connect"
     dest: "/etc/cron.d/cron-vpn-connect"

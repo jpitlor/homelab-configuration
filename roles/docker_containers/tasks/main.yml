@@ -8,7 +8,6 @@
   ansible.builtin.git:
     repo: 'https://github.com/jpitlor/homelab-containers'
     dest: '{{ CONTAINER_CONFIG_FOLDER }}'
-    version: '{{ CONTAINER_REPO_COMMIT }}'
 
 - name: Create docker network
   community.docker.docker_network:

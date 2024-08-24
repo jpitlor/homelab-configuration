@@ -1,0 +1,20 @@
+Index: roles/docker_host/tasks/main.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>---\r\n- name: Install required system packages\r\n  apt:\r\n    pkg:\r\n      - apt-transport-https\r\n      - ca-certificates\r\n      - curl\r\n      - software-properties-common\r\n      - python3-pip\r\n      - virtualenv\r\n      - python3-setuptools\r\n      - git\r\n    state: latest\r\n    update_cache: true\r\n\r\n- name: Add Docker GPG apt Key\r\n  apt_key:\r\n    url: https://download.docker.com/linux/ubuntu/gpg\r\n    state: present\r\n\r\n- name: Add Docker Repository\r\n  apt_repository:\r\n    repo: deb https://download.docker.com/linux/ubuntu focal stable\r\n    state: present\r\n\r\n- name: Install docker-ce\r\n  apt:\r\n    name: docker-ce\r\n    state: latest\r\n    update_cache: true\r\n\r\n# Required for Ansible Docker collection\r\n- name: Install Docker Module for Python\r\n  pip:\r\n    name: docker\r\n\r\n- name: Clone docker-compose files\r\n  ansible.builtin.git:\r\n    repo: 'https://github.com/jpitlor/homelab-containers'\r\n    dest: '{{ CONTAINER_CONFIG_FOLDER }}'\r\n    version: '{{ CONTAINER_REPO_COMMIT }}'\r\n\r\n- name: Create docker network\r\n  community.docker.docker_network:\r\n    name: homelab\r\n\r\n- name: Run docker containers\r\n  community.docker.docker_compose_v2:\r\n    project_src: '{{ CONTAINER_CONFIG_FOLDER }}/{{ item }}'\r\n  loop: CONTAINER_STACKS\r\n
+===================================================================
+diff --git a/roles/docker_host/tasks/main.yml b/roles/docker_host/tasks/main.yml
+--- a/roles/docker_host/tasks/main.yml	(revision b7ef15ede241c0bc4209b8c41a56374285fd3142)
++++ b/roles/docker_host/tasks/main.yml	(date 1720705942032)
+@@ -1,4 +1,11 @@
+ ---
++- name: Mount NAS
++  ansible.posix.mount:
++    path: /mnt/nas
++    src: 10.1.0.2
++    fstype: ext4
++    state: present
++
+ - name: Install required system packages
+   apt:
+     pkg:

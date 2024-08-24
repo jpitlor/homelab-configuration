@@ -33,7 +33,20 @@
     state: latest
     update_cache: true
 
-# TODO: Oh My Zsh
+- name: Install Oh My ZSH
+  ansible.builtin.import_role:
+    name: gantsign.oh-my-zsh
+  vars:
+    users:
+      - username: jpitlor
+        oh_my_zsh:
+          install: true
+          write_zshrc: false
+
+- name: Install Oh My ZSH Theme
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/moarram/headline/main/headline.zsh-theme
+    dest: ~/.oh-my-zsh/themes
 
 - name: Clone dotfiles
   ansible.builtin.git:
