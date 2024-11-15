@@ -9,5 +9,10 @@ packer {
       version = "~> 1"
       source = "github.com/hashicorp/ansible"
     }
+
+    googlecompute = {
+      version = "~> 1"
+      source = "github.com/hashicorp/googlecompute"
+    }
   }
 }
