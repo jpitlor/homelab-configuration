@@ -1,28 +1,40 @@
 ---
+- name: "Create /etc/dev.pitlor"
+  when: ansible_facts['os_family'] != "Windows"
+  become: true
+  ansible.builtin.file:
+    path: /etc/dev.pitlor
+    state: directory
+
 - name: "Copy SSH CA"
   when: ansible_facts['os_family'] != "Windows"
+  become: true
   ansible.builtin.copy:
     src: "pitlor-ssh-ca.pub"
     dest: "/etc/dev.pitlor/pitlor-ssh-ca.pub"
 
 - name: "Set SSH security"
   when: ansible_facts['os_family'] != "Windows"
+  become: true
   ansible.builtin.copy:
     src: "200-sshd-security.conf"
     dest: "/etc/ssh/sshd_config.d/200-sshd-security.conf"
 
 - name: "Trust SSH CA"
   when: ansible_facts['os_family'] != "Windows"
+  become: true
   ansible.builtin.copy:
     src: "201-sshd-pitlor-ca.conf"
     dest: "/etc/ssh/sshd_config.d/201-sshd-pitlor-ca.conf"
 
 - name: Give no password sudo access
+  become: true
   ansible.builtin.copy:
     src: "sudoers-jpitlor"
     dest: "/etc/sudoers.d/jpitlor"
 
 - name: Install system packages
+  become: true
   apt:
     pkg:
       - git
@@ -34,21 +46,27 @@
     update_cache: true
 
 - name: Install Oh My ZSH
+  become: true
   ansible.builtin.import_role:
-    name: gantsign.oh-my-zsh
+    name: manala.roles.ohmyzsh
   vars:
-    users:
-      - username: jpitlor
-        oh_my_zsh:
-          install: true
-          write_zshrc: false
+    manala_ohmyzsh_users:
+      - user: packer # TODO - change to jpitlor
+  register: ohmyzsh
+
+- name: Remove generated .zshrc
+  ansible.builtin.file:
+    path: /home/packer/.zshrc # TODO jpitlor
+    state: absent
 
 - name: Install Oh My ZSH Theme
+  become: true
   ansible.builtin.get_url:
     url: https://raw.githubusercontent.com/moarram/headline/main/headline.zsh-theme
-    dest: ~/.oh-my-zsh/themes
+    dest: /usr/local/share/oh-my-zsh/themes
 
 - name: Clone dotfiles
+  become: true
   ansible.builtin.git:
     repo: 'https://github.com/jpitlor/.files'
     dest: '{{ DOTFILES_FOLDER }}'
@@ -56,12 +74,13 @@
 
 - name: Add dotfiles autoupdate cronjob
   when: ansible_facts['os_family'] != "Windows"
+  become: true
   ansible.builtin.copy:
     src: "cron-dotfiles-auto-update"
     dest: "/etc/cron.d/cron-dotfiles-auto-update"
 
 - name: "Symlink {{ item }}"
-  file:
+  ansible.builtin.file:
     src: "{{ DOTFILES_FOLDER }}/{{ item }}"
     dest: "/home/{{ USER }}/{{ item }}"
     state: link

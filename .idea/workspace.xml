@@ -50,49 +50,51 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/jpitlor/Code/homelab-deployment&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/jpitlor/Code/homelab-configuration/packer",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;GitStage.ChangesTree.GroupingKeys&quot;: [
-      &quot;directory&quot;,
-      &quot;module&quot;,
-      &quot;repository&quot;
+  "keyToStringList": {
+    "GitStage.ChangesTree.GroupingKeys": [
+      "directory",
+      "module",
+      "repository"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\jpitlor\Code\homelab-configuration\packer" />
+      <recent name="C:\Users\jpitlor\Code\homelab-configuration" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/roles" />
       <recent name="$PROJECT_DIR$/roles/certificates/files" />
-      <recent name="C:\Users\jpitlor\Code\homelab-configuration\playbooks" />
-      <recent name="C:\Users\jpitlor\Code\homelab-configuration\roles" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jpitlor\Code\homelab-configuration\packer" />
+      <recent name="C:\Users\jpitlor\Code\homelab-configuration" />
       <recent name="$PROJECT_DIR$/inventory" />
       <recent name="$PROJECT_DIR$/roles/certificates/files" />
       <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/roles/ssh_server" />
-      <recent name="$PROJECT_DIR$/roles/vpn_client" />
     </key>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.20224.419" />
-        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-IU-242.20224.419" />
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.21565.193" />
+        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-IU-243.21565.193" />
       </set>
     </attachedChunks>
   </component>
@@ -126,6 +128,17 @@
       <workItem from="1722691710615" duration="598000" />
       <workItem from="1722904289853" duration="8419000" />
       <workItem from="1723669345887" duration="2337000" />
+      <workItem from="1724705318355" duration="766000" />
+      <workItem from="1725459938678" duration="14114000" />
+      <workItem from="1725847898314" duration="855000" />
+      <workItem from="1726055554928" duration="33034000" />
+      <workItem from="1728493303882" duration="856000" />
+      <workItem from="1728497802690" duration="613000" />
+      <workItem from="1728670970996" duration="47398000" />
+      <workItem from="1730123150011" duration="607000" />
+      <workItem from="1730141876765" duration="3721000" />
+      <workItem from="1731350133694" duration="945000" />
+      <workItem from="1731599174463" duration="20891000" />
     </task>
     <task id="LOCAL-00001" summary="yank out the rest of puppet">
       <option name="closed" value="true" />
@@ -199,7 +212,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722101038694</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="work on various TODOs">
+      <option name="closed" value="true" />
+      <created>1724463568382</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1724463568382</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -215,6 +236,7 @@
     <MESSAGE value="move playbook.yml" />
     <MESSAGE value="update server naming scheme" />
     <MESSAGE value="VPS config works!" />
-    <option name="LAST_COMMIT_MESSAGE" value="VPS config works!" />
+    <MESSAGE value="work on various TODOs" />
+    <option name="LAST_COMMIT_MESSAGE" value="work on various TODOs" />
   </component>
 </project>

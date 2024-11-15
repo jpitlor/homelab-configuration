@@ -1,20 +1,39 @@
 ---
 # Required for Ansible Docker collection
 - name: Install Docker Module for Python
-  pip:
-    name: docker
+  become: true
+  apt:
+    pkg:
+      - python3
+      - python3-docker
+    state: latest
+    update_cache: true
+
+- name: Create /var/dev.pitlor
+  become: true
+  ansible.builtin.file:
+    path: /var/dev.pitlor
+    state: directory
+
+- name: Create docker network
+  become: true
+  community.docker.docker_network:
+    name: homelab
 
 - name: Clone docker-compose files
+  become: true
   ansible.builtin.git:
     repo: 'https://github.com/jpitlor/homelab-containers'
     dest: '{{ CONTAINER_CONFIG_FOLDER }}'
 
-- name: Create docker network
-  community.docker.docker_network:
-    name: homelab
+- name: Get docker compose stacks
+  ansible.builtin.find:
+    paths: '{{ CONTAINER_CONFIG_FOLDER }}'
+    file_type: directory
+  register: docker_compose_stacks
 
-- name: Run docker containers
+- name: Run docker compose stacks
+  become: true
   community.docker.docker_compose_v2:
-    project_src: '{{ CONTAINER_CONFIG_FOLDER }}/{{ item }}'
-  with_fileglob:
-    - "{{ CONTAINER_CONFIG_FOLDER }}/*"
+    project_src: '{{ item.path }}'
+  loop: '{{ docker_compose_stacks.files }}'

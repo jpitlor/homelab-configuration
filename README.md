@@ -21,3 +21,6 @@ cron package don't overwrite this configuration.
 ```shell
 echo "@daily jpitlor ansible-pull -U https://github.com/jpitlor/homelab-configuration" > /etc/cron.d/ansible
 ```
+
+
+netsh interface portproxy add v4tov4 listenport=8081 listenaddress=0.0.0.0 connectport=8081 connectaddress=$(wsl hostname -I)

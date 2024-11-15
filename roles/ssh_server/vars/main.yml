@@ -1,9 +1,9 @@
 ---
-DOTFILES_REPO_COMMIT: TODO
-DOTFILES_FOLDER: TODO
+DOTFILES_REPO_COMMIT: 930fcee
+DOTFILES_FOLDER: /etc/dev.pitlor/.files
 DOTFILES:
   - .gitconfig
   - .tmux.conf
   - .vimrc
   - .zshrc
-USER: jpitlor
+USER: packer # TODO - jpitlor
