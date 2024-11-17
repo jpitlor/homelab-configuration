@@ -1,0 +1,6 @@
+---
+plugin: community.general.proxmox
+groups:
+  docker_containers: "'docker_containers' in (proxmox_tags_parsed|list)"
+  vault: "'vault' in (proxmox_tags_parsed|list)"
+  dev_playground: "'dev_playground' in (proxmox_tags_parsed|list)"
