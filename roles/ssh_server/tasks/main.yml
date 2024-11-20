@@ -27,6 +27,12 @@
     src: "201-sshd-pitlor-ca.conf"
     dest: "/etc/ssh/sshd_config.d/201-sshd-pitlor-ca.conf"
 
+- name: Restart SSH
+  become: true
+  ansible.builtin.service:
+    name: sshd
+    state: reloaded
+
 - name: Give no password sudo access
   become: true
   ansible.builtin.copy:
