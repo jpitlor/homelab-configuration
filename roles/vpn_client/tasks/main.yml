@@ -1,5 +1,6 @@
 ---
 - name: Install required system packages
+  become: true
   apt:
     pkg:
       - openvpn
@@ -10,11 +11,13 @@
 # TODO - somehow generate ta.key and ca.key and obtain client.crt and client.key
 
 - name: Write ovpn file
+  become: true
   ansible.builtin.template:
     src: client.ovpn.j2
     dest: /etc/dev.pitlor/client.ovpn
 
 - name: Add OpenVPN autoconnect cronjob
+  become: true
   ansible.builtin.copy:
     src: "cron-vpn-connect"
     dest: "/etc/cron.d/cron-vpn-connect"

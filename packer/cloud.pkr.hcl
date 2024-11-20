@@ -4,6 +4,7 @@ source "googlecompute" "vps" {
   zone = "us-central1-a"
 
   machine_type = "e2-micro"
+  image_name = "vps-image-template"
 
   ssh_username = "packer"
   ssh_password = "packer"

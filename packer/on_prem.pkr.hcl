@@ -25,6 +25,7 @@ source "proxmox-iso" "docker_containers" {
     efi_storage_pool  = var.proxmox_disk_storage_pool
   }
 
+  template_name = "docker-containers-template"
   scsi_controller = "virtio-scsi-pci"
   memory = 1024
 
@@ -66,6 +67,7 @@ source "proxmox-iso" "dev_playground" {
     efi_storage_pool  = var.proxmox_disk_storage_pool
   }
 
+  template_name = "dev-playground-template"
   scsi_controller = "virtio-scsi-pci"
   memory = 1024
 
@@ -107,6 +109,7 @@ source "proxmox-iso" "vault" {
     efi_storage_pool  = var.proxmox_disk_storage_pool
   }
 
+  template_name = "vault-template"
   scsi_controller = "virtio-scsi-pci"
   memory = 1024
 
