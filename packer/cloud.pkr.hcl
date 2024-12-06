@@ -6,8 +6,8 @@ source "googlecompute" "vps" {
   machine_type = "e2-micro"
   image_name = "vps-image-template"
 
-  ssh_username = "packer"
-  ssh_password = "packer"
+  ssh_username = var.ssh_username
+  ssh_password = var.ssh_password
   ssh_timeout = "20m"
 }
 
@@ -17,8 +17,8 @@ build {
   ]
 
   provisioner "ansible" {
-    playbook_file = "../playbook.yml"
+    playbook_file = "../configure-templates.yml"
     groups = ["vps"]
-    user = "packer"
+    user = var.ssh_username
   }
 }

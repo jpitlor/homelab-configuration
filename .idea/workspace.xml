@@ -50,44 +50,44 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/jpitlor/Code/homelab-configuration/packer",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/jpitlor/Code/homelab-configuration/packer/http_content&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "GitStage.ChangesTree.GroupingKeys": [
-      "directory",
-      "module",
-      "repository"
+  &quot;keyToStringList&quot;: {
+    &quot;GitStage.ChangesTree.GroupingKeys&quot;: [
+      &quot;directory&quot;,
+      &quot;module&quot;,
+      &quot;repository&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\jpitlor\Code\homelab-configuration\packer" />
+      <recent name="C:\Users\jpitlor\Code\homelab-configuration\packer\http_content" />
+      <recent name="C:\Users\jpitlor\Code\homelab-configuration\roles" />
       <recent name="C:\Users\jpitlor\Code\homelab-configuration" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/roles" />
-      <recent name="$PROJECT_DIR$/roles/certificates/files" />
+      <recent name="C:\Users\jpitlor\Code\homelab-configuration\roles\dev_playground" />
+      <recent name="C:\Users\jpitlor\Code\homelab-configuration\packer" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jpitlor\Code\homelab-configuration\roles\vpn_client" />
       <recent name="C:\Users\jpitlor\Code\homelab-configuration\packer" />
       <recent name="C:\Users\jpitlor\Code\homelab-configuration" />
       <recent name="$PROJECT_DIR$/inventory" />
       <recent name="$PROJECT_DIR$/roles/certificates/files" />
-      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -138,7 +138,12 @@
       <workItem from="1730123150011" duration="607000" />
       <workItem from="1730141876765" duration="3721000" />
       <workItem from="1731350133694" duration="945000" />
-      <workItem from="1731599174463" duration="20891000" />
+      <workItem from="1731599174463" duration="25285000" />
+      <workItem from="1731803321448" duration="53000" />
+      <workItem from="1731803385538" duration="42679000" />
+      <workItem from="1732564672192" duration="76358000" />
+      <workItem from="1733454063623" duration="13627000" />
+      <workItem from="1733516306262" duration="654000" />
     </task>
     <task id="LOCAL-00001" summary="yank out the rest of puppet">
       <option name="closed" value="true" />
@@ -220,11 +225,62 @@
       <option name="project" value="LOCAL" />
       <updated>1724463568382</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="switch from ubuntu to debian, some ansible fixes">
+      <option name="closed" value="true" />
+      <created>1731695314955</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1731695314955</updated>
+    </task>
+    <task id="LOCAL-00012" summary="finalize cloud things">
+      <option name="closed" value="true" />
+      <created>1731702661189</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1731702661189</updated>
+    </task>
+    <task id="LOCAL-00013" summary="add back inventory">
+      <option name="closed" value="true" />
+      <created>1731806288207</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1731806288207</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Fix SSH type">
+      <option name="closed" value="true" />
+      <created>1732110563060</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1732110563060</updated>
+    </task>
+    <task id="LOCAL-00015" summary="restart ssh to accept new config">
+      <option name="closed" value="true" />
+      <created>1732122985104</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1732122985104</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="yank out the rest of puppet" />
@@ -237,6 +293,11 @@
     <MESSAGE value="update server naming scheme" />
     <MESSAGE value="VPS config works!" />
     <MESSAGE value="work on various TODOs" />
-    <option name="LAST_COMMIT_MESSAGE" value="work on various TODOs" />
+    <MESSAGE value="switch from ubuntu to debian, some ansible fixes" />
+    <MESSAGE value="finalize cloud things" />
+    <MESSAGE value="add back inventory" />
+    <MESSAGE value="Fix SSH type" />
+    <MESSAGE value="restart ssh to accept new config" />
+    <option name="LAST_COMMIT_MESSAGE" value="restart ssh to accept new config" />
   </component>
 </project>

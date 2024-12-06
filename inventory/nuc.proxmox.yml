@@ -1,6 +1,12 @@
 ---
 plugin: community.general.proxmox
+validate_certs: false
+want_facts: true
+compose:
+  ansible_host: proxmox_agent_interfaces[1].get('ip-addresses')[0] | ansible.utils.ipaddr('address')
 groups:
-  docker_containers: "'docker_containers' in (proxmox_tags_parsed|list)"
-  vault: "'vault' in (proxmox_tags_parsed|list)"
-  dev_playground: "'dev_playground' in (proxmox_tags_parsed|list)"
+  docker_containers_group: "'docker_containers' in (proxmox_tags_parsed|list)"
+  vpn_clients: "'docker_containers' in (proxmox_tags_parsed|list)"
+  vault_group: "'vault' in (proxmox_tags_parsed|list)"
+  dev_playground_group: "'dev_playground' in (proxmox_tags_parsed|list)"
+  proxmox_all: "'dev_playground' in (proxmox_tags_parsed|list) or 'vault' in (proxmox_tags_parsed|list) or 'docker_containers' in (proxmox_tags_parsed|list)"

@@ -1,3 +1,4 @@
 modules/
 .env
 packer/variables.auto.pkrvars.hcl
+openvpn_client_files

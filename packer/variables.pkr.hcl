@@ -26,3 +26,12 @@ variable "debian_iso_url" {
 variable "debian_iso_checksum_url" {
   type = string
 }
+
+variable "ssh_username" {
+  type = string
+}
+
+variable "ssh_password" {
+  type = string
+  sensitive = true
+}

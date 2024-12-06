@@ -4,20 +4,18 @@
   apt:
     pkg:
       - openvpn
-      - openvpn-systemd-resolvd
     state: latest
     update_cache: true
 
-# TODO - somehow generate ta.key and ca.key and obtain client.crt and client.key
-
-- name: Write ovpn file
-  become: true
-  ansible.builtin.template:
-    src: client.ovpn.j2
-    dest: /etc/dev.pitlor/client.ovpn
-
-- name: Add OpenVPN autoconnect cronjob
+- name: Copy VPN client files
   become: true
   ansible.builtin.copy:
-    src: "cron-vpn-connect"
-    dest: "/etc/cron.d/cron-vpn-connect"
+    src: "./openvpn_client_files/{{ inventory_hostname }}-{{ groups['vps'][0] }}.ovpn"
+    dest: "/etc/openvpn/client/vps.conf"
+
+- name: Enable OpenVPN service
+  become: true
+  ansible.builtin.service:
+    name: openvpn-client@vps
+    enabled: true
+    state: started

@@ -5,5 +5,4 @@ ports:
   - 80
   - 32400
   - 25565
-
 # TODO: UDP forwarding?? Does this happen automatically?

@@ -1,0 +1,22 @@
+dependencies:
+  - role: geerlingguy.docker
+    become: true
+  - role: ansible-role-nvm
+    nodejs_version: '22.11.0'
+  - role: rvm.ruby
+    rvm1_user: jpitlor
+    rvm1_rubies:
+      - 'ruby-3.3.6'
+  - role: comcast.sdkman
+    sdkman_auto_answer: true
+    sdkman_install_packages:
+      - candidate: java
+        version: '21.0.5-tem'
+      - candidate: maven
+        version: '3.9.9'
+      - candidate: gradle
+        version: '8.11'
+    sdkman_defaults:
+      java: '21.0.5-tem'
+      maven: '3.9.9'
+      gradle: '8.11'

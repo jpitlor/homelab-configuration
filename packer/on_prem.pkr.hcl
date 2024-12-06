@@ -28,14 +28,16 @@ source "proxmox-iso" "docker_containers" {
   template_name = "docker-containers-template"
   scsi_controller = "virtio-scsi-pci"
   memory = 1024
+  cores = 2
+  qemu_agent = true
 
   proxmox_url = var.proxmox_host
   insecure_skip_tls_verify = true
   node = var.proxmox_node
   username = var.proxmox_username
   password = var.proxmox_password
-  ssh_username = "packer"
-  ssh_password = "packer"
+  ssh_username = var.ssh_username
+  ssh_password = var.ssh_password
   ssh_timeout = "20m"
   vm_id = 900
 }
@@ -70,16 +72,17 @@ source "proxmox-iso" "dev_playground" {
   template_name = "dev-playground-template"
   scsi_controller = "virtio-scsi-pci"
   memory = 1024
+  qemu_agent = true
 
   proxmox_url = var.proxmox_host
   insecure_skip_tls_verify = true
   node = var.proxmox_node
   username = var.proxmox_username
   password = var.proxmox_password
-  ssh_username = "packer"
-  ssh_password = "packer"
+  ssh_username = var.ssh_username
+  ssh_password = var.ssh_password
   ssh_timeout = "20m"
-  vm_id = 901
+  vm_id = 900
 }
 
 source "proxmox-iso" "vault" {
@@ -112,16 +115,17 @@ source "proxmox-iso" "vault" {
   template_name = "vault-template"
   scsi_controller = "virtio-scsi-pci"
   memory = 1024
+  qemu_agent = true
 
   proxmox_url = var.proxmox_host
   insecure_skip_tls_verify = true
   node = var.proxmox_node
   username = var.proxmox_username
   password = var.proxmox_password
-  ssh_username = "packer"
-  ssh_password = "packer"
+  ssh_username = var.ssh_username
+  ssh_password = var.ssh_password
   ssh_timeout = "20m"
-  vm_id = 902
+  vm_id = 900
 }
 
 build {
@@ -130,9 +134,9 @@ build {
   ]
 
   provisioner "ansible" {
-    playbook_file = "../playbook.yml"
+    playbook_file = "../configure-templates.yml"
     groups = ["docker_containers"]
-    user = "packer"
+    user = var.ssh_username
   }
 }
 
@@ -142,9 +146,9 @@ build {
   ]
 
   provisioner "ansible" {
-    playbook_file = "../playbook.yml"
+    playbook_file = "../configure-templates.yml"
     groups = ["dev_playground"]
-    user = "packer"
+    user = var.ssh_username
   }
 }
 
@@ -154,8 +158,8 @@ build {
   ]
 
   provisioner "ansible" {
-    playbook_file = "../playbook.yml"
+    playbook_file = "../configure-templates.yml"
     groups = ["vault"]
-    user = "packer"
+    user = var.ssh_username
   }
 }

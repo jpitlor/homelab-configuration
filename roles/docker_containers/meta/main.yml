@@ -1,3 +1,10 @@
 dependencies:
-  - role: geerlingguy.docker
+  - role: geerlingguy.containerd
+    become: true
+  - role: geerlingguy.kubernetes
+    become: true
+    kubernetes_version: '1.31'
+    kubernetes_allow_pods_on_control_plane: true
+    kubernetes_kubelet_extra_args: "--fail-swap-on=false"
+  - role: geerlingguy.helm
     become: true

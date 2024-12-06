@@ -1,0 +1,10 @@
+---
+- name: Configure VPN server
+  hosts: vps
+  roles:
+    - vpn_server
+
+- name: Configure VPN clients
+  hosts: vpn_clients
+  roles:
+    - vpn_client

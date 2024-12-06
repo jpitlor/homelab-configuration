@@ -7,26 +7,14 @@
       - vim
       - build-essential
       - wget
-      - zsh
       - sl
       - toilet
       - cowsay
       - fortune
       - imagemagick
       - x11-apps
-      - ruby-full
-      - maven
       - dnsutils
       - python3-venv
-      - python3-dev
       - python3
     state: latest
     update_cache: true
-
-# Jetbrains IDE Backends - ????
-
-# Java - https://sdkman.io/
-
-# Node.js - https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating
-
-# Ruby - https://rvm.io/

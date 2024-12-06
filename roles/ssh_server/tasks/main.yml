@@ -6,6 +6,17 @@
     path: /etc/dev.pitlor
     state: directory
 
+- name: "Create homelab group"
+  ansible.builtin.group:
+    name: homelab
+    state: present
+
+- name: "Add users to homelab group"
+  ansible.builtin.user:
+    groups: homelab
+    append: true
+    name: jpitlor
+
 - name: "Copy SSH CA"
   when: ansible_facts['os_family'] != "Windows"
   become: true
@@ -45,9 +56,10 @@
     pkg:
       - git
       - vim
-      - build-essential
       - wget
+      - curl
       - zsh
+      - tmux
     state: latest
     update_cache: true
 
@@ -57,19 +69,32 @@
     name: manala.roles.ohmyzsh
   vars:
     manala_ohmyzsh_users:
-      - user: packer # TODO - change to jpitlor
+      - user: jpitlor
   register: ohmyzsh
+
+- name: See if .zshrc is generated
+  ansible.builtin.stat:
+    path: /home/jpitlor/.zshrc
+  register: zshrc_stat
 
 - name: Remove generated .zshrc
   ansible.builtin.file:
-    path: /home/packer/.zshrc # TODO jpitlor
+    path: /home/jpitlor/.zshrc
     state: absent
+  when: not zshrc_stat.stat.islnk
 
 - name: Install Oh My ZSH Theme
   become: true
   ansible.builtin.get_url:
     url: https://raw.githubusercontent.com/moarram/headline/main/headline.zsh-theme
     dest: /usr/local/share/oh-my-zsh/themes
+
+- name: Install Vundle
+  become: true
+  ansible.builtin.git:
+    repo: 'https://github.com/VundleVim/Vundle.vim.git'
+    dest: '/home/jpitlor/.vim/bundle/Vundle.vim'
+    version: '{{ VUNDLE_COMMIT }}'
 
 - name: Clone dotfiles
   become: true
@@ -86,8 +111,15 @@
     dest: "/etc/cron.d/cron-dotfiles-auto-update"
 
 - name: "Symlink {{ item }}"
+  become: true
   ansible.builtin.file:
     src: "{{ DOTFILES_FOLDER }}/{{ item }}"
     dest: "/home/{{ USER }}/{{ item }}"
     state: link
+    owner: root
+    group: "{{ USER }}"
+    mode: '774'
   loop: "{{ DOTFILES }}"
+
+- name: Install Vundle plugins
+  ansible.builtin.command: vim +PluginInstall +qall

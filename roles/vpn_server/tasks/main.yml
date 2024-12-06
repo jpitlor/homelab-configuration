@@ -1,0 +1,20 @@
+---
+- name: Find all client files
+  ansible.builtin.find:
+    paths: /etc/openvpn
+    patterns: "*.ovpn"
+  register: openvpn_client_files
+
+- name: Make folder for client files on controller
+  ansible.builtin.file:
+    path: ./openvpn_client_files
+    state: directory
+  delegate_to: localhost
+
+- name: Transfer all client files to controller
+  become: true
+  ansible.builtin.fetch:
+    src: "{{ item.path }}"
+    dest: ./openvpn_client_files/
+    flat: true
+  loop: "{{ openvpn_client_files.files }}"

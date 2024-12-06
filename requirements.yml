@@ -5,9 +5,17 @@ roles:
   - src: nvjacobo.caddy
   - src: kyl191.openvpn
   - src: geerlingguy.docker
+  - src: geerlingguy.containerd
+  - src: geerlingguy.kubernetes
+  - src: geerlingguy.helm
   - src: gantsign.oh-my-zsh
+  - src: rvm.ruby
+  - src: comcast.sdkman
+  - src: xanmanning.k3s
 collections:
   - ansible.posix
+  - ansible.utils
   - community.general
   - community.docker
   - manala.roles
+  - kubernetes.core
