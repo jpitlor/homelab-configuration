@@ -6,7 +6,7 @@
     state: present
     canonical_name: "{{ item }}"
     ip_address: "{{ docker_host_vpn_ip }}"
-  loop: "{{ domains }}"
+  loop: "{{ internal_service_domains }}"
 
 - name: Set hosts (Unix)
   when: ansible_facts['os_family'] != "Windows"
@@ -16,5 +16,5 @@
     regexp: '.*{{ item }}$'
     line: "{{ docker_host_vpn_ip }} {{ item }}"
     state: present
-  loop: "{{ domains }}"
+  loop: "{{ internal_service_domains }}"
 

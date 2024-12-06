@@ -3,26 +3,28 @@
   when: ansible_facts['os_family'] != "Windows"
   become: true
   ansible.builtin.file:
-    path: /etc/dev.pitlor
+    path: '{{ homelab_data_folder }}'
     state: directory
 
 - name: "Create homelab group"
   ansible.builtin.group:
-    name: homelab
+    name: "{{ homelab_group_name }}"
     state: present
 
 - name: "Add users to homelab group"
   ansible.builtin.user:
-    groups: homelab
+    groups: "{{ homelab_group_name }}"
     append: true
-    name: jpitlor
+    name: '{{ username }}'
 
 - name: "Copy SSH CA"
   when: ansible_facts['os_family'] != "Windows"
   become: true
   ansible.builtin.copy:
     src: "pitlor-ssh-ca.pub"
-    dest: "/etc/dev.pitlor/pitlor-ssh-ca.pub"
+    dest: "{{ homelab_data_folder }}/pitlor-ssh-ca.pub"
+    owner: root
+    group: "{{ homelab_group_name }}"
 
 - name: "Set SSH security"
   when: ansible_facts['os_family'] != "Windows"
@@ -30,6 +32,8 @@
   ansible.builtin.copy:
     src: "200-sshd-security.conf"
     dest: "/etc/ssh/sshd_config.d/200-sshd-security.conf"
+    owner: root
+    group: "{{ homelab_group_name }}"
 
 - name: "Trust SSH CA"
   when: ansible_facts['os_family'] != "Windows"
@@ -37,6 +41,8 @@
   ansible.builtin.copy:
     src: "201-sshd-pitlor-ca.conf"
     dest: "/etc/ssh/sshd_config.d/201-sshd-pitlor-ca.conf"
+    owner: root
+    group: "{{ homelab_group_name }}"
 
 - name: Restart SSH
   become: true
@@ -49,39 +55,19 @@
   ansible.builtin.copy:
     src: "sudoers-jpitlor"
     dest: "/etc/sudoers.d/jpitlor"
+    owner: root
+    group: "{{ homelab_group_name }}"
 
 - name: Install system packages
   become: true
   apt:
     pkg:
-      - git
       - vim
       - wget
       - curl
-      - zsh
       - tmux
     state: latest
     update_cache: true
-
-- name: Install Oh My ZSH
-  become: true
-  ansible.builtin.import_role:
-    name: manala.roles.ohmyzsh
-  vars:
-    manala_ohmyzsh_users:
-      - user: jpitlor
-  register: ohmyzsh
-
-- name: See if .zshrc is generated
-  ansible.builtin.stat:
-    path: /home/jpitlor/.zshrc
-  register: zshrc_stat
-
-- name: Remove generated .zshrc
-  ansible.builtin.file:
-    path: /home/jpitlor/.zshrc
-    state: absent
-  when: not zshrc_stat.stat.islnk
 
 - name: Install Oh My ZSH Theme
   become: true
@@ -94,14 +80,14 @@
   ansible.builtin.git:
     repo: 'https://github.com/VundleVim/Vundle.vim.git'
     dest: '/home/jpitlor/.vim/bundle/Vundle.vim'
-    version: '{{ VUNDLE_COMMIT }}'
+    version: '{{ vundle_git_commit }}'
 
 - name: Clone dotfiles
   become: true
   ansible.builtin.git:
     repo: 'https://github.com/jpitlor/.files'
-    dest: '{{ DOTFILES_FOLDER }}'
-    version: '{{ DOTFILES_REPO_COMMIT }}'
+    dest: '{{ homelab_data_folder }}/.files'
+    version: '{{ dotfiles_git_commit }}'
 
 - name: Add dotfiles autoupdate cronjob
   when: ansible_facts['os_family'] != "Windows"
@@ -110,16 +96,23 @@
     src: "cron-dotfiles-auto-update"
     dest: "/etc/cron.d/cron-dotfiles-auto-update"
 
-- name: "Symlink {{ item }}"
+- name: Discover dotfiles
+  ansible.builtin.find:
+    paths: '{{ homelab_data_folder }}/.files'
+    patterns: '.*'
+  register: dotfiles
+
+- name: "Symlink dot files"
   become: true
   ansible.builtin.file:
-    src: "{{ DOTFILES_FOLDER }}/{{ item }}"
-    dest: "/home/{{ USER }}/{{ item }}"
+    src: "{{ item.path }}"
+    dest: "/home/{{ username }}/{{ item.path | basename }}"
     state: link
     owner: root
-    group: "{{ USER }}"
+    group: "{{ homelab_group_name }}"
     mode: '774'
-  loop: "{{ DOTFILES }}"
+    force: true
+  loop: dotfiles.files
 
 - name: Install Vundle plugins
   ansible.builtin.command: vim +PluginInstall +qall

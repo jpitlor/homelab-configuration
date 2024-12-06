@@ -1,0 +1,6 @@
+dependencies:
+  - role: manala.roles.zsh
+  - role: manala.roles.git
+  - role: manala.roles.ohmyzsh
+    manala_ohmyzsh_users:
+      - user: jpitlor

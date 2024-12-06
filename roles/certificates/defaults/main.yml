@@ -1,5 +1,5 @@
 ---
-certs:
+trusted_certificates:
   - name: pitlor.dev Root CA
     file: pitlor-dev-root-ca.crt
   - name: pitlor.dev Intermediate CA

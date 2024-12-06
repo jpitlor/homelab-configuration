@@ -1,18 +1,12 @@
 ---
-- name: Create /var/dev.pitlor
-  become: true
-  ansible.builtin.file:
-    path: /var/dev.pitlor
-    state: directory
-
 - name: Clone Chart
   become: true
   ansible.builtin.git:
     repo: 'https://github.com/jpitlor/homelab-chart'
-    dest: '{{ CONTAINER_CONFIG_FOLDER }}'
+    dest: '{{ homelab_data_folder }}/homelab-chart'
 
 - name: Deploy Chart
   kubernetes.core.helm:
-    ref: '{{ CONTAINER_CONFIG_FOLDER }}'
-    release_namespace: homelab
+    ref: '{{ homelab_data_folder }}/homelab-chart'
+    release_namespace: '{{ kubernetes_homelab_namespace }}'
     create_namespace: true

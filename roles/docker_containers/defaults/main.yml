@@ -1,0 +1,3 @@
+---
+homelab_data_folder: /var/dev.pitlor
+kubernetes_homelab_namespace: homelab

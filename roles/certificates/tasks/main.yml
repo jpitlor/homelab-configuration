@@ -5,7 +5,7 @@
   ansible.builtin.copy:
     src: "{{ item.file }}"
     dest: "/etc/ssl/certs/{{ item.file }}"
-  loop: "{{ certs }}"
+  loop: "{{ trusted_certificates }}"
 
 - name: Trust certificates (Windows)
   when: ansible_facts['os_family'] == "Windows"
@@ -14,5 +14,5 @@
     path: "{{ item.file }}"
     state: present
     key_exportable: false
-  loop: "{{ certs }}"
+  loop: "{{ trusted_certificates }}"
 

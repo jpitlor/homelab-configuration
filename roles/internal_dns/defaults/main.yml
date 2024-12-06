@@ -1,5 +1,5 @@
 ---
-domains:
+internal_service_domains:
   - nas.pitlor.local
   - proxmox.pitlor.local
   - containers.pitlor.local
