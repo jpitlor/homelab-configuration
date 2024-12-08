@@ -143,7 +143,7 @@
       <workItem from="1731803385538" duration="42679000" />
       <workItem from="1732564672192" duration="76358000" />
       <workItem from="1733454063623" duration="13627000" />
-      <workItem from="1733516306262" duration="654000" />
+      <workItem from="1733516306262" duration="12170000" />
     </task>
     <task id="LOCAL-00001" summary="yank out the rest of puppet">
       <option name="closed" value="true" />
@@ -265,7 +265,23 @@
       <option name="project" value="LOCAL" />
       <updated>1732122985104</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="tons of improvements to images!">
+      <option name="closed" value="true" />
+      <created>1733517062882</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1733517062883</updated>
+    </task>
+    <task id="LOCAL-00017" summary="change vars to defaults, rename everything to be more clear, go to lowercase">
+      <option name="closed" value="true" />
+      <created>1733518727458</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1733518727458</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -298,6 +314,8 @@
     <MESSAGE value="add back inventory" />
     <MESSAGE value="Fix SSH type" />
     <MESSAGE value="restart ssh to accept new config" />
-    <option name="LAST_COMMIT_MESSAGE" value="restart ssh to accept new config" />
+    <MESSAGE value="tons of improvements to images!" />
+    <MESSAGE value="change vars to defaults, rename everything to be more clear, go to lowercase" />
+    <option name="LAST_COMMIT_MESSAGE" value="change vars to defaults, rename everything to be more clear, go to lowercase" />
   </component>
 </project>

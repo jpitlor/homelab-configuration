@@ -1,6 +1,9 @@
 dependencies:
   - role: manala.roles.zsh
+    become: true
   - role: manala.roles.git
+    become: true
   - role: manala.roles.ohmyzsh
+    become: true
     manala_ohmyzsh_users:
       - user: jpitlor

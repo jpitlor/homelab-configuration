@@ -82,7 +82,7 @@ source "proxmox-iso" "dev_playground" {
   ssh_username = var.ssh_username
   ssh_password = var.ssh_password
   ssh_timeout = "20m"
-  vm_id = 900
+  vm_id = 901
 }
 
 source "proxmox-iso" "vault" {
@@ -125,7 +125,7 @@ source "proxmox-iso" "vault" {
   ssh_username = var.ssh_username
   ssh_password = var.ssh_password
   ssh_timeout = "20m"
-  vm_id = 900
+  vm_id = 902
 }
 
 build {
