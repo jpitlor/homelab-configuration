@@ -5,17 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="28a3bada-cde0-427c-9b36-d3800818e3c4" name="Changes" comment="add some VPN and SSH config">
-      <change afterPath="$PROJECT_DIR$/roles/docker_host/meta/main.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventory" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/playbook.yml" beforeDir="false" afterPath="$PROJECT_DIR$/playbook.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.yml" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/docker_host/tasks/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/roles/docker_host/tasks/main.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/vpn_server/files/route-up.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/vpn_server/files/server.conf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/vpn_server/tasks/main.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/vps/meta/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/roles/vps/meta/main.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packer/on_prem.pkr.hcl" beforeDir="false" afterPath="$PROJECT_DIR$/packer/on_prem.pkr.hcl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +48,7 @@
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/jpitlor/Code/homelab-configuration/packer/http_content&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/jpitlor/homelab-configuration&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -74,13 +65,44 @@
     ]
   }
 }</component>
+  <component name="RdControllerToolWindowsLayoutState" isNewUi="true">
+    <layout>
+      <window_info id="Bookmarks" side_tool="true" />
+      <window_info id="Merge Requests" />
+      <window_info id="Commit_Guest" show_stripe_button="false" />
+      <window_info id="Pull Requests" />
+      <window_info id="Learn" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.35719875" />
+      <window_info id="Commit" order="1" weight="0.25" />
+      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Database Changes" />
+      <window_info anchor="bottom" id="TypeScript" />
+      <window_info anchor="bottom" id="Profiler" />
+      <window_info anchor="bottom" id="TODO" />
+      <window_info anchor="bottom" id="File Transfer" />
+      <window_info anchor="bottom" id="Find" />
+      <window_info anchor="bottom" id="Version Control" order="0" />
+      <window_info anchor="bottom" id="Problems" order="1" />
+      <window_info anchor="bottom" id="Problems View" order="2" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="3" visible="true" weight="0.36628324" />
+      <window_info anchor="bottom" id="Services" order="4" />
+      <window_info anchor="right" id="String Manipulation" show_stripe_button="false" />
+      <window_info anchor="right" id="Endpoints" />
+      <window_info anchor="right" id="Coverage" side_tool="true" />
+      <window_info anchor="right" content_ui="combo" id="Notifications" order="0" weight="0.25" />
+      <window_info anchor="right" id="AIAssistant" order="1" weight="0.25" />
+      <window_info anchor="right" id="Database" order="2" weight="0.25" />
+      <window_info anchor="right" id="Gradle" order="3" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="4" weight="0.25" />
+    </layout>
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/packer" />
       <recent name="C:\Users\jpitlor\Code\homelab-configuration\packer\http_content" />
       <recent name="C:\Users\jpitlor\Code\homelab-configuration\roles" />
       <recent name="C:\Users\jpitlor\Code\homelab-configuration" />
-      <recent name="C:\Users\jpitlor\Code\homelab-configuration\roles\dev_playground" />
-      <recent name="C:\Users\jpitlor\Code\homelab-configuration\packer" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\jpitlor\Code\homelab-configuration\roles\vpn_client" />
@@ -93,8 +115,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.21565.193" />
-        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-IU-243.21565.193" />
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.59" />
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.59" />
       </set>
     </attachedChunks>
   </component>
@@ -144,6 +166,7 @@
       <workItem from="1732564672192" duration="76358000" />
       <workItem from="1733454063623" duration="13627000" />
       <workItem from="1733516306262" duration="12170000" />
+      <workItem from="1733621128742" duration="2983000" />
     </task>
     <task id="LOCAL-00001" summary="yank out the rest of puppet">
       <option name="closed" value="true" />
@@ -317,5 +340,9 @@
     <MESSAGE value="tons of improvements to images!" />
     <MESSAGE value="change vars to defaults, rename everything to be more clear, go to lowercase" />
     <option name="LAST_COMMIT_MESSAGE" value="change vars to defaults, rename everything to be more clear, go to lowercase" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

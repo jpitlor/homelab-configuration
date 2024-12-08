@@ -1,13 +1,16 @@
 source "proxmox-iso" "docker_containers" {
-  iso_url = var.debian_iso_url
-  iso_checksum = "file:${var.debian_iso_checksum_url}"
-  iso_storage_pool = "local"
-  unmount_iso = true
-
   http_directory = "./http_content"
-  http_port_min = 8081
-  http_port_max = 8081
-  boot_command = ["<esc><wait>auto preseed/url=http://192.168.0.103:{{ .HTTPPort }}/preseed.cfg<enter>"]
+  boot_command = ["<esc><wait>auto preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg<enter>"]
+  ssh_username = var.ssh_username
+  ssh_password = var.ssh_password
+  ssh_timeout = "20m"
+
+  boot_iso {
+      unmount = true
+      iso_url = var.debian_iso_url
+      iso_checksum = "file:${var.debian_iso_checksum_url}"
+      iso_storage_pool = "local"
+  }
 
   network_adapters {
     bridge = "vmbr0"
@@ -19,6 +22,7 @@ source "proxmox-iso" "docker_containers" {
     disk_size         = "50G"
     storage_pool      = var.proxmox_disk_storage_pool
     type              = "scsi"
+    format = "raw"
   }
 
   efi_config {
@@ -36,22 +40,22 @@ source "proxmox-iso" "docker_containers" {
   node = var.proxmox_node
   username = var.proxmox_username
   password = var.proxmox_password
-  ssh_username = var.ssh_username
-  ssh_password = var.ssh_password
-  ssh_timeout = "20m"
   vm_id = 900
 }
 
 source "proxmox-iso" "dev_playground" {
-  iso_url = var.debian_iso_url
-  iso_checksum = "file:${var.debian_iso_checksum_url}"
-  iso_storage_pool = "local"
-  unmount_iso = true
-
   http_directory = "./http_content"
-  http_port_min = 8081
-  http_port_max = 8081
-  boot_command = ["<esc><wait>auto preseed/url=http://192.168.0.103:{{ .HTTPPort }}/preseed.cfg<enter>"]
+  boot_command = ["<esc><wait>auto preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg<enter>"]
+  ssh_username = var.ssh_username
+  ssh_password = var.ssh_password
+  ssh_timeout = "20m"
+
+  boot_iso {
+      unmount = true
+      iso_url = var.debian_iso_url
+      iso_checksum = "file:${var.debian_iso_checksum_url}"
+      iso_storage_pool = "local"
+  }
 
   network_adapters {
     bridge = "vmbr0"
@@ -63,6 +67,7 @@ source "proxmox-iso" "dev_playground" {
     disk_size         = "50G"
     storage_pool      = var.proxmox_disk_storage_pool
     type              = "scsi"
+    format = "raw"
   }
 
   efi_config {
@@ -79,22 +84,22 @@ source "proxmox-iso" "dev_playground" {
   node = var.proxmox_node
   username = var.proxmox_username
   password = var.proxmox_password
-  ssh_username = var.ssh_username
-  ssh_password = var.ssh_password
-  ssh_timeout = "20m"
   vm_id = 901
 }
 
 source "proxmox-iso" "vault" {
-  iso_url = var.debian_iso_url
-  iso_checksum = "file:${var.debian_iso_checksum_url}"
-  iso_storage_pool = "local"
-  unmount_iso = true
-
   http_directory = "./http_content"
-  http_port_min = 8081
-  http_port_max = 8081
-  boot_command = ["<esc><wait>auto preseed/url=http://192.168.0.103:{{ .HTTPPort }}/preseed.cfg<enter>"]
+  boot_command = ["<esc><wait>auto preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg<enter>"]
+  ssh_username = var.ssh_username
+  ssh_password = var.ssh_password
+  ssh_timeout = "20m"
+
+  boot_iso {
+      unmount = true
+      iso_url = var.debian_iso_url
+      iso_checksum = "file:${var.debian_iso_checksum_url}"
+      iso_storage_pool = "local"
+  }
 
   network_adapters {
     bridge = "vmbr0"
@@ -106,6 +111,7 @@ source "proxmox-iso" "vault" {
     disk_size         = "50G"
     storage_pool      = var.proxmox_disk_storage_pool
     type              = "scsi"
+    format = "raw"
   }
 
   efi_config {
@@ -122,9 +128,6 @@ source "proxmox-iso" "vault" {
   node = var.proxmox_node
   username = var.proxmox_username
   password = var.proxmox_password
-  ssh_username = var.ssh_username
-  ssh_password = var.ssh_password
-  ssh_timeout = "20m"
   vm_id = 902
 }
 
