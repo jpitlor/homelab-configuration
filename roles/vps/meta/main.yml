@@ -1,5 +1,9 @@
 ---
 dependencies:
-  - role: nvjacobo.caddy
+  - role: caddy_ansible.caddy_ansible
     become: true
     caddy_config: "{{ lookup('template', 'templates/Caddyfile.j2') }}"
+    caddy_systemd_capabilities_enabled: true
+    caddy_packages:
+      - github.com/caddy-dns/cloudflare
+      - github.com/mholt/caddy-l4

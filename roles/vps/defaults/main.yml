@@ -1,8 +1,4 @@
 ---
-docker_host: 10.0.2.1
-ports:
-  - 443
-  - 80
-  - 32400
-  - 25565
+#docker_host: 10.0.2.1
+docker_host: 10.11.12.2
 # TODO: UDP forwarding?? Does this happen automatically?

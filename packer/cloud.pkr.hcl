@@ -20,5 +20,6 @@ build {
     playbook_file = "../configure-templates.yml"
     groups = ["vps"]
     user = var.ssh_username
+    use_proxy = false
   }
 }

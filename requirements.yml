@@ -2,12 +2,13 @@ roles:
   - src: rvm.ruby
   - name: ansible-role-nvm
     src: https://github.com/morgangraphics/ansible-role-nvm
-  - src: nvjacobo.caddy
+  - src: caddy_ansible.caddy_ansible
   - src: kyl191.openvpn
   - src: geerlingguy.docker
   - src: geerlingguy.containerd
-  - src: geerlingguy.kubernetes
+  - src: xanmanning.k3s
   - src: geerlingguy.helm
+  - src: geerlingguy.swap
   - src: gantsign.oh-my-zsh
   - src: rvm.ruby
   - src: comcast.sdkman

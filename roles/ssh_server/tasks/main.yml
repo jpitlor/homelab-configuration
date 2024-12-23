@@ -1,11 +1,4 @@
 ---
-- name: "Create /etc/dev.pitlor"
-  when: ansible_facts['os_family'] != "Windows"
-  become: true
-  ansible.builtin.file:
-    path: '{{ homelab_data_folder }}'
-    state: directory
-
 - name: "Create homelab group"
   become: true
   ansible.builtin.group:
@@ -18,6 +11,16 @@
     groups: "{{ homelab_group_name }}"
     append: true
     name: '{{ username }}'
+
+- name: "Create homelab data folder"
+  when: ansible_facts['os_family'] != "Windows"
+  become: true
+  ansible.builtin.file:
+    path: '{{ homelab_data_folder }}'
+    state: directory
+    owner: root
+    group: '{{ homelab_group_name }}'
+    mode: '0775'
 
 - name: "Copy SSH CA"
   when: ansible_facts['os_family'] != "Windows"
@@ -40,8 +43,8 @@
 - name: "Trust SSH CA"
   when: ansible_facts['os_family'] != "Windows"
   become: true
-  ansible.builtin.copy:
-    src: "201-sshd-pitlor-ca.conf"
+  ansible.builtin.template:
+    src: "201-sshd-pitlor-ca.conf.j2"
     dest: "/etc/ssh/sshd_config.d/201-sshd-pitlor-ca.conf"
     owner: root
     group: "{{ homelab_group_name }}"
@@ -54,9 +57,9 @@
 
 - name: Give no password sudo access
   become: true
-  ansible.builtin.copy:
-    src: "sudoers-jpitlor"
-    dest: "/etc/sudoers.d/jpitlor"
+  ansible.builtin.template:
+    src: "passwordless-sudo.j2"
+    dest: "/etc/sudoers.d/{{ username }}"
     owner: root
     group: "{{ homelab_group_name }}"
 
@@ -68,6 +71,11 @@
       - wget
       - curl
       - tmux
+      - python3-launchpadlib
+      - build-essential
+      - lsof
+      - telnet
+      - jq
     state: latest
     update_cache: true
 
@@ -81,27 +89,29 @@
   become: true
   ansible.builtin.git:
     repo: 'https://github.com/VundleVim/Vundle.vim.git'
-    dest: '/home/jpitlor/.vim/bundle/Vundle.vim'
+    dest: '/home/{{ username }}/.vim/bundle/Vundle.vim'
     version: '{{ vundle_git_commit }}'
 
 - name: Clone dotfiles
   become: true
   ansible.builtin.git:
+    force: true
     repo: 'https://github.com/jpitlor/.files'
     dest: '{{ homelab_data_folder }}/.files'
     version: '{{ dotfiles_git_commit }}'
 
-- name: Add dotfiles autoupdate cronjob
-  when: ansible_facts['os_family'] != "Windows"
-  become: true
-  ansible.builtin.copy:
-    src: "cron-dotfiles-auto-update"
-    dest: "/etc/cron.d/cron-dotfiles-auto-update"
+#- name: Add dotfiles autoupdate cronjob
+#  when: ansible_facts['os_family'] != "Windows"
+#  become: true
+#  ansible.builtin.copy:
+#    src: "cron-dotfiles-auto-update"
+#    dest: "/etc/cron.d/cron-dotfiles-auto-update"
 
 - name: Discover dotfiles
   ansible.builtin.find:
     paths: '{{ homelab_data_folder }}/.files'
     patterns: '.*'
+    hidden: true
   register: dotfiles
 
 - name: "Symlink dot files"

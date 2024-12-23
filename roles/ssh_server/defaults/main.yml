@@ -1,6 +1,6 @@
 ---
-dotfiles_git_commit: e6136b0
-homelab_data_folder: /var/dev.pitlor
+dotfiles_git_commit: 990f643
+homelab_data_folder: /etc/dev.pitlor
 username: jpitlor
 vundle_git_commit: 5548a1a
 homelab_group_name: homelab

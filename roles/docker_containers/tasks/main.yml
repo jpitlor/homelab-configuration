@@ -1,12 +1,42 @@
 ---
-- name: Clone Chart
+- name: Create kube folder
   become: true
+  ansible.builtin.file:
+    path: "/home/{{ username }}/.kube"
+    state: directory
+
+- name: Symlink kubeconfig
+  become: true
+  ansible.builtin.file:
+    src: /etc/rancher/k3s/k3s.yaml
+    dest: "/home/{{ username }}/.kube/config"
+    owner: "{{ username }}"
+    state: link
+
+- name: Install required system packages
+  become: true
+  apt:
+    pkg:
+      - python3-pip
+      - python3
+    state: latest
+    update_cache: true
+
+- name: Install pyyaml
+  become: true
+  ansible.builtin.pip:
+    name: pyyaml
+    extra_args: "--break-system-packages"  # TODO replace with pipx
+
+- name: Clone Chart
   ansible.builtin.git:
     repo: 'https://github.com/jpitlor/homelab-chart'
     dest: '{{ homelab_data_folder }}/homelab-chart'
 
 - name: Deploy Chart
   kubernetes.core.helm:
-    ref: '{{ homelab_data_folder }}/homelab-chart'
+    chart_ref: '{{ homelab_data_folder }}/homelab-chart'
+    name: homelab
     release_namespace: '{{ kubernetes_homelab_namespace }}'
     create_namespace: true
+    dependency_update: true

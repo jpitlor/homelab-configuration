@@ -1,6 +1,8 @@
-{% for port in ports %}
-*.pitlor.dev:{{ port }} {
-    reverse_proxy {{ docker_host }}:{{ port }}
+*.test.pitlor.dev {
+    reverse_proxy {{ docker_host }}
+
+    tls {
+        dns cloudflare {{ lookup('ansible.builtin.env', 'CLOUDFLARE_AUTH_TOKEN') }}
+    }
 }
-{% endfor %}
 

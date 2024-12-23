@@ -1,3 +1,5 @@
 ---
-homelab_data_folder: /var/dev.pitlor
+homelab_data_folder: /etc/dev.pitlor
 kubernetes_homelab_namespace: homelab
+username: jpitlor
+homelab_chart_git_commit: bd7d88d
