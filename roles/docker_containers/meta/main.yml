@@ -6,6 +6,3 @@ dependencies:
     become: true
   - role: xanmanning.k3s
     k3s_become: true
-  - role: geerlingguy.helm
-    become: true
-    helm_version: 'v3.16.3'

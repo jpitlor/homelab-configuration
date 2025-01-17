@@ -122,7 +122,6 @@ build {
     "source.proxmox-iso.debian_base",
     "source.proxmox-clone.dev_playground",
     "source.proxmox-clone.docker_containers",
-    "source.proxmox-clone.vault",
   ]
 
   provisioner "ansible" {

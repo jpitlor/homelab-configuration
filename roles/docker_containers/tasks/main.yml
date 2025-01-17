@@ -28,12 +28,17 @@
     name: pyyaml
     extra_args: "--break-system-packages"  # TODO replace with pipx
 
+- name: Install CRD dependencies
+  kubernetes.core.k8s:
+    state: present
+    src: homelab-chart-dependencies.yaml
+
 - name: Clone Chart
   ansible.builtin.git:
     repo: 'https://github.com/jpitlor/homelab-chart'
     dest: '{{ homelab_data_folder }}/homelab-chart'
 
-- name: Deploy Chart
+- name: Deploy Homelab Chart
   kubernetes.core.helm:
     chart_ref: '{{ homelab_data_folder }}/homelab-chart'
     name: homelab

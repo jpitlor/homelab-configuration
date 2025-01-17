@@ -76,6 +76,7 @@
       - lsof
       - telnet
       - jq
+      - cloud-utils
     state: latest
     update_cache: true
 

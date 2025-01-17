@@ -41,9 +41,3 @@
       tags:
         - dev_playground
 
-- name: Configure vault
-  hosts: vault_group
-  roles:
-    - role: vault
-      tags:
-        - vault

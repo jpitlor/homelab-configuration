@@ -4,26 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="28a3bada-cde0-427c-9b36-d3800818e3c4" name="Changes" comment="updated packer configs">
+    <list default="true" id="28a3bada-cde0-427c-9b36-d3800818e3c4" name="Changes" comment="last fixes to a working deployment">
       <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/configure-templates.yml" beforeDir="false" afterPath="$PROJECT_DIR$/configure-templates.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inventory/nuc.proxmox.yml" beforeDir="false" afterPath="$PROJECT_DIR$/inventory/nuc.proxmox.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packer/cloud.pkr.hcl" beforeDir="false" afterPath="$PROJECT_DIR$/packer/cloud.pkr.hcl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packer/http_content/preseed.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/packer/http_content/preseed.cfg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packer/on_prem.pkr.hcl" beforeDir="false" afterPath="$PROJECT_DIR$/packer/on_prem.pkr.hcl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.yml" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/roles/docker_containers/defaults/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/roles/docker_containers/defaults/main.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/docker_containers/meta/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/roles/docker_containers/meta/main.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/roles/docker_containers/tasks/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/roles/docker_containers/tasks/main.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/ssh_server/defaults/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/roles/ssh_server/defaults/main.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/ssh_server/files/201-sshd-pitlor-ca.conf" beforeDir="false" afterPath="$PROJECT_DIR$/roles/ssh_server/templates/201-sshd-pitlor-ca.conf.j2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/ssh_server/files/sudoers-jpitlor" beforeDir="false" afterPath="$PROJECT_DIR$/roles/ssh_server/templates/passwordless-sudo.j2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/ssh_server/tasks/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/roles/ssh_server/tasks/main.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/vps/defaults/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/roles/vps/defaults/main.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/vps/meta/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/roles/vps/meta/main.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/vps/templates/Caddyfile.j2" beforeDir="false" afterPath="$PROJECT_DIR$/roles/vps/templates/Caddyfile.j2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roles/vault/tasks/main.yml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,12 +28,12 @@
     &quot;assignee&quot;: &quot;jpitlor&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;git@github.com:jpitlor/homelab-configuration.git&quot;,
-    &quot;accountId&quot;: &quot;32c68407-dfe2-429c-99fc-f89099207599&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "git@github.com:jpitlor/homelab-configuration",
+    "accountId": "833e24d3-d428-47e3-a604-329df78d852e"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -58,30 +47,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/jpitlor/homelab-configuration&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/jpitlor",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;GitStage.ChangesTree.GroupingKeys&quot;: [
-      &quot;directory&quot;,
-      &quot;module&quot;,
-      &quot;repository&quot;
+  "keyToStringList": {
+    "GitStage.ChangesTree.GroupingKeys": [
+      "directory",
+      "module",
+      "repository"
     ]
   }
-}</component>
+}]]></component>
   <component name="RdControllerToolWindowsLayoutState" isNewUi="true">
     <layout>
       <window_info id="Bookmarks" side_tool="true" />
@@ -90,7 +79,7 @@
       <window_info id="Pull Requests" />
       <window_info id="Learn" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14066757" />
-      <window_info id="Commit" order="1" weight="0.20683594" />
+      <window_info id="Commit" order="1" weight="0.14066757" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Database Changes" />
       <window_info anchor="bottom" id="TypeScript" />
@@ -100,7 +89,7 @@
       <window_info anchor="bottom" id="Version Control" order="0" />
       <window_info anchor="bottom" id="Problems" order="1" />
       <window_info anchor="bottom" id="Problems View" order="2" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="3" visible="true" weight="0.33533335" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="3" visible="true" weight="0.3151629" />
       <window_info anchor="bottom" id="Services" order="4" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.33033788" />
       <window_info anchor="right" id="String Manipulation" show_stripe_button="false" />
@@ -186,7 +175,7 @@
       <workItem from="1733621128742" duration="2983000" />
       <workItem from="1733669404984" duration="14628000" />
       <workItem from="1733753380635" duration="38904000" />
-      <workItem from="1734059033087" duration="98668000" />
+      <workItem from="1734059033087" duration="108454000" />
     </task>
     <task id="LOCAL-00001" summary="yank out the rest of puppet">
       <option name="closed" value="true" />
@@ -332,7 +321,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733669494735</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="last fixes to a working deployment">
+      <option name="closed" value="true" />
+      <created>1734924241606</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1734924241606</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -368,7 +365,8 @@
     <MESSAGE value="tons of improvements to images!" />
     <MESSAGE value="change vars to defaults, rename everything to be more clear, go to lowercase" />
     <MESSAGE value="updated packer configs" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated packer configs" />
+    <MESSAGE value="last fixes to a working deployment" />
+    <option name="LAST_COMMIT_MESSAGE" value="last fixes to a working deployment" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
