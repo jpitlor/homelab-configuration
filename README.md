@@ -1,7 +1,6 @@
 # Homelab Configurtation
 
-This is an Ansible playbook (and related files) capable of provisioning as many of my 
-computers (servers and clients) as is reasonable.
+This is an Ansible playbook and Packer files to configure all of my homelab infrastructure.
 
 ## Usage
 
