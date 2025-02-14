@@ -48,10 +48,9 @@
 
 - name: Create homelab namespace
   kubernetes.core.k8s:
-    definition:
-      name: '{{ kubernetes_homelab_namespace }}'
-      apiVersion: v1
-      kind: Namespace
+    name: '{{ kubernetes_homelab_namespace }}'
+    api_version: v1
+    kind: Namespace
     state: present
 
 - name: Install CRD dependencies
