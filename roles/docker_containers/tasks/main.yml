@@ -15,12 +15,18 @@
 
 - name: Install required system packages
   become: true
-  apt:
+  ansible.builtin.apt:
     pkg:
       - python3-pip
       - python3
+      - pipx
     state: latest
     update_cache: true
+  register: package_results
+
+- name: Finish pipx installation
+  ansible.builtin.command: pipx ensurepath
+  when: package_results.changed
 
 - name: Install pip requirements
   community.general.pipx:
