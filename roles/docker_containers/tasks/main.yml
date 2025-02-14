@@ -46,20 +46,64 @@
     - kubernetes==24.2.0
     - jsonpatch==1.33
 
+- name: Create homelab namespace
+  kubernetes.core.k8s:
+    definition:
+      name: '{{ kubernetes_homelab_namespace }}'
+      apiVersion: v1
+      kind: Namespace
+    state: present
+
 - name: Install CRD dependencies
   kubernetes.core.k8s:
     state: present
-    definition: "{{ lookup('file', 'homelab-chart-dependencies.yaml') | from_yaml_all }}"
+    definition:
+      - apiVersion: helm.cattle.io/v1
+        kind: HelmChart
+        metadata:
+          name: cloudnative-pg-chart
+          namespace: '{{ kubernetes_homelab_namespace }}'
+        spec:
+          repo: https://cloudnative-pg.github.io/charts
+          chart: cloudnative-pg
+          version: 0.23.0
+          targetNamespace: '{{ kubernetes_homelab_namespace }}'
+      - apiVersion: helm.cattle.io/v1
+        kind: HelmChart
+        metadata:
+          name: prometheus-operator-crds-chart
+          namespace: '{{ kubernetes_homelab_namespace }}'
+        spec:
+          repo: https://prometheus-community.github.io/helm-charts
+          chart: prometheus-operator-crds
+          version: 17.0.2
+          targetNamespace: '{{ kubernetes_homelab_namespace }}'
+      - apiVersion: helm.cattle.io/v1
+        kind: HelmChart
+        metadata:
+          name: csi-driver-smb-chart
+          namespace: '{{ kubernetes_homelab_namespace }}'
+        spec:
+          repo: https://raw.githubusercontent.com/kubernetes-csi/csi-driver-smb/master/charts
+          chart: csi-driver-smb
+          version: v1.16.0
+          targetNamespace: '{{ kubernetes_homelab_namespace }}'
+
 
 - name: Clone Chart
   ansible.builtin.git:
     repo: 'https://github.com/jpitlor/homelab-chart'
     dest: '{{ homelab_data_folder }}/homelab-chart'
 
-- name: Deploy Homelab Chart
-  kubernetes.core.helm:
-    chart_ref: '{{ homelab_data_folder }}/homelab-chart'
-    name: homelab
-    release_namespace: '{{ kubernetes_homelab_namespace }}'
-    create_namespace: true
-    dependency_update: true
+- name: Install homelab chart
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: helm.cattle.io/v1
+      kind: HelmChart
+      metadata:
+        name: homelab-chart
+        namespace: '{{ kubernetes_homelab_namespace }}'
+      spec:
+        chart: '{{ homelab_data_folder }}/homelab-chart'
+        targetNamespace: '{{ kubernetes_homelab_namespace }}'
