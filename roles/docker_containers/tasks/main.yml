@@ -24,7 +24,7 @@
 
 - name: Install pip requirements
   community.general.pipx:
-    name: "{{ item.name }}"
+    name: "{{ item }}"
     state: present
   loop:
     - pyyaml==3.11
