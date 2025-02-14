@@ -105,6 +105,5 @@ build {
     playbook_file = "../configure-templates.yml"
     groups = ["proxmox_all", "${source.name}_group"]
     user = var.ssh_username
-    use_proxy = false
   }
 }
