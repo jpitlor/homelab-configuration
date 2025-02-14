@@ -27,7 +27,7 @@
 - name: Install CRD dependencies
   kubernetes.core.k8s:
     state: present
-    src: homelab-chart-dependencies.yaml
+    src: "{{ lookup('file', 'homelab-chart-dependencies.yaml') | from_yaml_all }}"
 
 - name: Clone Chart
   ansible.builtin.git:
