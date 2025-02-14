@@ -17,25 +17,12 @@
   become: true
   ansible.builtin.apt:
     pkg:
-      - python3-pip
       - python3
-      - pipx
+      - python3-yaml
+      - python3-kubernetes
+      - python3-jsonpatch
     state: latest
     update_cache: true
-  register: package_results
-
-- name: Finish pipx installation
-  ansible.builtin.command: pipx ensurepath
-  when: package_results.changed
-
-- name: Install pip requirements
-  community.general.pipx:
-    name: "{{ item }}"
-    state: present
-  loop:
-    - pyyaml==3.11
-    - kubernetes==24.2.0
-    - jsonpatch==1.33
 
 - name: Install CRD dependencies
   kubernetes.core.k8s:
