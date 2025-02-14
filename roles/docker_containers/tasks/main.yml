@@ -22,11 +22,17 @@
     state: latest
     update_cache: true
 
-- name: Install pyyaml
-  become: true
-  ansible.builtin.pip:
-    name: pyyaml
-    extra_args: "--break-system-packages"  # TODO replace with pipx
+- name: Install pip requirements
+  community.general.pipx:
+    name: "{{ item.name }}"
+    state: "{{ item.version }}"
+  loop:
+    - name: pyyaml
+      version: 3.11
+    - name: kubernetes
+      version: 24.2.0
+    - name: jsonpatch
+      version: 1.33
 
 - name: Install CRD dependencies
   kubernetes.core.k8s:
