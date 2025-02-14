@@ -48,6 +48,7 @@ source "proxmox-clone" "docker_containers" {
   ssh_username = var.ssh_username
   ssh_certificate_file = "~/.ssh/id_rsa-cert.pub"
   ssh_private_key_file = "~/.ssh/id_rsa"
+  task_timeout = "10m"  # Shutting down a k8s cluster takes longer than the default of 1m
 
   network_adapters {
     bridge = "vmbr0"
