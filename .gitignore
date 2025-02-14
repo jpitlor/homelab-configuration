@@ -2,3 +2,4 @@ modules/
 .env
 packer/variables.auto.pkrvars.hcl
 openvpn_client_files
+packer/downloaded_iso_path/

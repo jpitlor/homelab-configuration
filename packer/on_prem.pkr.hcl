@@ -93,30 +93,6 @@ source "proxmox-clone" "dev_playground" {
   vm_id = 902
 }
 
-source "proxmox-clone" "vault" {
-  clone_vm = "debian-base-template"
-  ssh_username = var.ssh_username
-  ssh_certificate_file = "~/.ssh/id_rsa-cert.pub"
-  ssh_private_key_file = "~/.ssh/id_rsa"
-
-  network_adapters {
-    bridge = "vmbr0"
-    model  = "virtio"
-    firewall = "false"
-  }
-
-  template_name = "vault-template"
-  memory = 1024
-  qemu_agent = true
-
-  proxmox_url = var.proxmox_host
-  insecure_skip_tls_verify = true
-  node = var.proxmox_node
-  username = var.proxmox_username
-  password = var.proxmox_password
-  vm_id = 903
-}
-
 build {
   sources = [
     "source.proxmox-iso.debian_base",
