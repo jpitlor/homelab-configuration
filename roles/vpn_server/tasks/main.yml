@@ -1,7 +1,7 @@
 ---
 - name: Find all client files
   ansible.builtin.find:
-    paths: /etc/openvpn
+    paths: /etc/openvpn/server
     patterns: "*.ovpn"
   register: openvpn_client_files
 
