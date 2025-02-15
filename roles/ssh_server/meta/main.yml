@@ -5,5 +5,6 @@ dependencies:
     become: true
   - role: manala.roles.ohmyzsh
     become: true
-    manala_ohmyzsh_users:
-      - user: jpitlor
+    vars:
+      manala_ohmyzsh_users:
+        - user: jpitlor

@@ -1,8 +1,10 @@
 dependencies:
   - role: geerlingguy.swap
     become: true
-    swap_file_state: absent
+    vars:
+      swap_file_state: absent
   - role: geerlingguy.containerd
     become: true
   - role: xanmanning.k3s
-    k3s_become: true
+    vars:
+      k3s_become: true
