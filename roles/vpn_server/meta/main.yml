@@ -2,9 +2,8 @@
 dependencies:
   - role: kyl191.openvpn
     become: true
-    openvpn_topology: subnet
     openvpn_sync_certs: true
-    clients: "{{ groups['vpn_clients'] }}"
+    openvpn_clients: "{{ groups['vpn_clients'] }}"
     openvpn_client_register_dns: false
     openvpn_server_network: 10.11.12.0
     openvpn_push:
