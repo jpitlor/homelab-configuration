@@ -88,12 +88,6 @@
           version: v1.16.0
           targetNamespace: '{{ kubernetes_homelab_namespace }}'
 
-
-- name: Clone Chart
-  ansible.builtin.git:
-    repo: 'https://github.com/jpitlor/homelab-chart'
-    dest: '{{ homelab_data_folder }}/homelab-chart'
-
 - name: Install homelab chart
   kubernetes.core.k8s:
     state: present
@@ -104,5 +98,6 @@
         name: homelab-chart
         namespace: '{{ kubernetes_homelab_namespace }}'
       spec:
-        chart: '{{ homelab_data_folder }}/homelab-chart'
+        chart: oci://us-central1-docker.pkg.dev/dev-pitlor-homelab/homelab-chart/homelab-containers
+        version: 1.0.3
         targetNamespace: '{{ kubernetes_homelab_namespace }}'
