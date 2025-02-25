@@ -101,3 +101,16 @@
         chart: oci://us-central1-docker.pkg.dev/dev-pitlor-homelab/homelab-chart/homelab-containers
         version: 1.0.3
         targetNamespace: '{{ kubernetes_homelab_namespace }}'
+        valuesContent: |-
+          nas:
+            password: {{ lookup('ansible.builtin.env', 'NAS_PASSWORD') }}
+
+          blueskyPds:
+            jwtSecret: {{ lookup('ansible.builtin.env', 'BLUESKY_JWT_SECRET') }}
+            adminPassword: {{ lookup('ansible.builtin.env', 'BLUESKY_ADMIN_PASSWORD') }}
+            plcRotationKey: {{ lookup('ansible.builtin.env', 'BLUESKY_PLC_ROTATION_KEY') }}
+            emailSmtpUrl: {{ lookup('ansible.builtin.env', 'BLUESKY_EMAIL_SMTP_URL') }}
+
+          infisical:
+            encryptionKey: {{ lookup('ansible.builtin.env', 'INFISICAL_ENCRYPTION_KEY') }}
+            authSecret: {{ lookup('ansible.builtin.env', 'INFISICAL_AUTH_SECRET') }}   
