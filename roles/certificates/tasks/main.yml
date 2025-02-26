@@ -16,21 +16,17 @@
     key_exportable: false
   loop: "{{ trusted_certificates }}"
 
-
-- name: Get infisical apt key
-  become: true
-  ansible.builtin.apt_key:
-    url: https://dl.cloudsmith.io/public/infisical/infisical-cli/gpg.2E8A3D44C97EAED6.key
-    keyring: /usr/share/keyrings/infisical-infisical-cli-archive-keyring.gpg
-
 - name: Add infisical repository
   become: true
-  ansible.builtin.apt_repository:
-    repo: "{{ item }} [signed-by=/usr/share/keyrings/infisical-infisical-cli-archive-keyring.gpg] https://dl.cloudsmith.io/public/infisical/infisical-cli/deb/ubuntu {{ ansible_distribution_release }} main"
-    state: present
-  loop:
-    - deb
-    - deb-src
+  ansible.builtin.deb822_repository:
+    name: infisicial-infisical-cli
+    types:
+      - deb
+      - deb-src
+    uris: https://dl.cloudsmith.io/public/infisical/infisical-cli/deb/ubuntu
+    suites: "{{ ansible_distribution_release }}"
+    components: main
+    signed_by: https://dl.cloudsmith.io/public/infisical/infisical-cli/gpg.2E8A3D44C97EAED6.key
 
 - name: Install infisical CLI
   become: true
