@@ -19,7 +19,7 @@
 
 - name: Get infisical apt key
   ansible.builtin.get_url:
-    url: https://download.example.com/linux/ubuntu/gpg
+    url: https://dl.cloudsmith.io/public/infisical/infisical-cli/gpg.2E8A3D44C97EAED6.key
     dest: /usr/share/keyrings/infisical-infisical-cli-archive-keyring.gpg
 
 - name: Add infisical repository
