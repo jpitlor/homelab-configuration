@@ -99,7 +99,7 @@
         namespace: '{{ kubernetes_homelab_namespace }}'
       spec:
         chart: oci://us-central1-docker.pkg.dev/dev-pitlor-homelab/homelab-chart/homelab-containers
-        version: 1.0.3
+        version: 1.0.4
         targetNamespace: '{{ kubernetes_homelab_namespace }}'
         valuesContent: |-
           nas:
