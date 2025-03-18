@@ -28,9 +28,8 @@
   become: true
   ansible.builtin.deb822_repository:
     name: infisicial-infisical-cli
-    types: [deb, deb-src]
     uris: https://dl.cloudsmith.io/public/infisical/infisical-cli/deb/ubuntu
-    suites: ["{{ ansible_distribution_release | lower }}"]
+    suites: [jammy]
     components: [main]
     signed_by: https://dl.cloudsmith.io/public/infisical/infisical-cli/gpg.2E8A3D44C97EAED6.key
 
