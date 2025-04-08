@@ -128,4 +128,5 @@
   loop: "{{ dotfiles.files }}"
 
 - name: Install Vundle plugins
+  become: true
   ansible.builtin.command: vim +PluginInstall +qall
