@@ -21,6 +21,7 @@
       - python3-yaml
       - python3-kubernetes
       - python3-jsonpatch
+      - yq
     state: latest
     update_cache: true
 
@@ -87,6 +88,16 @@
           chart: csi-driver-smb
           version: v1.16.0
           targetNamespace: '{{ kubernetes_homelab_namespace }}'
+      - apiVersion: helm.cattle.io/v1
+        kind: HelmChart
+        metadata:
+          name: minio-chart
+          namespace: '{{ kubernetes_homelab_namespace }}'
+        spec:
+          repo: https://operator.min.io
+          chart: operator
+          version: 7.0.1
+          targetNamespace: '{{ kubernetes_homelab_namespace }}'
 
 - name: Install homelab chart
   kubernetes.core.k8s:
@@ -114,3 +125,6 @@
           infisical:
             encryptionKey: {{ lookup('ansible.builtin.env', 'INFISICAL_ENCRYPTION_KEY') }}
             authSecret: {{ lookup('ansible.builtin.env', 'INFISICAL_AUTH_SECRET') }}   
+
+          tandoor:
+            secretKey: {{ lookup('ansible.builtin.env', 'TANDOOR_SECRET_KEY') }}  
