@@ -3,6 +3,7 @@ dependencies:
   - role: kyl191.openvpn
     become: true
     vars:
+      openvpn_proto: tcp
       openvpn_sync_certs: true
       openvpn_clients: "{{ groups['vpn_clients'] }}"
       openvpn_client_register_dns: false
