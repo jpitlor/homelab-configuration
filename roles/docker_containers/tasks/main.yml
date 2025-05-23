@@ -98,16 +98,6 @@
           chart: operator
           version: 7.0.1
           targetNamespace: '{{ kubernetes_homelab_namespace }}'
-      - apiVersion: helm.cattle.io/v1
-        kind: HelmChart
-        metadata:
-          name: velero-chart
-          namespace: '{{ kubernetes_homelab_namespace }}'
-        spec:
-          repo: https://vmware-tanzu.github.io/helm-charts
-          chart: velero
-          version: 9.1.3
-          targetNamespace: '{{ kubernetes_homelab_namespace }}'
 
 - name: Install homelab chart
   kubernetes.core.k8s:
