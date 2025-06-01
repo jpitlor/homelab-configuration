@@ -93,6 +93,16 @@
     dest: '/home/{{ username }}/.vim/bundle/Vundle.vim'
     version: '{{ vundle_git_commit }}'
 
+- name: "Correct permissions in .vim"
+  become: true
+  ansible.builtin.file:
+    path: "/home/{{ username }}/.vim"
+    owner: root
+    group: "{{ homelab_group_name }}"
+    mode: '774'
+    state: 'directory'
+    recurse: true
+
 - name: Clone dotfiles
   become: true
   ansible.builtin.git:
