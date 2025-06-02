@@ -87,21 +87,11 @@
     dest: /usr/local/share/oh-my-zsh/themes
 
 - name: Install Vundle
-  become: true
   ansible.builtin.git:
     repo: 'https://github.com/VundleVim/Vundle.vim.git'
     dest: '/home/{{ username }}/.vim/bundle/Vundle.vim'
     version: '{{ vundle_git_commit }}'
-
-- name: "Correct permissions in .vim"
-  become: true
-  ansible.builtin.file:
-    path: "/home/{{ username }}/.vim"
-    owner: root
-    group: "{{ homelab_group_name }}"
-    mode: '774'
-    state: 'directory'
-    recurse: true
+    force: true
 
 - name: Clone dotfiles
   become: true
