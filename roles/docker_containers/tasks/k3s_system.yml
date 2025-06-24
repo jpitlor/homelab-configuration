@@ -1,0 +1,48 @@
+---
+- name: Create kube folder
+  become: true
+  ansible.builtin.file:
+    path: "/home/{{ username }}/.kube"
+    state: directory
+
+- name: Symlink kubeconfig
+  become: true
+  ansible.builtin.file:
+    src: /etc/rancher/k3s/k3s.yaml
+    dest: "/home/{{ username }}/.kube/config"
+    owner: "{{ username }}"
+    state: link
+
+- name: Install required system packages
+  become: true
+  ansible.builtin.apt:
+    pkg:
+      - python3
+      - python3-yaml
+      - python3-kubernetes
+      - python3-jsonpatch
+      - yq
+    state: latest
+    update_cache: true
+
+- name: Install required system packages
+  become: true
+  apt:
+    pkg:
+      - python3-pip
+      - python3
+    state: latest
+    update_cache: true
+
+# NOTE: Because these are libraries and not applications, pipx will not work,
+#       and the versions of these libraries on apt are outdated, so pip with
+#       the --break-system-packages flag is the best way of doing this for now
+- name: Install python dependencies
+  become: true
+  ansible.builtin.pip:
+    name: "{{ item }}"
+    extra_args: "--break-system-packages"
+  loop:
+    - pyyaml==3.11
+    - kubernetes==24.2.0
+    - jsonpatch==1.33

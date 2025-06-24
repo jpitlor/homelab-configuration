@@ -1,0 +1,82 @@
+---
+- name: Create homelab namespace
+  kubernetes.core.k8s:
+    name: '{{ kubernetes_homelab_namespace }}'
+    api_version: v1
+    kind: Namespace
+    state: present
+
+- name: Install CRD dependencies
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      - apiVersion: helm.cattle.io/v1
+        kind: HelmChart
+        metadata:
+          name: cloudnative-pg-chart
+          namespace: '{{ kubernetes_homelab_namespace }}'
+        spec:
+          repo: https://cloudnative-pg.github.io/charts
+          chart: cloudnative-pg
+          version: 0.23.0
+          targetNamespace: '{{ kubernetes_homelab_namespace }}'
+      - apiVersion: helm.cattle.io/v1
+        kind: HelmChart
+        metadata:
+          name: prometheus-operator-crds-chart
+          namespace: '{{ kubernetes_homelab_namespace }}'
+        spec:
+          repo: https://prometheus-community.github.io/helm-charts
+          chart: prometheus-operator-crds
+          version: 17.0.2
+          targetNamespace: '{{ kubernetes_homelab_namespace }}'
+      - apiVersion: helm.cattle.io/v1
+        kind: HelmChart
+        metadata:
+          name: csi-driver-smb-chart
+          namespace: '{{ kubernetes_homelab_namespace }}'
+        spec:
+          repo: https://raw.githubusercontent.com/kubernetes-csi/csi-driver-smb/master/charts
+          chart: csi-driver-smb
+          version: v1.16.0
+          targetNamespace: '{{ kubernetes_homelab_namespace }}'
+      - apiVersion: helm.cattle.io/v1
+        kind: HelmChart
+        metadata:
+          name: minio-chart
+          namespace: '{{ kubernetes_homelab_namespace }}'
+        spec:
+          repo: https://operator.min.io
+          chart: operator
+          version: 7.0.1
+          targetNamespace: '{{ kubernetes_homelab_namespace }}'
+
+- name: Install homelab chart
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: helm.cattle.io/v1
+      kind: HelmChart
+      metadata:
+        name: homelab-chart
+        namespace: '{{ kubernetes_homelab_namespace }}'
+      spec:
+        chart: oci://us-central1-docker.pkg.dev/dev-pitlor-homelab/homelab-chart/homelab-containers
+        version: 1.1.0
+        targetNamespace: '{{ kubernetes_homelab_namespace }}'
+        valuesContent: |-
+          nas:
+            password: {{ lookup('ansible.builtin.env', 'NAS_PASSWORD') }}
+
+          blueskyPds:
+            jwtSecret: {{ lookup('ansible.builtin.env', 'BLUESKY_JWT_SECRET') }}
+            adminPassword: {{ lookup('ansible.builtin.env', 'BLUESKY_ADMIN_PASSWORD') }}
+            plcRotationKey: {{ lookup('ansible.builtin.env', 'BLUESKY_PLC_ROTATION_KEY') }}
+            emailSmtpUrl: {{ lookup('ansible.builtin.env', 'BLUESKY_EMAIL_SMTP_URL') }}
+
+          infisical:
+            encryptionKey: {{ lookup('ansible.builtin.env', 'INFISICAL_ENCRYPTION_KEY') }}
+            authSecret: {{ lookup('ansible.builtin.env', 'INFISICAL_AUTH_SECRET') }}   
+
+          tandoor:
+            secretKey: {{ lookup('ansible.builtin.env', 'TANDOOR_SECRET_KEY') }}  
