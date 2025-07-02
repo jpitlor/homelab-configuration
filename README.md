@@ -1,6 +1,6 @@
 # Homelab Configurtation
 
-This is an Ansible playbook and Packer files to configure all of my homelab infrastructure.
+Technologies Used: Ansible, Packer 
 
 ## Usage
 
