@@ -1,4 +1,4 @@
-# Homelab Configurtation
+# Homelab Configuration
 
 Technologies Used: Ansible, Packer 
 
