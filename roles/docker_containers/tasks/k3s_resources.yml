@@ -18,7 +18,7 @@
         spec:
           repo: https://cloudnative-pg.github.io/charts
           chart: cloudnative-pg
-          version: 0.23.0
+          version: 0.26.0
           targetNamespace: '{{ kubernetes_homelab_namespace }}'
       - apiVersion: helm.cattle.io/v1
         kind: HelmChart
