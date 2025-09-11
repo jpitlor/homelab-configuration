@@ -51,6 +51,17 @@
           version: v1.18.2
           targetNamespace: '{{ kubernetes_homelab_namespace }}'
 
+- name: Download barman cloud plugin
+  ansible.builtin.get_url:
+    url: https://github.com/cloudnative-pg/plugin-barman-cloud/releases/download/v0.6.0/manifest.yaml
+    dest: ~/barman-cloud-plugin.yaml
+    mode: '0664'
+
+- name: Apply barman cloud plugin manifest to the cluster.
+  kubernetes.core.k8s:
+    state: present
+    src: ~/barman-cloud-plugin.yaml
+
 - name: Install homelab chart
   kubernetes.core.k8s:
     state: present
