@@ -73,9 +73,14 @@
         namespace: '{{ kubernetes_homelab_namespace }}'
       spec:
         chart: oci://us-central1-docker.pkg.dev/dev-pitlor-homelab/homelab-chart/homelab-containers
-        version: 1.1.2
+        version: 1.2.1
         targetNamespace: '{{ kubernetes_homelab_namespace }}'
         valuesContent: |-
+          google:
+            key: {{ lookup('ansible.builtin.env', 'GOOGLE_KEY') }}
+            secret: {{ lookup('ansible.builtin.env', 'GOOGLE_SECRET') }}
+            serviceAccountJson: {{ lookup('ansible.builtin.env', 'GOOGLE_SERVICE_ACCOUNT_JSON') }}
+
           nas:
             password: {{ lookup('ansible.builtin.env', 'NAS_PASSWORD') }}
 
