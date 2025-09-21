@@ -57,6 +57,12 @@
     dest: ~/barman-cloud-plugin.yaml
     mode: '0664'
 
+- name: Put proper namespace in barman cloud plugin
+  ansible.builtin.replace:
+    path: ~/barman-cloud-plugin.yaml
+    regexp: 'cnpg-system'
+    replace: '{{ kubernetes_homelab_namespace }}'
+
 - name: Apply barman cloud plugin manifest to the cluster.
   kubernetes.core.k8s:
     state: present
