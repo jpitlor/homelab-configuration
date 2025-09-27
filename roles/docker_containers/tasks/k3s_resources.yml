@@ -50,6 +50,9 @@
           chart: cert-manager
           version: v1.18.2
           targetNamespace: '{{ kubernetes_homelab_namespace }}'
+          valuesContent: |-
+            crds:
+              enabled: true
 
 - name: Download barman cloud plugin
   ansible.builtin.get_url:
