@@ -31,7 +31,7 @@ source "proxmox-iso" "debian_base" {
 
   template_name = "debian-base-template"
   scsi_controller = "virtio-scsi-pci"
-  memory = 1024
+  memory = 2048
   cores = 4
   qemu_agent = true
 
@@ -58,7 +58,7 @@ source "proxmox-clone" "docker_containers" {
   }
 
   template_name = "docker-containers-template"
-  memory = 1024
+  memory = 2048
   cores = 4
   qemu_agent = true
 
@@ -83,7 +83,7 @@ source "proxmox-clone" "dev_playground" {
   }
 
   template_name = "dev-playground-template"
-  memory = 1024
+  memory = 2048
   qemu_agent = true
 
   proxmox_url = var.proxmox_host
