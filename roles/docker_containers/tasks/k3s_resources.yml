@@ -46,12 +46,12 @@
           name: cert-manager-chart
           namespace: '{{ kubernetes_homelab_namespace }}'
         spec:
-          repo: oci://quay.io/jetstack/charts
-          chart: cert-manager
+          chart: oci://quay.io/jetstack/charts/cert-manager
           version: v1.18.2
           targetNamespace: '{{ kubernetes_homelab_namespace }}'
-          set:
-            crds.enabled: 1
+          valuesContent: |-
+            crds:
+              enabled: true
 
 - name: Download barman cloud plugin
   ansible.builtin.get_url:
