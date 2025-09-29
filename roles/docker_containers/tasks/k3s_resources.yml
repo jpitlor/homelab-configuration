@@ -51,7 +51,7 @@
           version: v1.18.2
           targetNamespace: '{{ kubernetes_homelab_namespace }}'
           set:
-            crds.enabled: true
+            crds.enabled: 1
 
 - name: Download barman cloud plugin
   ansible.builtin.get_url:
