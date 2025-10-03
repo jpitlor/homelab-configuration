@@ -52,6 +52,28 @@
           valuesContent: |-
             crds:
               enabled: true
+      - apiVersion: helm.cattle.io/v1
+        kind: HelmChart
+        metadata:
+          name: velero
+          namespace: '{{ kubernetes_homelab_namespace }}'
+        spec:
+          chart: velero
+          repo: https://vmware-tanzu.github.io/helm-charts
+          version: 10.1.2
+          targetNamespace: '{{ kubernetes_homelab_namespace }}'
+          valuesContent: |-
+            snapshotsEnabled: true
+            metrics:
+              enabled: true
+              scrapeInterval: 30s
+            initContainers:
+              - name: velero-plugin-for-gcp
+                image: velero/velero-plugin-for-gcp:v1.8.0
+                imagePullPolicy: IfNotPresent
+                volumeMounts:
+                  - mountPath: /target
+                    name: plugins
 
 - name: Pause for Cert Manager to install
   ansible.builtin.pause:
