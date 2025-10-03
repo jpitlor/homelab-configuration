@@ -89,20 +89,20 @@
         targetNamespace: '{{ kubernetes_homelab_namespace }}'
         valuesContent: |-
           google:
-            serviceAccountJson: {{ lookup('ansible.builtin.env', 'GOOGLE_SERVICE_ACCOUNT_JSON') }}
+            serviceAccountJson: {{ lookup('ansible.builtin.env', 'GOOGLE_SERVICE_ACCOUNT_JSON') | quote }}
 
           nas:
-            password: {{ lookup('ansible.builtin.env', 'NAS_PASSWORD') }}
+            password: {{ lookup('ansible.builtin.env', 'NAS_PASSWORD') | quote }}
 
           blueskyPds:
-            jwtSecret: {{ lookup('ansible.builtin.env', 'BLUESKY_JWT_SECRET') }}
-            adminPassword: {{ lookup('ansible.builtin.env', 'BLUESKY_ADMIN_PASSWORD') }}
-            plcRotationKey: {{ lookup('ansible.builtin.env', 'BLUESKY_PLC_ROTATION_KEY') }}
-            emailSmtpUrl: {{ lookup('ansible.builtin.env', 'BLUESKY_EMAIL_SMTP_URL') }}
+            jwtSecret: {{ lookup('ansible.builtin.env', 'BLUESKY_JWT_SECRET') | quote }}
+            adminPassword: {{ lookup('ansible.builtin.env', 'BLUESKY_ADMIN_PASSWORD') | quote }}
+            plcRotationKey: {{ lookup('ansible.builtin.env', 'BLUESKY_PLC_ROTATION_KEY') | quote }}
+            emailSmtpUrl: {{ lookup('ansible.builtin.env', 'BLUESKY_EMAIL_SMTP_URL') | quote }}
 
           infisical:
-            encryptionKey: {{ lookup('ansible.builtin.env', 'INFISICAL_ENCRYPTION_KEY') }}
-            authSecret: {{ lookup('ansible.builtin.env', 'INFISICAL_AUTH_SECRET') }}   
+            encryptionKey: {{ lookup('ansible.builtin.env', 'INFISICAL_ENCRYPTION_KEY') | quote }}
+            authSecret: {{ lookup('ansible.builtin.env', 'INFISICAL_AUTH_SECRET') | quote }}   
 
           tandoor:
-            secretKey: {{ lookup('ansible.builtin.env', 'TANDOOR_SECRET_KEY') }}  
+            secretKey: {{ lookup('ansible.builtin.env', 'TANDOOR_SECRET_KEY') | quote }}  
