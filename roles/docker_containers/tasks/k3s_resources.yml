@@ -70,10 +70,17 @@
             metrics:
               enabled: true
               scrapeInterval: 30s
+            configuration:
+              backupStorageLocation:
+                - name: gcs-backup-location
+                  provider: gcp
+                  bucket: dev-pitlor-homelab-container-backups
+              volumeSnapshotLocation:
+                - name gcs-snapshot-location
+                  provider gcp
             initContainers:
               - name: velero-plugin-for-gcp
                 image: velero/velero-plugin-for-gcp:v1.8.0
-                imagePullPolicy: IfNotPresent
                 volumeMounts:
                   - mountPath: /target
                     name: plugins
