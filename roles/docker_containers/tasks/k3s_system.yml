@@ -36,7 +36,7 @@
 - name: Install yq
   become: true
   ansible.builtin.get_url:
-    url: https://github.com/mikefarah/yq/releases/download/4.2.0/yq_linux_amd64
+    url: https://github.com/mikefarah/yq/releases/download/v4.49.2/yq_linux_amd64
     dest: /usr/local/bin/yq
     mode: '755'
 
