@@ -34,7 +34,7 @@
     update_cache: true
 
 - name: Install yq
-  become: true\
+  become: true
   ansible.builtin.get_url:
     url: https://github.com/mikefarah/yq/releases/download/4.2.0/yq_linux_amd64
     dest: /usr/local/bin/yq
