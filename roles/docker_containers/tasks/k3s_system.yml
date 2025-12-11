@@ -21,7 +21,6 @@
       - python3-yaml
       - python3-kubernetes
       - python3-jsonpatch
-      - yq
     state: latest
     update_cache: true
 
@@ -33,6 +32,13 @@
       - python3
     state: latest
     update_cache: true
+
+- name: Install yq
+  become: true\
+  ansible.builtin.get_url:
+    url: https://github.com/mikefarah/yq/releases/download/4.2.0/yq_linux_amd64
+    dest: /usr/local/bin/yq
+    mode: '755'
 
 # NOTE: Because these are libraries and not applications, pipx will not work,
 #       and the versions of these libraries on apt are outdated, so pip with
