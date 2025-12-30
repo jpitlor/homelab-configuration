@@ -18,6 +18,5 @@ collections:
   - ansible.utils
   - community.general
   - community.docker
-  - community.proxmox
   - manala.roles
   - kubernetes.core
