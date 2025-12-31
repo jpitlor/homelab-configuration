@@ -87,7 +87,7 @@
 
 - name: Pause for Cert Manager to install
   ansible.builtin.pause:
-    seconds: 45
+    seconds: 60
 
 - name: Download barman cloud plugin
   ansible.builtin.get_url:
