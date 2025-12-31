@@ -107,6 +107,8 @@
     src: ~/barman-cloud-plugin.yaml
 
 - name: Install homelab chart
+  tags:
+    - homelab_chart
   kubernetes.core.k8s:
     state: present
     definition:
