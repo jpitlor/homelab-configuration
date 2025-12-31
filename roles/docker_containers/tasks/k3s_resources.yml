@@ -87,7 +87,7 @@
 
 - name: Pause for Cert Manager to install
   ansible.builtin.pause:
-    seconds: 45
+    seconds: 60
 
 - name: Download barman cloud plugin
   ansible.builtin.get_url:
@@ -117,7 +117,7 @@
         namespace: '{{ kubernetes_homelab_namespace }}'
       spec:
         chart: oci://us-central1-docker.pkg.dev/dev-pitlor-homelab/homelab-chart/homelab-containers
-        version: 1.5.15
+        version: 1.6.0
         targetNamespace: '{{ kubernetes_homelab_namespace }}'
         valuesContent: |-
           google:
