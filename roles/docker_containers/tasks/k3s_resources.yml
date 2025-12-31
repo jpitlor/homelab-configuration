@@ -117,7 +117,7 @@
         namespace: '{{ kubernetes_homelab_namespace }}'
       spec:
         chart: oci://us-central1-docker.pkg.dev/dev-pitlor-homelab/homelab-chart/homelab-containers
-        version: 1.5.15
+        version: '{{ homelab_chart_version }}'
         targetNamespace: '{{ kubernetes_homelab_namespace }}'
         valuesContent: |-
           google:
@@ -136,5 +136,5 @@
             encryptionKey: {{ lookup('ansible.builtin.env', 'INFISICAL_ENCRYPTION_KEY') | quote }}
             authSecret: {{ lookup('ansible.builtin.env', 'INFISICAL_AUTH_SECRET') | quote }}   
 
-          tandoor:
-            secretKey: {{ lookup('ansible.builtin.env', 'TANDOOR_SECRET_KEY') | quote }}  
+          plexMediaServer:
+            claim: {{ lookup('ansible.builtin.env', 'PLEX_CLAIM') | quote }}  
