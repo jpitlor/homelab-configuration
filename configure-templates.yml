@@ -29,10 +29,12 @@
 
 - name: Configure Docker Containers
   hosts: docker_containers_group
-  include_role:
-    name: docker_containers
-  tags:
-    - docker_containers
+  tasks:
+    - name: Docker Containers role
+      include_role:
+        name: docker_containers
+      tags:
+        - docker_containers
 
 - name: Configure dev playground
   hosts: dev_playground_group
