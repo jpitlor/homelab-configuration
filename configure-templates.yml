@@ -29,11 +29,10 @@
 
 - name: Configure Docker Containers
   hosts: docker_containers_group
-  roles:
-    - role: docker_containers
-      tags:
-        - docker_containers
-        - homelab_chart
+  include_role:
+    name: docker_containers
+  tags:
+    - docker_containers
 
 - name: Configure dev playground
   hosts: dev_playground_group
