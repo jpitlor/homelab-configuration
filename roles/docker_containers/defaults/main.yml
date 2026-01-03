@@ -2,7 +2,7 @@
 homelab_data_folder: /etc/dev.pitlor
 kubernetes_homelab_namespace: homelab
 username: jpitlor
-homelab_chart_version: 1.16.10
+homelab_chart_version: 1.16.11
 
 nas_ip_address: 192.168.0.31  # TODO - is there a way to make this a 10.x IP?
 nas_homelab_data_folder: Homelab
