@@ -57,6 +57,13 @@ source "proxmox-clone" "docker_containers" {
     mac_address = "f6:13:a0:be:25:a1"
   }
 
+  disks {
+    disk_size         = "200G"
+    storage_pool      = var.proxmox_disk_storage_pool
+    type              = "scsi"
+    format = "raw"
+  }
+
   template_name = "docker-containers-template"
   memory = 2048
   cores = 4
