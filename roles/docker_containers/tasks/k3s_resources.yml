@@ -146,57 +146,57 @@
             grafana:
               {% if homelab_chart_backup_id != '' -%}
               backupId: "{{ homelab_chart_backup_id }}"
-              {%- endif %}
+              {% endif %}
               {% if homelab_chart_restore_from_backup_id != '' -%}
               restoreFromBackupId: "{{ homelab_chart_restore_from_backup_id }}"
-              {%- endif %}
+              {% endif %}
             vaultwarden:
               {% if homelab_chart_backup_id != '' -%}
               backupId: "{{ homelab_chart_backup_id }}"
-              {%- endif %}
+              {% endif %}
               {% if homelab_chart_restore_from_backup_id != '' -%}
               restoreFromBackupId: "{{ homelab_chart_restore_from_backup_id }}"
-              {%- endif %}
+              {% endif %}
             immich:
               {% if homelab_chart_backup_id != '' -%}
               backupId: "{{ homelab_chart_backup_id }}"
-              {%- endif %}
+              {% endif %}
               {% if homelab_chart_restore_from_backup_id != '' -%}
               restoreFromBackupId: "{{ homelab_chart_restore_from_backup_id }}"
-              {%- endif %}
+              {% endif %}
             nextcloud:
               {% if homelab_chart_backup_id != '' -%}
               backupId: "{{ homelab_chart_backup_id }}"
-              {%- endif %}
+              {% endif %}
               {% if homelab_chart_restore_from_backup_id != '' -%}
               restoreFromBackupId: "{{ homelab_chart_restore_from_backup_id }}"
-              {%- endif %}
+              {% endif %}
             gitea:
               {% if homelab_chart_backup_id != '' -%}
               backupId: "{{ homelab_chart_backup_id }}"
-              {%- endif %}
+              {% endif %}
               {% if homelab_chart_restore_from_backup_id != '' -%}
               restoreFromBackupId: "{{ homelab_chart_restore_from_backup_id }}"
-              {%- endif %}
+              {% endif %}
             infisical-standalone:
               {% if homelab_chart_backup_id != '' -%}
               backupId: "{{ homelab_chart_backup_id }}"
-              {%- endif %}
+              {% endif %}
               {% if homelab_chart_restore_from_backup_id != '' -%}
               restoreFromBackupId: "{{ homelab_chart_restore_from_backup_id }}"
-              {%- endif %}
+              {% endif %}
             guacamole:
               {% if homelab_chart_backup_id != '' -%}
               backupId: "{{ homelab_chart_backup_id }}"
-              {%- endif %}
+              {% endif %}
               {% if homelab_chart_restore_from_backup_id != '' -%}
               restoreFromBackupId: "{{ homelab_chart_restore_from_backup_id }}"
-              {%- endif %}
+              {% endif %}
             mealie:
               {% if homelab_chart_backup_id != '' -%}
               backupId: "{{ homelab_chart_backup_id }}"
-              {%- endif %}
+              {% endif %}
               {% if homelab_chart_restore_from_backup_id != '' -%}
               restoreFromBackupId: "{{ homelab_chart_restore_from_backup_id }}"
-              {%- endif %}
+              {% endif %}
           {% endif %}
