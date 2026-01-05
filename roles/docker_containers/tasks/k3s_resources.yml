@@ -106,7 +106,9 @@
     state: present
     src: ~/barman-cloud-plugin.yaml
 
-- name: Make Postgres dictionary for values
+- name: Install homelab chart
+  tags:
+    - homelab_chart
   vars:
     postgres_values:
       grafana: &db_params
@@ -119,10 +121,6 @@
       infisical-standalone: *db_params
       guacamole: *db_params
       mealie: *db_params
-
-- name: Install homelab chart
-  tags:
-    - homelab_chart
   kubernetes.core.k8s:
     state: present
     definition:
