@@ -106,6 +106,20 @@
     state: present
     src: ~/barman-cloud-plugin.yaml
 
+- name: Make Postgres dictionary for values
+  vars:
+    postgres_values:
+      grafana: &db_params
+        backupId: "{{ homelab_chart_backup_id | default(omit) }}"
+        restoreFromBackupId: "{{ homelab_chart_restore_from_backup_id | default(omit) }}"
+      vaultwarden: *db_params
+      immich: *db_params
+      nextcloud: *db_params
+      gitea: *db_params
+      infisical-standalone: *db_params
+      guacamole: *db_params
+      mealie: *db_params
+
 - name: Install homelab chart
   tags:
     - homelab_chart
@@ -141,62 +155,4 @@
           plexMediaServer:
             claim: {{ lookup('ansible.builtin.env', 'PLEX_CLAIM') | quote }}  
 
-          {% if homelab_chart_backup_id is not undefined or homelab_chart_restore_from_backup_id is not undefined %}
-          postgres:
-            grafana:
-              {% if homelab_chart_backup_id is not undefined -%}
-              backupId: "{{ homelab_chart_backup_id }}"
-              {% endif -%}
-              {% if homelab_chart_restore_from_backup_id is not undefined -%}
-              restoreFromBackupId: "{{ homelab_chart_restore_from_backup_id }}"
-              {% endif %}
-            vaultwarden:
-              {% if homelab_chart_backup_id is not undefined -%}
-              backupId: "{{ homelab_chart_backup_id }}"
-              {% endif -%}
-              {% if homelab_chart_restore_from_backup_id is not undefined -%}
-              restoreFromBackupId: "{{ homelab_chart_restore_from_backup_id }}"
-              {% endif %}
-            immich:
-              {% if homelab_chart_backup_id is not undefined -%}
-              backupId: "{{ homelab_chart_backup_id }}"
-              {% endif -%}
-              {% if homelab_chart_restore_from_backup_id is not undefined -%}
-              restoreFromBackupId: "{{ homelab_chart_restore_from_backup_id }}"
-              {% endif %}
-            nextcloud:
-              {% if homelab_chart_backup_id is not undefined -%}
-              backupId: "{{ homelab_chart_backup_id }}"
-              {% endif -%}
-              {% if homelab_chart_restore_from_backup_id is not undefined -%}
-              restoreFromBackupId: "{{ homelab_chart_restore_from_backup_id }}"
-              {% endif %}
-            gitea:
-              {% if homelab_chart_backup_id is not undefined -%}
-              backupId: "{{ homelab_chart_backup_id }}"
-              {% endif -%}
-              {% if homelab_chart_restore_from_backup_id is not undefined -%}
-              restoreFromBackupId: "{{ homelab_chart_restore_from_backup_id }}"
-              {% endif %}
-            infisical-standalone:
-              {% if homelab_chart_backup_id is not undefined -%}
-              backupId: "{{ homelab_chart_backup_id }}"
-              {% endif -%}
-              {% if homelab_chart_restore_from_backup_id is not undefined -%}
-              restoreFromBackupId: "{{ homelab_chart_restore_from_backup_id }}"
-              {% endif %}
-            guacamole:
-              {% if homelab_chart_backup_id is not undefined -%}
-              backupId: "{{ homelab_chart_backup_id }}"
-              {% endif -%}
-              {% if homelab_chart_restore_from_backup_id is not undefined -%}
-              restoreFromBackupId: "{{ homelab_chart_restore_from_backup_id }}"
-              {% endif %}
-            mealie:
-              {% if homelab_chart_backup_id is not undefined -%}
-              backupId: "{{ homelab_chart_backup_id }}"
-              {% endif -%}
-              {% if homelab_chart_restore_from_backup_id is not undefined -%}
-              restoreFromBackupId: "{{ homelab_chart_restore_from_backup_id }}"
-              {% endif %}
-          {% endif %}
+          postgres: {{ postgres_values | to_nice_yaml(indent=2) | indent(10) }}
