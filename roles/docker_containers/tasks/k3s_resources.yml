@@ -141,30 +141,62 @@
           plexMediaServer:
             claim: {{ lookup('ansible.builtin.env', 'PLEX_CLAIM') | quote }}  
 
-          {% if homelab_chart_backup_id != '' or homelab_chart_restore_from_backup_id != '' %}
+          {% if homelab_chart_backup_id is not undefined or homelab_chart_restore_from_backup_id is not undefined %}
           postgres:
             grafana:
-              {% if homelab_chart_backup_id != '' %}backupId: "{{ homelab_chart_backup_id }}"{% endif %}
-              {% if homelab_chart_restore_from_backup_id != '' %}restoreFromBackupId: "{{ homelab_chart_restore_from_backup_id }}"{% endif %}
+              {% if homelab_chart_backup_id is not undefined -%}
+              backupId: "{{ homelab_chart_backup_id }}"
+              {% endif -%}
+              {% if homelab_chart_restore_from_backup_id is not undefined -%}
+              restoreFromBackupId: "{{ homelab_chart_restore_from_backup_id }}"
+              {%- endif %}
             vaultwarden:
-              {% if homelab_chart_backup_id != '' %}backupId: "{{ homelab_chart_backup_id }}"{% endif %}
-              {% if homelab_chart_restore_from_backup_id != '' %}restoreFromBackupId: "{{ homelab_chart_restore_from_backup_id }}"{% endif %}
+              {% if homelab_chart_backup_id is not undefined -%}
+              backupId: "{{ homelab_chart_backup_id }}"
+              {% endif -%}
+              {% if homelab_chart_restore_from_backup_id is not undefined -%}
+              restoreFromBackupId: "{{ homelab_chart_restore_from_backup_id }}"
+              {%- endif %}
             immich:
-              {% if homelab_chart_backup_id != '' %}backupId: "{{ homelab_chart_backup_id }}"{% endif %}
-              {% if homelab_chart_restore_from_backup_id != '' %}restoreFromBackupId: "{{ homelab_chart_restore_from_backup_id }}"{% endif %}
+              {% if homelab_chart_backup_id is not undefined -%}
+              backupId: "{{ homelab_chart_backup_id }}"
+              {% endif -%}
+              {% if homelab_chart_restore_from_backup_id is not undefined -%}
+              restoreFromBackupId: "{{ homelab_chart_restore_from_backup_id }}"
+              {%- endif %}
             nextcloud:
-              {% if homelab_chart_backup_id != '' %}backupId: "{{ homelab_chart_backup_id }}"{% endif %}
-              {% if homelab_chart_restore_from_backup_id != '' %}restoreFromBackupId: "{{ homelab_chart_restore_from_backup_id }}"{% endif %}
+              {% if homelab_chart_backup_id is not undefined -%}
+              backupId: "{{ homelab_chart_backup_id }}"
+              {% endif -%}
+              {% if homelab_chart_restore_from_backup_id is not undefined -%}
+              restoreFromBackupId: "{{ homelab_chart_restore_from_backup_id }}"
+              {%- endif %}
             gitea:
-              {% if homelab_chart_backup_id != '' %}backupId: "{{ homelab_chart_backup_id }}"{% endif %}
-              {% if homelab_chart_restore_from_backup_id != '' %}restoreFromBackupId: "{{ homelab_chart_restore_from_backup_id }}"{% endif %}
+              {% if homelab_chart_backup_id is not undefined -%}
+              backupId: "{{ homelab_chart_backup_id }}"
+              {% endif -%}
+              {% if homelab_chart_restore_from_backup_id is not undefined -%}
+              restoreFromBackupId: "{{ homelab_chart_restore_from_backup_id }}"
+              {%- endif %}
             infisical-standalone:
-              {% if homelab_chart_backup_id != '' %}backupId: "{{ homelab_chart_backup_id }}"{% endif %}
-              {% if homelab_chart_restore_from_backup_id != '' %}restoreFromBackupId: "{{ homelab_chart_restore_from_backup_id }}"{% endif %}
+              {% if homelab_chart_backup_id is not undefined -%}
+              backupId: "{{ homelab_chart_backup_id }}"
+              {% endif -%}
+              {% if homelab_chart_restore_from_backup_id is not undefined -%}
+              restoreFromBackupId: "{{ homelab_chart_restore_from_backup_id }}"
+              {%- endif %}
             guacamole:
-              {% if homelab_chart_backup_id != '' %}backupId: "{{ homelab_chart_backup_id }}"{% endif %}
-              {% if homelab_chart_restore_from_backup_id != '' %}restoreFromBackupId: "{{ homelab_chart_restore_from_backup_id }}"{% endif %}
+              {% if homelab_chart_backup_id is not undefined -%}
+              backupId: "{{ homelab_chart_backup_id }}"
+              {% endif -%}
+              {% if homelab_chart_restore_from_backup_id is not undefined -%}
+              restoreFromBackupId: "{{ homelab_chart_restore_from_backup_id }}"
+              {%- endif %}
             mealie:
-              {% if homelab_chart_backup_id != '' %}backupId: "{{ homelab_chart_backup_id }}"{% endif %}
-              {% if homelab_chart_restore_from_backup_id != '' %}restoreFromBackupId: "{{ homelab_chart_restore_from_backup_id }}"{% endif %}
+              {% if homelab_chart_backup_id is not undefined -%}
+              backupId: "{{ homelab_chart_backup_id }}"
+              {% endif -%}
+              {% if homelab_chart_restore_from_backup_id is not undefined -%}
+              restoreFromBackupId: "{{ homelab_chart_restore_from_backup_id }}"
+              {%- endif %}
           {% endif %}
