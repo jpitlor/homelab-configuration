@@ -153,4 +153,5 @@
           plexMediaServer:
             claim: {{ lookup('ansible.builtin.env', 'PLEX_CLAIM') | quote }}  
 
-          postgres: {{ postgres_values | to_nice_yaml(indent=2) | indent(10) }}
+          postgres: 
+            {{ postgres_values | to_nice_yaml(indent=2) | indent(4) }}
