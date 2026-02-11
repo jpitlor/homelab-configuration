@@ -1,4 +1,10 @@
 ---
+- name: Configure traefik
+  become: true
+  ansible.builtin.file:
+    src: traefik.yaml
+    dest: /var/lib/rancher/k3s/server/manifests/traefik-config.yaml
+
 - name: Create kube folder
   become: true
   ansible.builtin.file:
