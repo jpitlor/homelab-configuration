@@ -1,0 +1,15 @@
+[global]
+keyboard = "en-us"
+country = "us"
+timezone = "America/New_York"
+root-password-hashed = "$y$j9T$FkQN/DSdOR8RCuNW1MTGv1$H030c0uTZ0pEBu3S30LHepQdOBRgwqAYtR7HroTOyz9"
+
+[network]
+source = "from-dhcp"
+
+[disk-setup]
+filesystem = "ext4"
+
+[first-boot]
+source = "from-iso"
+ordering = "before-network"

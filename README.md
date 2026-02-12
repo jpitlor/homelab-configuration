@@ -12,4 +12,11 @@ packer build -except='proxmox-clone.*' .
 packer build -only='proxmox-clone.*' --parallel-builds=1 .
 ```
 
-netsh interface portproxy add v4tov4 listenport=8081 listenaddress=0.0.0.0 connectport=8081 connectaddress=$(wsl hostname -I)
+## Preparing Proxmox ISO
+
+```shell
+sudo apt install proxmox-auto-install-assistant
+cd proxmox
+wget https://enterprise.proxmox.com/iso/proxmox-ve_8.4-1.iso
+proxmox-auto-install-assistant prepare-iso proxmox-ve_8.4-1.iso --fetch-from iso --answer-file ./answers.toml
+```
