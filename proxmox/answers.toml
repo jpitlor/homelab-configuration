@@ -12,6 +12,7 @@ source = "from-dhcp"
 
 [disk-setup]
 filesystem = "ext4"
+filter.ID_SERIAL = "*"
 
 [first-boot]
 source = "from-iso"
