@@ -3,6 +3,8 @@ keyboard = "en-us"
 country = "us"
 timezone = "America/New_York"
 root-password-hashed = "$y$j9T$FkQN/DSdOR8RCuNW1MTGv1$H030c0uTZ0pEBu3S30LHepQdOBRgwqAYtR7HroTOyz9"
+fqdn.source = "from-dhcp"
+fqdn.domain = "proxmox.pitlor.dev"
 
 [network]
 source = "from-dhcp"
