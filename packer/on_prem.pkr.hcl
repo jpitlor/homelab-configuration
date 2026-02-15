@@ -63,7 +63,6 @@ source "proxmox-clone" "docker_containers" {
     format = "raw"
   }
 
-  template_name = "docker-containers-template"
   memory = 2048
   cores = 4
   qemu_agent = true
@@ -119,6 +118,7 @@ build {
     content {
       node = source.value
       vm_id = 902 + index(var.proxmox_node_list, source.value)
+      template_name = "docker-containers-${source.value}-template"
     }
   }
 
