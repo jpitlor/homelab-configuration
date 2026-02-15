@@ -39,7 +39,3 @@ variable "ssh_password" {
   type = string
   sensitive = true
 }
-
-variable "http_interface" {
-  type = string
-}
