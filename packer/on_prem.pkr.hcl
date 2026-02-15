@@ -54,7 +54,6 @@ source "proxmox-clone" "docker_containers" {
     bridge = "vmbr0"
     model  = "virtio"
     firewall = "false"
-    mac_address = "f6:13:a0:be:25:a1"
   }
 
   disks {
@@ -74,7 +73,6 @@ source "proxmox-clone" "docker_containers" {
   node = var.proxmox_node
   username = var.proxmox_username
   password = var.proxmox_password
-  vm_id = 901
 }
 
 source "proxmox-clone" "dev_playground" {
@@ -98,19 +96,36 @@ source "proxmox-clone" "dev_playground" {
   node = var.proxmox_node
   username = var.proxmox_username
   password = var.proxmox_password
-  vm_id = 902
+  vm_id = 901
 }
 
 build {
   sources = [
     "source.proxmox-iso.debian_base",
-    "source.proxmox-clone.dev_playground",
-    "source.proxmox-clone.docker_containers",
+    "source.proxmox-clone.dev_playground"
   ]
 
   provisioner "ansible" {
     playbook_file = "../configure-templates.yml"
     groups = ["proxmox_all", "${source.name}_group"]
     user = var.ssh_username
+  }
+}
+
+build {
+  dynamic "source" {
+    for_each = var.proxmox_node_list
+    labels   = ["proxmox-clone.docker_containers"]
+    content {
+      node = source.value
+      vm_id = 902 + index(var.proxmox_node_list, source.value)
+    }
+  }
+
+  provisioner "ansible" {
+    playbook_file = "../configure-templates.yml"
+    groups = ["proxmox_all", "${source.name}_group"]
+    user = var.ssh_username
+    extra_arguments = ["--extra-vars", "kubernetes_node_label=${source.node}"]
   }
 }

@@ -15,6 +15,10 @@ variable "proxmox_node" {
   type = string
 }
 
+variable "proxmox_node_list" {
+  type = list(string)
+}
+
 variable "proxmox_disk_storage_pool" {
   type = string
 }
