@@ -69,7 +69,6 @@ source "proxmox-clone" "docker_containers" {
 
   proxmox_url = var.proxmox_host
   insecure_skip_tls_verify = true
-  node = var.proxmox_node
   username = var.proxmox_username
   password = var.proxmox_password
 }
