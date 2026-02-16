@@ -115,6 +115,7 @@ build {
     for_each = var.proxmox_node_list
     labels   = ["proxmox-clone.docker_containers"]
     content {
+      name = source.value
       node = source.value
       vm_id = 902 + index(var.proxmox_node_list, source.value)
       template_name = "docker-containers-${source.value}-template"
@@ -123,8 +124,8 @@ build {
 
   provisioner "ansible" {
     playbook_file = "../configure-templates.yml"
-    groups = ["proxmox_all", "${source.name}_group"]
+    groups = ["proxmox_all", "docker_containers_group"]
     user = var.ssh_username
-    extra_arguments = ["--extra-vars", "kubernetes_node_label=${source.node}"]
+    extra_arguments = ["--extra-vars", "kubernetes_node_label=${source.name}"]
   }
 }
