@@ -1,9 +1,9 @@
 proxmox_host = ""
 proxmox_username = ""
 proxmox_password = ""
-proxmox_node = ""
 proxmox_node_list = []
-proxmox_disk_storage_pool = ""
+proxmox_local_storage_pool = ""
+proxmox_shared_storage_pool = ""
 debian_iso_url = ""
 debian_iso_checksum_url = ""
 ssh_username = ""

@@ -9,7 +9,7 @@ source "proxmox-iso" "debian_base" {
     unmount = true
     iso_url = var.debian_iso_url
     iso_checksum = "file:${var.debian_iso_checksum_url}"
-    iso_storage_pool = "local"
+    iso_storage_pool = var.proxmox_shared_storage_pool
   }
 
   network_adapters {
@@ -20,13 +20,13 @@ source "proxmox-iso" "debian_base" {
 
   disks {
     disk_size         = "50G"
-    storage_pool      = var.proxmox_disk_storage_pool
+    storage_pool      = var.proxmox_shared_storage_pool
     type              = "scsi"
     format = "raw"
   }
 
   efi_config {
-    efi_storage_pool  = var.proxmox_disk_storage_pool
+    efi_storage_pool  = var.proxmox_shared_storage_pool
   }
 
   template_name = "debian-base-template"
@@ -37,7 +37,7 @@ source "proxmox-iso" "debian_base" {
 
   proxmox_url = var.proxmox_host
   insecure_skip_tls_verify = true
-  node = var.proxmox_node
+  node = element(var.proxmox_node_list, 0)
   username = var.proxmox_username
   password = var.proxmox_password
   vm_id = 900
@@ -58,7 +58,7 @@ source "proxmox-clone" "docker_containers" {
 
   disks {
     disk_size         = "200G"
-    storage_pool      = var.proxmox_disk_storage_pool
+    storage_pool      = var.proxmox_local_storage_pool
     type              = "scsi"
     format = "raw"
   }
@@ -85,13 +85,20 @@ source "proxmox-clone" "dev_playground" {
     firewall = "false"
   }
 
+  disks {
+    disk_size         = "50G"
+    storage_pool      = var.proxmox_local_storage_pool
+    type              = "scsi"
+    format = "raw"
+  }
+
   template_name = "dev-playground-template"
   memory = 2048
   qemu_agent = true
 
   proxmox_url = var.proxmox_host
   insecure_skip_tls_verify = true
-  node = var.proxmox_node
+  node = element(var.proxmox_node_list, 0)
   username = var.proxmox_username
   password = var.proxmox_password
   vm_id = 901
