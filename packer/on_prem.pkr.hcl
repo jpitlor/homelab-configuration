@@ -57,7 +57,7 @@ source "proxmox-clone" "docker_containers" {
   }
 
   disks {
-    disk_size         = "200G"
+    disk_size         = "140G"
     storage_pool      = var.proxmox_local_storage_pool
     type              = "scsi"
     format = "raw"
