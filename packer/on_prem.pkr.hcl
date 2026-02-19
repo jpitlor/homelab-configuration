@@ -43,7 +43,7 @@ source "proxmox-iso" "debian_base" {
   vm_id = 900
 }
 
-source "proxmox-clone" "docker_containers" {
+source "proxmox-clone" "docker_containers_nuc" {
   clone_vm = "debian-base-template"
   ssh_username = var.ssh_username
   ssh_certificate_file = "~/.ssh/id_rsa-cert.pub"
@@ -71,6 +71,81 @@ source "proxmox-clone" "docker_containers" {
   insecure_skip_tls_verify = true
   username = var.proxmox_username
   password = var.proxmox_password
+
+  name = "docker-containers-nuc"
+  node = "nuc"
+  vm_id = 902
+  template_name = "docker-containers-nuc-template"
+}
+
+source "proxmox-clone" "docker_containers_zotac03" {
+  clone_vm = "debian-base-template"
+  ssh_username = var.ssh_username
+  ssh_certificate_file = "~/.ssh/id_rsa-cert.pub"
+  ssh_private_key_file = "~/.ssh/id_rsa"
+  task_timeout = "10m"  # Shutting down a k8s cluster takes longer than the default of 1m
+
+  network_adapters {
+    bridge = "vmbr0"
+    model  = "virtio"
+    firewall = "false"
+  }
+
+  disks {
+    disk_size         = "140G"
+    storage_pool      = var.proxmox_local_storage_pool
+    type              = "scsi"
+    format = "raw"
+  }
+
+  memory = 2048
+  cores = 4
+  qemu_agent = true
+
+  proxmox_url = var.proxmox_host
+  insecure_skip_tls_verify = true
+  username = var.proxmox_username
+  password = var.proxmox_password
+
+  name = "docker-containers-zotac03"
+  node = "zotac03"
+  vm_id = 903
+  template_name = "docker-containers-zotac03-template"
+}
+
+source "proxmox-clone" "docker_containers_zotac09" {
+  clone_vm = "debian-base-template"
+  ssh_username = var.ssh_username
+  ssh_certificate_file = "~/.ssh/id_rsa-cert.pub"
+  ssh_private_key_file = "~/.ssh/id_rsa"
+  task_timeout = "10m"  # Shutting down a k8s cluster takes longer than the default of 1m
+
+  network_adapters {
+    bridge = "vmbr0"
+    model  = "virtio"
+    firewall = "false"
+  }
+
+  disks {
+    disk_size         = "140G"
+    storage_pool      = var.proxmox_local_storage_pool
+    type              = "scsi"
+    format = "raw"
+  }
+
+  memory = 2048
+  cores = 4
+  qemu_agent = true
+
+  proxmox_url = var.proxmox_host
+  insecure_skip_tls_verify = true
+  username = var.proxmox_username
+  password = var.proxmox_password
+
+  name = "docker-containers-zotac09"
+  node = "zotac09"
+  vm_id = 904
+  template_name = "docker-containers-zotac09-template"
 }
 
 source "proxmox-clone" "dev_playground" {
@@ -118,16 +193,11 @@ build {
 }
 
 build {
-  dynamic "source" {
-    for_each = var.proxmox_node_list
-    labels   = ["proxmox-clone.docker_containers"]
-    content {
-      name = source.value
-      node = source.value
-      vm_id = 902 + index(var.proxmox_node_list, source.value)
-      template_name = "docker-containers-${source.value}-template"
-    }
-  }
+  sources = [
+    "proxmox-clone.docker_containers_nuc",
+    "proxmox-clone.docker_containers_zotac03",
+    "proxmox-clone.docker_containers_zotac09"
+  ]
 
   provisioner "ansible" {
     playbook_file = "../configure-templates.yml"
@@ -136,3 +206,23 @@ build {
     extra_arguments = ["--extra-vars", "kubernetes_node_label=${source.name}"]
   }
 }
+
+# build {
+#   dynamic "source" {
+#     for_each = var.proxmox_node_list
+#     labels   = ["proxmox-clone.docker_containers"]
+#     content {
+#       name = "docker-containers-${source.value}"
+#       node = source.value
+#       vm_id = 902 + index(var.proxmox_node_list, source.value)
+#       template_name = "docker-containers-${source.value}-template"
+#     }
+#   }
+
+#   provisioner "ansible" {
+#     playbook_file = "../configure-templates.yml"
+#     groups = ["proxmox_all", "docker_containers_group"]
+#     user = var.ssh_username
+#     extra_arguments = ["--extra-vars", "kubernetes_node_label=${source.name}"]
+#   }
+# }
