@@ -72,7 +72,6 @@ source "proxmox-clone" "docker_containers_nuc" {
   username = var.proxmox_username
   password = var.proxmox_password
 
-  name = "docker-containers-nuc"
   node = "nuc"
   vm_id = 902
   template_name = "docker-containers-nuc-template"
@@ -107,7 +106,6 @@ source "proxmox-clone" "docker_containers_zotac03" {
   username = var.proxmox_username
   password = var.proxmox_password
 
-  name = "docker-containers-zotac03"
   node = "zotac03"
   vm_id = 903
   template_name = "docker-containers-zotac03-template"
@@ -142,7 +140,6 @@ source "proxmox-clone" "docker_containers_zotac09" {
   username = var.proxmox_username
   password = var.proxmox_password
 
-  name = "docker-containers-zotac09"
   node = "zotac09"
   vm_id = 904
   template_name = "docker-containers-zotac09-template"
