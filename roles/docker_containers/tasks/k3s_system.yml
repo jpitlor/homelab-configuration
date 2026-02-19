@@ -1,7 +1,7 @@
 ---
 - name: Configure traefik
   become: true
-  ansible.builtin.file:
+  ansible.builtin.copy:
     src: traefik.yaml
     dest: /var/lib/rancher/k3s/server/manifests/traefik-config.yaml
 
