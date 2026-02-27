@@ -37,103 +37,17 @@ source "proxmox-iso" "debian_base" {
 
   proxmox_url = var.proxmox_host
   insecure_skip_tls_verify = true
-  node = element(var.proxmox_node_list, 0)
   username = var.proxmox_username
   password = var.proxmox_password
   vm_id = 900
 }
 
-source "proxmox-clone" "docker_containers" {
-  clone_vm = "debian-base-template"
-  ssh_username = var.ssh_username
-  ssh_certificate_file = "~/.ssh/id_rsa-cert.pub"
-  ssh_private_key_file = "~/.ssh/id_rsa"
-  task_timeout = "30m"  # Cloning from NAS takes a looooong time
-
-  network_adapters {
-    bridge = "vmbr0"
-    model  = "virtio"
-    firewall = "false"
-  }
-
-  disks {
-    disk_size         = "140G"
-    storage_pool      = var.proxmox_local_storage_pool
-    type              = "scsi"
-    format = "raw"
-  }
-
-  memory = 2048
-  cores = 4
-  qemu_agent = true
-
-  proxmox_url = var.proxmox_host
-  insecure_skip_tls_verify = true
-  username = var.proxmox_username
-  password = var.proxmox_password
-}
-
-source "proxmox-clone" "dev_playground" {
-  clone_vm = "debian-base-template"
-  ssh_username = var.ssh_username
-  ssh_certificate_file = "~/.ssh/id_rsa-cert.pub"
-  ssh_private_key_file = "~/.ssh/id_rsa"
-  task_timeout = "30m"  # Cloning from NAS takes a looooong time
-
-  network_adapters {
-    bridge = "vmbr0"
-    model  = "virtio"
-    firewall = "false"
-  }
-
-  disks {
-    disk_size         = "50G"
-    storage_pool      = var.proxmox_local_storage_pool
-    type              = "scsi"
-    format = "raw"
-  }
-
-  template_name = "dev-playground-template"
-  memory = 2048
-  qemu_agent = true
-
-  proxmox_url = var.proxmox_host
-  insecure_skip_tls_verify = true
-  node = element(var.proxmox_node_list, 0)
-  username = var.proxmox_username
-  password = var.proxmox_password
-  vm_id = 901
-}
-
 build {
-  sources = [
-    "source.proxmox-iso.debian_base",
-    "source.proxmox-clone.dev_playground"
-  ]
+  sources = ["source.proxmox-iso.debian_base"]
 
   provisioner "ansible" {
     playbook_file = "../configure-templates.yml"
     groups = ["proxmox_all", "${source.name}_group"]
     user = var.ssh_username
-  }
-}
-
-build {
-  dynamic "source" {
-    for_each = var.proxmox_node_list
-    labels   = ["proxmox-clone.docker_containers"]
-    content {
-      name = "docker-containers-${source.value}"
-      node = source.value
-      vm_id = 902 + index(var.proxmox_node_list, source.value)
-      template_name = "docker-containers-${source.value}-template"
-    }
-  }
-
-  provisioner "ansible" {
-    playbook_file = "../configure-templates.yml"
-    groups = ["proxmox_all", "docker_containers_group"]
-    user = var.ssh_username
-    extra_arguments = ["--extra-vars", "kubernetes_node_label=${source.name}"]
   }
 }
