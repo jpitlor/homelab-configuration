@@ -1,4 +1,48 @@
 ---
+- name: Bootstrap all machines
+  hosts: proxmox_all:vps
+  roles:
+    - role: internal_dns
+      tags:
+        - internal_dns
+    - role: certificates
+      tags:
+        - certificates
+    - role: ssh_server
+      tags:
+        - ssh_server
+
+- name: Add QEMU guest agent
+  hosts: proxmox_all
+  roles:
+    - role: qemu
+      tags:
+        - qemu
+
+- name: Configure VPS
+  hosts: vps
+  gather_facts: true
+  roles:
+    - role: vps
+      tags:
+        - vps
+
+- name: Configure Docker Containers
+  hosts: docker_containers_group
+  tasks:
+    - name: Docker Containers role
+      include_role:
+        name: docker_containers
+      tags:
+        - docker_containers
+
+- name: Configure dev playground
+  hosts: dev_playground_group
+  roles:
+    - role: dev_playground
+      tags:
+        - dev_playground
+
 - name: Configure VPN server
   hosts: vps
   roles:

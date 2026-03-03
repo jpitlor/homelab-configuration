@@ -10,6 +10,7 @@ source "proxmox-iso" "debian_base" {
     iso_url = var.debian_iso_url
     iso_checksum = "file:${var.debian_iso_checksum_url}"
     iso_storage_pool = var.proxmox_shared_storage_pool
+    iso_target_path = "debian-12.iso"
   }
 
   network_adapters {
@@ -19,7 +20,7 @@ source "proxmox-iso" "debian_base" {
   }
 
   disks {
-    disk_size         = "50G"
+    disk_size         = "15G"
     storage_pool      = var.proxmox_shared_storage_pool
     type              = "scsi"
     format = "raw"
@@ -44,10 +45,4 @@ source "proxmox-iso" "debian_base" {
 
 build {
   sources = ["source.proxmox-iso.debian_base"]
-
-  provisioner "ansible" {
-    playbook_file = "../configure-templates.yml"
-    groups = ["proxmox_all", "${source.name}_group"]
-    user = var.ssh_username
-  }
 }
