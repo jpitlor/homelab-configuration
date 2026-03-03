@@ -11,14 +11,6 @@ variable "proxmox_password" {
   sensitive = true
 }
 
-variable "proxmox_node_list" {
-  type = list(string)
-}
-
-variable "proxmox_local_storage_pool" {
-  type = string
-}
-
 variable "proxmox_shared_storage_pool" {
   type = string
 }
