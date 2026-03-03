@@ -45,7 +45,4 @@ source "proxmox-iso" "debian_base" {
 
 build {
   sources = ["source.proxmox-iso.debian_base"]
-  provisioner "shell" {
-    inline = ["echo 'Build complete'"]
-  }
 }
