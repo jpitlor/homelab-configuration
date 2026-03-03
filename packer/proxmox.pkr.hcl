@@ -37,6 +37,7 @@ source "proxmox-iso" "debian_base" {
   qemu_agent = true
 
   proxmox_url = var.proxmox_host
+  node = var.proxmox_node
   insecure_skip_tls_verify = true
   username = var.proxmox_username
   password = var.proxmox_password

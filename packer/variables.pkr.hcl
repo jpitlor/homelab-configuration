@@ -11,6 +11,10 @@ variable "proxmox_password" {
   sensitive = true
 }
 
+variable "proxmox_node" {
+  type = string
+}
+
 variable "proxmox_shared_storage_pool" {
   type = string
 }
