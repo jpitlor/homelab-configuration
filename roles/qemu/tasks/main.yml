@@ -1,8 +1,0 @@
----
-- name: Install required system packages
-  become: true
-  apt:
-    pkg:
-      - qemu-guest-agent
-    state: latest
-    update_cache: true

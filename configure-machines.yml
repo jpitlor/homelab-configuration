@@ -12,13 +12,6 @@
       tags:
         - ssh_server
 
-- name: Add QEMU guest agent
-  hosts: proxmox_all
-  roles:
-    - role: qemu
-      tags:
-        - qemu
-
 - name: Configure VPS
   hosts: vps
   gather_facts: true
