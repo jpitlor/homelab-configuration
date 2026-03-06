@@ -1,4 +1,12 @@
 ---
+- name: Install system packages
+  become: true
+  apt:
+    pkg:
+      - parted
+    state: latest
+    update_cache: true
+
 - name: "Read partition info"
   community.general.parted: 
     device: /dev/sda
