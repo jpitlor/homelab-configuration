@@ -6,7 +6,6 @@ roles:
   - src: kyl191.openvpn
   - src: geerlingguy.docker
   - src: geerlingguy.containerd
-  - src: xanmanning.k3s
   - src: geerlingguy.helm
   - src: geerlingguy.swap
   - src: gantsign.oh-my-zsh

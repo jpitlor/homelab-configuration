@@ -1,18 +1,21 @@
 ---
 - name: Configure traefik
   become: true
+  run_once: true
   ansible.builtin.copy:
     src: traefik.yaml
     dest: /var/lib/rancher/k3s/server/manifests/traefik-config.yaml
 
 - name: Create kube folder
   become: true
+  run_once: true
   ansible.builtin.file:
     path: "/home/{{ username }}/.kube"
     state: directory
 
 - name: Symlink kubeconfig
   become: true
+  run_once: true
   ansible.builtin.file:
     src: /etc/rancher/k3s/k3s.yaml
     dest: "/home/{{ username }}/.kube/config"
