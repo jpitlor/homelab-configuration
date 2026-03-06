@@ -17,10 +17,13 @@
   become: true
   community.general.parted:
     device: /dev/sda
-    number: 5
+    number: "{{ item }}"
     part_end: "100%"
     resize: true
     state: present
+  loop:
+    - 2
+    - 5
 
 - name: "Expand logical volume and resize filesystem"
   become: true
