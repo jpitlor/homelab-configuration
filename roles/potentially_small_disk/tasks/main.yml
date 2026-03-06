@@ -20,6 +20,7 @@
     - 5
 
 - name: "Expand physical volume"
+  become: true
   community.general.lvg:
     vg: debian-vg
     pvs: /dev/sda5
