@@ -1,6 +1,6 @@
 ---
 - name: Bootstrap all machines
-  hosts: proxmox_all:vps
+  hosts: all
   roles:
     - role: internal_dns
       tags:
@@ -42,6 +42,6 @@
     - vpn_server
 
 - name: Configure VPN clients
-  hosts: vpn_clients
+  hosts: docker_containers_group[0]
   roles:
     - vpn_client
