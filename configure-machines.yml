@@ -1,4 +1,11 @@
 ---
+- name: Expand disks of Proxmox VMs
+  hosts: docker_containers_group:dev_playground
+  roles:
+    - role: potentially_small_disk
+      tags:
+        - potentially_small_disk
+
 - name: Bootstrap all machines
   hosts: all
   roles:

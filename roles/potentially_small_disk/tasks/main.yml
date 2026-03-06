@@ -1,0 +1,21 @@
+---
+- name: "Read partition info"
+  community.general.parted: 
+    device: /dev/sda
+  register: sda_info
+
+- name: "Extend partition"
+  community.general.parted:
+    device: /dev/sda
+    number: "{{ sda_info.partitions | map(attribute='num') | last }}"
+    part_end: "100%"
+    resize: true
+    state: present
+
+- name: "Expand logical volume and resize filesystem"
+  become: true
+  community.general.lvol:
+    vg: debian-vg
+    lv: root
+    size: +100%FREE
+    resizefs: true
