@@ -31,5 +31,5 @@
   community.general.lvol:
     vg: debian-vg
     lv: root
-    size: "100%PVS"
+    size: "+100%FREE"
     resizefs: true
