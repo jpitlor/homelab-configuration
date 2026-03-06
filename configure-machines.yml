@@ -39,9 +39,13 @@
 - name: Configure VPN server
   hosts: vps
   roles:
-    - vpn_server
+    - role: vpn_server
+      tags:
+        - vpn_server
 
 - name: Configure VPN clients
   hosts: docker_containers_group[0]
   roles:
-    - vpn_client
+    - role: vpn_client
+      tags: 
+        - vpn_client
