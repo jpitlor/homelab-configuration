@@ -19,6 +19,12 @@
     - 2
     - 5
 
+- name: "Expand physical volume"
+  community.general.lvg:
+    vg: debian-vg
+    pvs: /dev/sda5
+    pvresize: true
+
 - name: "Expand logical volume and resize filesystem"
   become: true
   community.general.lvol:
