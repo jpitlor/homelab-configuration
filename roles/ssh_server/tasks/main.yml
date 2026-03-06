@@ -1,4 +1,12 @@
 ---
+- name: "Expand disk"
+  become: true
+  lvol:
+    vg: debian-vg
+    lv: root
+    size: 100%PVS
+    resizefs: true
+
 - name: "Create homelab group"
   become: true
   ansible.builtin.group:
