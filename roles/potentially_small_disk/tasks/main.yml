@@ -7,12 +7,6 @@
     state: latest
     update_cache: true
 
-# - name: "Read partition info"
-#   become: true
-#   community.general.parted: 
-#     device: /dev/sda
-#   register: sda_info
-
 - name: "Extend partition"
   become: true
   community.general.parted:
@@ -30,5 +24,5 @@
   community.general.lvol:
     vg: debian-vg
     lv: root
-    size: +100%FREE
+    size: "+100%FREE"
     resizefs: true
