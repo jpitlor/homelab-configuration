@@ -1,5 +1,6 @@
 ---
 - name: Create homelab namespace
+  run_once: true
   kubernetes.core.k8s:
     name: '{{ kubernetes_homelab_namespace }}'
     api_version: v1
@@ -7,6 +8,7 @@
     state: present
 
 - name: Install CRD dependencies
+  run_once: true
   kubernetes.core.k8s:
     state: present
     definition:
@@ -90,23 +92,27 @@
     seconds: 60
 
 - name: Download barman cloud plugin
+  run_once: true
   ansible.builtin.get_url:
     url: https://github.com/cloudnative-pg/plugin-barman-cloud/releases/download/v0.6.0/manifest.yaml
     dest: ~/barman-cloud-plugin.yaml
     mode: '0664'
 
 - name: Put proper namespace in barman cloud plugin
+  run_once: true
   ansible.builtin.replace:
     path: ~/barman-cloud-plugin.yaml
     regexp: 'cnpg-system'
     replace: '{{ kubernetes_homelab_namespace }}'
 
 - name: Apply barman cloud plugin manifest to the cluster.
+  run_once: true
   kubernetes.core.k8s:
     state: present
     src: ~/barman-cloud-plugin.yaml
 
 - name: Install homelab chart
+  run_once: true
   tags:
     - homelab_chart
   vars:
