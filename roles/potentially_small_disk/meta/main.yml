@@ -1,14 +1,14 @@
-dependencies:
-  - role: mrlesmithjr.manage_lvm
-    vars:
-      manage_lvm: true
-      lvm_groups: 
-        - vgname: debian-vg
-          disks:
-            - /dev/sda5
-          create: true
-          pvresize: true
-          lvnames:
-            - lvname: root
-              size: 100%FREE
-              create: true
+# dependencies:
+#   - role: mrlesmithjr.manage_lvm
+#     vars:
+#       manage_lvm: true
+#       lvm_groups: 
+#         - vgname: debian-vg
+#           disks:
+#             - /dev/sda5
+#           create: true
+#           pvresize: true
+#           lvnames:
+#             - lvname: root
+#               size: 100%FREE
+#               create: true
