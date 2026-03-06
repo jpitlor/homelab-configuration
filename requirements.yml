@@ -12,6 +12,7 @@ roles:
   - src: rvm.ruby
   - src: comcast.sdkman
   - src: xanmanning.k3s
+  - src: mrlesmithjr.manage_lvm 
 collections:
   - ansible.posix
   - ansible.utils

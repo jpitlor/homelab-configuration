@@ -7,17 +7,17 @@
     state: latest
     update_cache: true
 
-- name: "Read partition info"
-  become: true
-  community.general.parted: 
-    device: /dev/sda
-  register: sda_info
+# - name: "Read partition info"
+#   become: true
+#   community.general.parted: 
+#     device: /dev/sda
+#   register: sda_info
 
 - name: "Extend partition"
   become: true
   community.general.parted:
     device: /dev/sda
-    number: "{{ sda_info.partitions | map(attribute='num') | last }}"
+    number: 5
     part_end: "100%"
     resize: true
     state: present
