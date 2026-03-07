@@ -9,5 +9,6 @@ dependencies:
     vars:
       k3s_become: true
       k3s_agent:
-        node-label:
-          - "{{ kubernetes_node_label }}"
+        with-node-id: true
+        # node-label:
+          # - "{{ kubernetes_node_label }}"
