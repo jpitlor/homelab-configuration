@@ -11,4 +11,4 @@ dependencies:
       k3s_agent:
         with-node-id: true
         node-label:
-          - "{% if ansible_host is search('zotac*') %}gpu_instance={{ ansible_host }}{% endif %}
+          - "{% if ansible_host is search('zotac*') %}gpu_instance={{ ansible_host }}{% endif %}"
