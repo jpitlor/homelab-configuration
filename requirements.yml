@@ -12,7 +12,7 @@ roles:
   - src: rvm.ruby
   - src: comcast.sdkman
   - src: xanmanning.k3s
-  - src: mrlesmithjr.manage_lvm 
+  - src: uchida.nvidia-container-runtime
 collections:
   - ansible.posix
   - ansible.utils

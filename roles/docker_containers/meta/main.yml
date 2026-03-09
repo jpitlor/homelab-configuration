@@ -5,6 +5,8 @@ dependencies:
       swap_file_state: absent
   - role: geerlingguy.containerd
     become: true
+  - role: uchida.nvidia-container-runtime
+    become: true
   - role: xanmanning.k3s
     vars:
       k3s_become: true
