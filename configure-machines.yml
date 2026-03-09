@@ -27,19 +27,12 @@
       tags:
         - vps
 
-# - name: Configure Docker Containers
-#   hosts: docker_containers_group
-#   tasks:
-#     - name: Docker Containers role
-#       include_role:
-#         name: docker_containers
-#       tags:
-#         - docker_containers
-
 - name: Configure Docker Containers
   hosts: docker_containers_group
-  roles:
-    - role: docker_containers
+  tasks:
+    - name: Docker Containers role
+      include_role:
+        name: docker_containers
       tags:
         - docker_containers
 
