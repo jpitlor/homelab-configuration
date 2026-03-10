@@ -1,1 +1,1 @@
-deb [signed-by=] https://nvidia.github.io/libnvidia-container/stable/deb/x86_64
+deb [signed-by=/etc/apt/trusted.gpg.d/nvidia.asc] https://nvidia.github.io/libnvidia-container/stable/deb/x86_64
