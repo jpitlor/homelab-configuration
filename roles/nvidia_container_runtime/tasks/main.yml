@@ -17,6 +17,7 @@
     uris: https://nvidia.github.io/libnvidia-container/stable/deb/x86_64
     signed_by: https://nvidia.github.io/libnvidia-container/gpgkey
     suites: [jammy]
+    components: [main]
 
 - name: Install drivers and container runtime
   become: true
