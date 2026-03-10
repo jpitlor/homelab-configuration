@@ -27,13 +27,15 @@
       tags:
         - vps
 
-- name: Configure Docker Containers
+- name: Install nvidia container runtime
   hosts: docker_containers_group
-  pre_tasks:
-    - name: Install nvidia container runtime
-      include_role:
+  tasks:
+    - include_role:
         name: nvidia_container_runtime
       when: inventory_hostname is search('zotac*')
+
+- name: Configure Docker Containers
+  hosts: docker_containers_group
   tasks:
     - name: Docker Containers role
       include_role:
