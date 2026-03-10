@@ -31,7 +31,7 @@
   hosts: docker_containers_group
   pre_tasks:
     - ansible.builtin.set_fact:
-        ansible_distribution_version: "{{ inventory_hostname is search('zotac*') ? ansible_distribution_version.split('.')[0] : ansible_distribution_version }}"
+        ansible_distribution_version: "{{ inventory_hostname is search('zotac*') | ternary(ansible_distribution_version.split('.')[0], ansible_distribution_version) }}"
   tasks:
     - name: Docker Containers role
       include_role:
