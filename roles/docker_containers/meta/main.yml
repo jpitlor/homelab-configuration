@@ -6,6 +6,9 @@ dependencies:
   - role: geerlingguy.containerd
     become: true
   - role: uchida.nvidia-container-runtime
+    when: inventory_hostname is search('zotac*')
+    vars:
+      ansible_distribution_version: "{{ ansible_distribution_version | regex_replace('\..*', '') }}"
     become: true
   - role: xanmanning.k3s
     vars:
