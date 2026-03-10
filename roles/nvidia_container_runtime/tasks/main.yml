@@ -1,0 +1,32 @@
+---
+
+- name: Install required system packages
+  become: true
+  ansible.builtin.apt:
+    pkg:
+      - ca-certificates
+      - curl
+      - gnupg2
+    state: latest
+    update_cache: true
+
+- name: Add nvidia repository
+  become: true
+  ansible.builtin.deb822_repository:
+    name: infisicial-infisical-cli
+    uris: https://nvidia.github.io/libnvidia-container/stable/deb/$(ARCH)
+    signed_by: https://nvidia.github.io/libnvidia-container/gpgkey 
+
+- name: Install drivers and container runtime
+  become: true
+  ansible.builtin.apt:
+    pkg:
+      - nvidia-container-toolkit={{ nvidia_container_toolkit_version }}
+      - nvidia-container-toolkit-base={{ nvidia_container_toolkit_version }}
+      - libnvidia-container-tools={{ nvidia_container_toolkit_version }}
+      - libnvidia-container1={{ nvidia_container_toolkit_version }}
+      - nvidia-container-runtime 
+      - cuda-drivers-fabricmanager-515 
+      - nvidia-headless-515-server
+    state: latest
+    update_cache: true

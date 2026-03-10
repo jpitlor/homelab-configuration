@@ -30,8 +30,10 @@
 - name: Configure Docker Containers
   hosts: docker_containers_group
   pre_tasks:
-    - ansible.builtin.set_fact:
-        ansible_distribution_version: "{{ inventory_hostname is search('zotac*') | ternary(ansible_distribution_version.split('.')[0], ansible_distribution_version) }}"
+    - name: Install nvidia container runtime
+      include_role:
+        name: nvidia_container_runtime
+      when: inventory_hostname is search('zotac*')
   tasks:
     - name: Docker Containers role
       include_role:
