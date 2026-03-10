@@ -11,6 +11,7 @@
     update_cache: true
 
 - name: Add nvidia apt repository key.
+  become: true
   ansible.builtin.get_url:
     url: https://nvidia.github.io/libnvidia-container/gpgkey
     dest: /etc/apt/trusted.gpg.d/nvidia.asc
