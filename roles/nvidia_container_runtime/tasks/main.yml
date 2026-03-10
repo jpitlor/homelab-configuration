@@ -13,8 +13,8 @@
 - name: Add nvidia repository
   become: true
   ansible.builtin.deb822_repository:
-    name: infisicial-infisical-cli
-    uris: https://nvidia.github.io/libnvidia-container/stable/deb/$(ARCH)
+    name: nvidia-container
+    uris: https://nvidia.github.io/libnvidia-container/stable/deb/x86_64
     signed_by: https://nvidia.github.io/libnvidia-container/gpgkey 
 
 - name: Install drivers and container runtime
