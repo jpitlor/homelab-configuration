@@ -29,10 +29,11 @@
 
 - name: Install nvidia container runtime
   hosts: docker_containers_group
-  tasks:
-    - include_role:
-        name: nvidia_container_runtime
-      when: inventory_hostname is search('zotac*')
+  roles:
+    - role: nvidia_container_runtime
+      tags:
+        - nvidia_container_runtime
+  when: inventory_hostname is search('zotac')
 
 - name: Configure Docker Containers
   hosts: docker_containers_group
