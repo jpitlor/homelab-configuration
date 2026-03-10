@@ -31,9 +31,9 @@
   hosts: docker_containers_group
   roles:
     - role: nvidia_container_runtime
+      when: inventory_hostname is search('zotac')
       tags:
         - nvidia_container_runtime
-  when: inventory_hostname is search('zotac')
 
 - name: Configure Docker Containers
   hosts: docker_containers_group
