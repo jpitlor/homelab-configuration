@@ -14,11 +14,9 @@
   become: true
   ansible.builtin.deb822_repository:
     name: nvidia-container
-    types: [deb]
     uris: https://nvidia.github.io/libnvidia-container/stable/deb/x86_64
-    signed_by: https://nvidia.github.io/libnvidia-container/gpgkey 
-    state: present
-    enabled: yes
+    signed_by: https://nvidia.github.io/libnvidia-container/gpgkey
+    suites: [jammy]
 
 - name: Install drivers and container runtime
   become: true
