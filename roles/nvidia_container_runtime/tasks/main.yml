@@ -22,10 +22,8 @@
   become: true
   ansible.builtin.lineinfile:
     dest: /etc/apt/sources.list
-    regexp: '^(deb(?:-src)?\s+.*?)(?:\s+main|\s+main\s+restricted|\s+main\s+restricted\s+universe\s+multiverse)?(?!\s+contrib)(?!\s+non-free).*$'
-    line: '\1 main contrib non-free'
-    backrefs: true
-    state: present
+    regexp: 'deb http://ftp.us.debian.org/debian/ bookworm main non-free-firmware'
+    line: 'deb http://ftp.us.debian.org/debian/ bookworm main non-free-firmware main contrib non-free'
 
 - name: Install CUDA keyring 
   become: true
