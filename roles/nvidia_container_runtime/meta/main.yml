@@ -1,2 +1,3 @@
 dependencies:
-  - role: nvidia.nvidia_driver  
+  - role: nvidia.nvidia_driver
+    become: true  
