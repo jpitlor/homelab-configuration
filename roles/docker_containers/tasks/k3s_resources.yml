@@ -86,6 +86,28 @@
                 volumeMounts:
                   - mountPath: /target
                     name: plugins
+      - apiVersion: helm.cattle.io/v1
+        kind: HelmChart
+        metadata:
+          name: feature-discovery-chart
+          namespace: '{{ kubernetes_homelab_namespace }}'
+        spec:
+          repo: https://kubernetes-sigs.github.io/node-feature-discovery/charts
+          chart: node-feature-discovery
+          version: v0.18.3
+          targetNamespace: '{{ kubernetes_homelab_namespace }}'
+      - apiVersion: helm.cattle.io/v1
+        kind: HelmChart
+        metadata:
+          name: nvidia-k8s-device-plugin-chart
+          namespace: '{{ kubernetes_homelab_namespace }}'
+        spec:
+          repo: https://nvidia.github.io/k8s-device-plugin
+          chart: nvidia-device-plugin
+          version: v0.18.2
+          targetNamespace: '{{ kubernetes_homelab_namespace }}'
+          valuesContent: |-
+            runtimeClassName: nvidia
 
 - name: Pause for Cert Manager to install
   ansible.builtin.pause:
