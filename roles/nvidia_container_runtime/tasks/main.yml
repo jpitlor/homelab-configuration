@@ -29,3 +29,11 @@
       - nvidia-container-runtime 
     state: latest
     update_cache: true
+
+- name: Configure runtime
+  become: true
+  ansible.builtin.shell: nvidia-ctk runtime configure --runtime=containerd
+
+- name: Restart containerd
+  become: true
+  ansible.builtin.shell: systemctl restart containerd
