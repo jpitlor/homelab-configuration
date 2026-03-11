@@ -14,7 +14,7 @@
   become: true
   ansible.builtin.deb822_repository:
     name: debian
-    uris: "http://deb.debian.org/debian/"
+    uris: "http://ftp.us.debian.org/debian/"
     suites: ["main"]
     components:
       - contrib
