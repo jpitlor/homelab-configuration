@@ -10,6 +10,17 @@
     state: latest
     update_cache: true
 
+- name: Add non-free repository
+  become: true
+  ansible.builtin.deb822_repository:
+    name: debian
+    uris: "http://deb.debian.org/debian/"
+    suites: ["main"]
+    components:
+      - contrib
+      - non-free
+      - non-free-firmware
+
 - name: Add nvidia repository
   become: true
   ansible.builtin.deb822_repository:
@@ -22,6 +33,9 @@
   become: true
   ansible.builtin.apt:
     pkg:
+      - firmware-misc-nonfree
+      - nvidia-driver
+      - nvtop
       - nvidia-container-toolkit
       - nvidia-container-toolkit-base
       - libnvidia-container-tools

@@ -12,7 +12,6 @@ roles:
   - src: rvm.ruby
   - src: comcast.sdkman
   - src: xanmanning.k3s
-  - src: nvidia.nvidia_driver
 collections:
   - ansible.posix
   - ansible.utils
