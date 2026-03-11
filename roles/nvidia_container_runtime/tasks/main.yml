@@ -10,19 +10,14 @@
     state: latest
     update_cache: true
 
-- name: Add nvidia apt repository key.
-  become: true
-  ansible.builtin.get_url:
-    url: https://nvidia.github.io/libnvidia-container/gpgkey
-    dest: /etc/apt/trusted.gpg.d/nvidia.asc
-    mode: '0644'
-    force: true
-
 - name: Add nvidia repository
   become: true
-  ansible.builtin.copy:
-    src: nvidia-container.list
-    dest: "/etc/apt/sources.list.d/"
+  ansible.builtin.deb822_repository:
+    name: nvidia-container
+    uris: https://nvidia.github.io/libnvidia-container/stable/deb/x86_64
+    signed_by: https://nvidia.github.io/libnvidia-container/gpgkey
+    suites: [jammy]
+    components: [main]
 
 - name: Install drivers and container runtime
   become: true
