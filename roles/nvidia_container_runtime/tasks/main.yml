@@ -23,7 +23,9 @@
   ansible.builtin.lineinfile:
     dest: /etc/apt/sources.list
     regexp: '^(deb(?:-src)?\s+.*?)(?:\s+main|\s+main\s+restricted|\s+main\s+restricted\s+universe\s+multiverse)?(?!\s+contrib)(?!\s+non-free).*$'
-    insertafter: ' main contrib non-free'
+    line: '\\1 main contrib non-free'
+    backrefs: true
+    state: present
 
 - name: Install CUDA keyring 
   become: true
