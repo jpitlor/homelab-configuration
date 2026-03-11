@@ -15,8 +15,9 @@
   ansible.builtin.deb822_repository:
     name: debian
     uris: "http://ftp.us.debian.org/debian/"
-    suites: ["main"]
+    suites: ["bookworm"]
     components:
+      - main
       - contrib
       - non-free
       - non-free-firmware
