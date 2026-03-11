@@ -14,7 +14,7 @@
   become: true
   ansible.builtin.deb822_repository:
     name: nvidia-container
-    uris: https://nvidia.github.io/libnvidia-container/stable/deb/x86_64
+    uris: "https://nvidia.github.io/libnvidia-container/stable/deb/$(ARCH)"
     signed_by: https://nvidia.github.io/libnvidia-container/gpgkey
     suites: ["/"]
 
