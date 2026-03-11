@@ -18,6 +18,20 @@
     signed_by: https://nvidia.github.io/libnvidia-container/gpgkey
     suites: ["/"]
 
+- name: Ensure contrib and non-free are enabled in sources.list
+  become: true
+  ansible.builtin.lineinfile:
+    dest: /etc/apt/sources.list
+    regexp: '^(deb(?:-src)?\s+.*?)(?:\s+main|\s+main\s+restricted|\s+main\s+restricted\s+universe\s+multiverse)?(?!\s+contrib)(?!\s+non-free).*$'
+    replace: '\\1 main contrib non-free'
+    backrefs: true
+    state: present
+
+- name: Install CUDA keyring 
+  become: true
+  ansible.builtin.apt:
+    deb: https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/cuda-keyring_1.1-1_all.deb
+
 - name: Install drivers and container runtime
   become: true
   ansible.builtin.apt:
@@ -27,6 +41,7 @@
       - libnvidia-container-tools
       - libnvidia-container1
       - nvidia-container-runtime 
+      - cuda-toolkit
     state: latest
     update_cache: true
 

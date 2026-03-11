@@ -15,7 +15,6 @@
 
 - name: Symlink kubeconfig
   become: true
-  run_once: true
   ansible.builtin.file:
     src: /etc/rancher/k3s/k3s.yaml
     dest: "/home/{{ username }}/.kube/config"
