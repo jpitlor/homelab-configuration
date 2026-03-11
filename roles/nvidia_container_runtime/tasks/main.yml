@@ -27,7 +27,5 @@
       - libnvidia-container-tools
       - libnvidia-container1
       - nvidia-container-runtime 
-      - cuda-drivers-fabricmanager-515 
-      - nvidia-headless-515-server
     state: latest
     update_cache: true
