@@ -1,0 +1,23 @@
+Package: *nvidia*
+Pin: version 580.126.20-1
+Pin-Priority: 1001
+
+Package: libegl-nvidia0
+Pin: version 580.126.20-1
+Pin-Priority: 1001
+
+Package: libgles-nvidia1
+Pin: version 580.126.20-1
+Pin-Priority: 1001
+
+Package: libgles-nvidia2
+Pin: version 580.126.20-1
+Pin-Priority: 1001
+
+Package: libglx-nvidia0
+Pin: version 580.126.20-1
+Pin-Priority: 1001
+
+Package: libnvidia-*
+Pin: version 580.126.20-1
+Pin-Priority: 1001

@@ -30,18 +30,33 @@
     signed_by: https://nvidia.github.io/libnvidia-container/gpgkey
     suites: ["/"]
 
+- name: Copy version pin
+  become: true
+  ansible.builtin.copy:
+    src: nvidia-pin
+    dest: /etc/apt/preferences.d/nvidia-pin
+
+- name: Install linux headers
+  become: true
+  ansible.builtin.apt:
+    pkg:
+      - linux-headers-generic
+    state: latest
+    update_cache: true
+
 - name: Install drivers and container runtime
   become: true
   ansible.builtin.apt:
     pkg:
       - firmware-misc-nonfree
-      - nvidia-driver
+      - nvidia-driver=580.126.20-1
       - nvtop
       - nvidia-container-toolkit
       - nvidia-container-toolkit-base
       - libnvidia-container-tools
       - libnvidia-container1
       - nvidia-container-runtime 
+      - cuda-drivers
     state: latest
     update_cache: true
 
@@ -49,6 +64,6 @@
   become: true
   ansible.builtin.shell: nvidia-ctk runtime configure --runtime=containerd
 
-- name: Restart containerd
+- name: Restart 
   become: true
-  ansible.builtin.shell: systemctl restart containerd
+  ansible.builtin.reboot:
