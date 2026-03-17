@@ -45,7 +45,7 @@
   become: true
   ansible.builtin.apt:
     pkg:
-      - linux-headers-generic
+      - linux-headers-amd64
     state: latest
     update_cache: true
 
