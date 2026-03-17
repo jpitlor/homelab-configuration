@@ -21,3 +21,71 @@ Pin-Priority: 1001
 Package: libnvidia-*
 Pin: version 580.126.20-1
 Pin-Priority: 1001
+
+Package: libcudadebugger1
+Pin: version 580.126.20-1
+Pin-Priority: 1001
+
+Package: libnvcuvid1
+Pin: version 580.126.20-1
+Pin-Priority: 1001 
+
+Package: libnvidia-fbc1
+Pin: version 580.126.20-1
+Pin-Priority: 1001
+
+Package: libnvoptix1
+Pin: version 580.126.20-1
+Pin-Priority: 1001
+
+Package: libnvidia-encode1
+Pin: version 580.126.20-1
+Pin-Priority: 1001
+
+Package: libnvidia-opticalflow1
+Pin: version 580.126.20-1
+Pin-Priority: 1001
+
+Package: libnvidia-present
+Pin: version 580.126.20-1
+Pin-Priority: 1001 
+
+Package: nvidia-opencl-icd
+Pin: version 580.126.20-1
+Pin-Priority: 1001
+
+Package: libxnvctrl0
+Pin: version 580.126.20-1
+Pin-Priority: 1001
+
+Package: libnvidia-ptxjitcompiler1
+Pin: version 580.126.20-1
+Pin-Priority: 1001
+
+Package: libnvidia-pkcs11-openssl3
+Pin: version 580.126.20-1
+Pin-Priority: 1001
+
+Package: nvidia-kernel-dkms
+Pin: version 580.126.20-1
+Pin-Priority: 1001
+
+Package: nvidia-kernel-open-dkms
+Pin: version 580.126.20-1
+Pin-Priority: 1001
+
+Package: libnvidia-cfg1
+Pin: version 580.126.20-1
+Pin-Priority: 1001
+
+Package: nvidia-persistenced
+Pin: version 580.126.20-1
+Pin-Priority: 1001
+
+Package: libcuda1:i386
+Pin: version 580.126.20-1
+Pin-Priority: 1001
+
+Package: libcuda1
+Pin: version 580.126.20-1
+Pin-Priority: 1001

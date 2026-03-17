@@ -22,7 +22,12 @@
       - non-free
       - non-free-firmware
 
-- name: Add nvidia repository
+
+- name: Add nvidia driver repository
+  ansible.builtin.apt:
+    deb: https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/cuda-keyring_1.1-1_all.deb
+
+- name: Add nvidia container repository
   become: true
   ansible.builtin.deb822_repository:
     name: nvidia-container
@@ -56,13 +61,9 @@
       - libnvidia-container-tools
       - libnvidia-container1
       - nvidia-container-runtime 
-      - cuda-drivers
+      - cuda-drivers=580.126.20-1
     state: latest
     update_cache: true
-
-- name: Configure runtime
-  become: true
-  ansible.builtin.shell: nvidia-ctk runtime configure --runtime=containerd
 
 - name: Restart 
   become: true
