@@ -1,0 +1,42 @@
+---
+- name: Install fail2ban
+  become: true
+  apt:
+    pkg:
+      - fail2ban
+    state: latest
+    update_cache: true
+
+- name: Add caddy filter
+  become: true
+  ansible.builtin.copy:
+    src: caddy-filter.conf
+    dest: /etc/fail2ban/filter.d/caddy.conf
+
+- name: Copy jail file
+  become: true
+  ansible.builtin.copy:
+    remote_src: true
+    src: "/etc/fail2ban/jail.conf"
+    dest: "/etc/fail2ban/jail.local"
+
+- name: Add caddy jail
+  become: true
+  ansible.builtin.blockinfile:
+    path: /etc/fail2ban/jail.local
+    block: |
+      [caddy]
+      enabled = true
+      filter = caddy
+      logpath = /var/log/pitlor.dev/access.log
+      port = http,https
+      maxretry = 5
+      findtime = 30
+      bantime = 600
+
+- name: Start fail2ban
+  become: true
+  ansible.builtin.service:
+    name: fail2ban
+    state: started
+    enabled: yes

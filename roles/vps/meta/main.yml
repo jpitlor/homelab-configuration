@@ -8,3 +8,5 @@ dependencies:
       caddy_packages:
         - github.com/caddy-dns/cloudflare
         - github.com/mholt/caddy-l4
+        - github.com/caddyserver/transform-encoder
+
