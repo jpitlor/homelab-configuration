@@ -113,7 +113,7 @@
 
 - name: Pause for Cert Manager to install
   ansible.builtin.pause:
-    seconds: 60
+    seconds: 90
 
 - name: Download barman cloud plugin
   run_once: true
