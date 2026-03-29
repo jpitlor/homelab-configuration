@@ -1,0 +1,9 @@
+---
+- name: Install NUT server
+  ansible.builtin.include_tasks: "nut_server.yml"
+  run_once: true
+
+- name: Install NUT client
+  include_role:
+    name: geerlingguy.nut_client
+  when: inventory_hostname != groups['all'][0]

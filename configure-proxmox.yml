@@ -3,3 +3,8 @@
   hosts: all
   roles:
     - proxmox_node
+
+- name: Install NUT
+  hosts: all
+  roles:
+    - on_prem_power

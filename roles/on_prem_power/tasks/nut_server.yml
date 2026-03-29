@@ -1,0 +1,79 @@
+---
+- name: Install system packages
+  become: true
+  apt:
+    pkg:
+      - nut
+    state: latest
+    update_cache: true
+
+- name: Change NUT UPS configuration.
+  become: true
+  blockinfile:
+    path: /etc/nut/ups.conf
+    marker: "# {mark} ANSIBLE MANAGED BLOCK"
+    block: |
+      [{{ nut_ups_name }}]
+          driver = "{{ nut_ups_driver }}"
+          product = "{{ nut_ups_product }}"
+          desc = "{{ nut_ups_description }}"
+          port = "{{ nut_ups_port }}"
+          vendorid = "{{ nut_ups_vendorid }}"
+          productid = "{{ nut_ups_productid }}"
+          bus = "{{ nut_ups_bus }}"
+    state: present
+    mode: 0640
+  notify: restart nut-server
+
+- name: Change UPSD configuration.
+  lineinfile:
+    path: /etc/nut/upsd.conf
+    regexp: "^LISTEN 0.+"
+    line: "LISTEN 0.0.0.0 3493"
+    insertafter: EOF
+    state: present
+    mode: 0640
+  notify: restart nut-server
+
+- name: Configure UPSD users.
+  blockinfile:
+    path: /etc/nut/upsd.users
+    marker: "# {mark} ANSIBLE MANAGED BLOCK"
+    block: "{{ nut_upsd_users }}"
+    state: present
+    mode: 0640
+  notify: restart nut-server
+
+- name: Configure UPS Monitor.
+  lineinfile:
+    path: /etc/nut/upsmon.conf
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    insertafter: EOF
+    state: present
+    mode: 0640
+  notify: restart nut-monitor
+  with_items:
+    - regexp: "^MONITOR.+"
+      line: "MONITOR {{ nut_ups_name }}@localhost 1 {{ nut_ups_admin_user }} {{ nut_ups_admin_password }} primary"
+    - regexp: "^FINALDELAY.+"
+      line: "FINALDELAY {{ nut_shutdown_finaldelay }}"
+
+- name: Configure NUT mode.
+  lineinfile:
+    path: /etc/nut/nut.conf
+    regexp: "^MODE.+"
+    line: "MODE=netserver"
+    state: present
+    mode: 0640
+  notify: restart nut-server
+
+- name: Ensure NUT is running (if configured).
+  service:
+    name: "{{ item }}"
+    state: "{{ nut_state }}"
+    enabled: "{{ nut_enabled }}"
+  with_items:
+    - nut-server
+    - nut-monitor
+  when: not ansible_check_mode

@@ -1,0 +1,36 @@
+---
+nut_state: started
+nut_enabled: true
+
+# Scan for your UPS's values: `sudo nut-scanner -U`
+nut_ups_name: server-room-rack
+nut_ups_driver: nutdrv_qx
+nut_ups_product: UPS
+nut_ups_description: "Server Room Lowell Power Rack UPS"
+nut_ups_port: auto
+nut_ups_vendorid: "0665"
+nut_ups_productid: "5161"
+nut_ups_bus: "001"
+nut_shutdown_finaldelay: "180"
+
+nut_ups_admin_user: admin
+
+# See config-secrets.yml
+# nut_ups_admin_password: ADMIN_PASSWORD_HERE
+# nut_upsd_users: |
+#   [admin]
+#       password = ADMIN_PASSWORD_HERE
+#       actions = set
+#       actions = fsd
+#       instcmds = all
+#       upsmon primary
+
+#   [observer]
+#       password = OBSERVER_PASSWORD_HERE
+#       upsmon secondary
+
+nut_client_ups: server-room-rack
+nut_client_server: 10.0.2.10
+nut_client_username: observer
+# See config-secrets.yml
+# nut_client_password: OBSERVER_PASSWORD_HERE
