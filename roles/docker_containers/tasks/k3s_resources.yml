@@ -62,7 +62,7 @@
         spec:
           chart: velero
           repo: https://vmware-tanzu.github.io/helm-charts
-          version: 10.1.2
+          version: 12.0.0
           targetNamespace: '{{ kubernetes_homelab_namespace }}'
           valuesContent: |-
             credentials:
