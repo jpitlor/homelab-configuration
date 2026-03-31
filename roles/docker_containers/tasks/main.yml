@@ -2,17 +2,21 @@
 - name: Fail if neccessary environment variables are missing
   ansible.builtin.fail:
     msg: "Environment variable {{ item }} is missing"
-  when: item is falsy
+  when: lookup('ansible.builtin.env', item) is falsy
   loop:
-    - lookup('ansible.builtin.env', 'NAS_PASSWORD')
-    - lookup('ansible.builtin.env', 'BLUESKY_JWT_SECRET')
-    - lookup('ansible.builtin.env', 'BLUESKY_ADMIN_PASSWORD')
-    - lookup('ansible.builtin.env', 'BLUESKY_PLC_ROTATION_KEY')
-    - lookup('ansible.builtin.env', 'BLUESKY_EMAIL_SMTP_URL')
-    - lookup('ansible.builtin.env', 'INFISICAL_ENCRYPTION_KEY')
-    - lookup('ansible.builtin.env', 'INFISICAL_AUTH_SECRET')
-    - lookup('ansible.builtin.env', 'PLEX_CLAIM')
-    - lookup('ansible.builtin.env', 'GOOGLE_SERVICE_ACCOUNT_JSON')
+    - 'NAS_PASSWORD'
+    - 'BLUESKY_JWT_SECRET'
+    - 'BLUESKY_ADMIN_PASSWORD'
+    - 'BLUESKY_PLC_ROTATION_KEY'
+    - 'BLUESKY_EMAIL_SMTP_URL'
+    - 'INFISICAL_ENCRYPTION_KEY'
+    - 'INFISICAL_AUTH_SECRET'
+    - 'GOOGLE_SERVICE_ACCOUNT_JSON'
+    - 'POSTFIX_USERNAME'
+    - 'POSTFIX_PASSWORD'
+    - 'OPEN_ARCHIVER_MEILI_MASTER_KEY'
+    - 'OPEN_ARCHIVER_JWT_SECRET'
+    - 'OPEN_ARCHIVER_ENCRYPTION_KEY'
 
 - name: Set up Kubernetes
   ansible.builtin.include_tasks: "k3s_system.yml"

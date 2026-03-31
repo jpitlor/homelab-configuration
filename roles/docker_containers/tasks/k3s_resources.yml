@@ -180,8 +180,14 @@
             encryptionKey: {{ lookup('ansible.builtin.env', 'INFISICAL_ENCRYPTION_KEY') | quote }}
             authSecret: {{ lookup('ansible.builtin.env', 'INFISICAL_AUTH_SECRET') | quote }}   
 
-          plexMediaServer:
-            claim: {{ lookup('ansible.builtin.env', 'PLEX_CLAIM') | quote }}  
+          postfix:
+            username: {{ lookup('ansible.builtin.env', 'POSTFIX_USERNAME') | quote }}  
+            password: {{ lookup('ansible.builtin.env', 'POSTFIX_PASSWORD') | quote }}  
+
+          openArchiver:
+            meiliMasterKey: {{ lookup('ansible.builtin.env', 'OPEN_ARCHIVER_MEILI_MASTER_KEY') | quote }}  
+            jwtSecret: {{ lookup('ansible.builtin.env', 'OPEN_ARCHIVER_JWT_SECRET') | quote }}  
+            encryptionKey: {{ lookup('ansible.builtin.env', 'OPEN_ARCHIVER_ENCRYPTION_KEY') | quote }}  
 
           postgres: 
             {{ postgres_values | to_nice_yaml(indent=2) | indent(2) }}
