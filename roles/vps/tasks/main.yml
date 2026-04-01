@@ -1,13 +1,4 @@
 ---
-- name: Create caddy log directory
-  become: true
-  ansible.builtin.file:
-    path: /var/log/pitlor.dev
-    state: directory
-    owner: root
-    group: homelab
-    mode: '0755'
-
 - name: Install fail2ban
   become: true
   apt:
@@ -37,7 +28,7 @@
       [caddy]
       enabled = true
       filter = caddy
-      logpath = /var/log/pitlor.dev/access.log
+      logpath = /var/log/caddy.log
       port = http,https
       maxretry = 5
       findtime = 30
