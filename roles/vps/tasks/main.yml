@@ -1,4 +1,13 @@
 ---
+- name: Create caddy log directory
+  become: true
+  ansible.builtin.file:
+    path: /var/log/pitlor.dev
+    state: directory
+    owner: root
+    group: homelab
+    mode: '0755'
+
 - name: Install fail2ban
   become: true
   apt:
