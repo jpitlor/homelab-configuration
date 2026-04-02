@@ -28,7 +28,7 @@
       [caddy]
       enabled = true
       filter = caddy
-      logpath = /etc/caddy/access.log
+      logpath = /var/log/caddy/access.log
       port = http,https
       maxretry = 5
       findtime = 30
