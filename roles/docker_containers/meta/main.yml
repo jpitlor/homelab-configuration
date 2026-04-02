@@ -8,6 +8,8 @@ dependencies:
   - role: xanmanning.k3s
     vars:
       k3s_become: true
+      k3s_server:
+        service-node-port-range: "30000-50000"
       k3s_agent:
         with-node-id: true
       
