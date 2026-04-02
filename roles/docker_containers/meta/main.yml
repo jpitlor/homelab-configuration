@@ -9,6 +9,7 @@ dependencies:
     vars:
       k3s_become: true
       k3s_agent:
-        service-node-port-range: "30000-50000"
+        kube-apiserver-arg:
+          - "service-node-port-range=30000-50000"
         with-node-id: true
       
