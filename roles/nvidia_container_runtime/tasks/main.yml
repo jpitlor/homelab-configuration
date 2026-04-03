@@ -55,14 +55,14 @@
   ansible.builtin.apt:
     pkg:
       - firmware-misc-nonfree
-      - nvidia-driver=580.126.20-1
+      - nvidia-driver=580.126.09-1
       - nvtop
       - nvidia-container-toolkit
       - nvidia-container-toolkit-base
       - libnvidia-container-tools
       - libnvidia-container1
       - nvidia-container-runtime 
-      - cuda-drivers=580.126.20-1
+      - cuda-drivers=580.126.09-1
     state: latest
     update_cache: true
 
