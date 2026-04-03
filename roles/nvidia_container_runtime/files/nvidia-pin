@@ -89,3 +89,7 @@ Pin-Priority: 1001
 Package: libcuda1
 Pin: version 580.126.09-1
 Pin-Priority: 1001
+
+Package: cuda-drivers-580
+Pin: version 580.126.09-1
+Pin-Priority: 1001
