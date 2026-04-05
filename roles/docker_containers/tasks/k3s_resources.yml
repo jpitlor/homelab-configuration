@@ -169,8 +169,6 @@
         postgres: *db_params
       homebox: 
         postgres: *db_params
-      mealie: 
-        postgres: *db_params
       open-archiver: 
         postgres: *db_params
   kubernetes.core.k8s:
