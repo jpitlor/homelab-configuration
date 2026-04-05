@@ -141,16 +141,38 @@
     - homelab_chart
   vars:
     postgres_values:
-      grafana: &db_params
-        backupId: "{{ homelab_chart_backup_id | default(omit) }}"
-        restoreFromBackupId: "{{ homelab_chart_restore_from_backup_id | default(omit) }}"
-      vaultwarden: *db_params
-      immich: *db_params
-      nextcloud: *db_params
-      gitea: *db_params
-      infisical-standalone: *db_params
-      guacamole: *db_params
-      mealie: *db_params
+      grafana: 
+        postgres: &db_params
+          backupId: "{{ homelab_chart_backup_id | default(omit) }}"
+          restoreFromBackupId: "{{ homelab_chart_restore_from_backup_id | default(omit) }}"
+      vaultwarden: 
+        postgres: *db_params
+      immich: 
+        postgres: *db_params
+      nextcloud: 
+        postgres: *db_params
+      gitea: 
+        postgres: *db_params
+      infisical-standalone: 
+        postgres: *db_params
+      guacamole: 
+        postgres: *db_params
+      mealie: 
+        postgres: *db_params
+      coder: 
+        postgres: *db_params
+      authentik: 
+        postgres: *db_params
+      dawarich: 
+        postgres: *db_params
+      open-webui: 
+        postgres: *db_params
+      homebox: 
+        postgres: *db_params
+      mealie: 
+        postgres: *db_params
+      open-archiver: 
+        postgres: *db_params
   kubernetes.core.k8s:
     state: present
     definition:
@@ -189,5 +211,5 @@
             jwtSecret: {{ lookup('ansible.builtin.env', 'OPEN_ARCHIVER_JWT_SECRET') | quote }}  
             encryptionKey: {{ lookup('ansible.builtin.env', 'OPEN_ARCHIVER_ENCRYPTION_KEY') | quote }}  
 
-          postgres: 
+          applications: 
             {{ postgres_values | to_nice_yaml(indent=2) | indent(2) }}
