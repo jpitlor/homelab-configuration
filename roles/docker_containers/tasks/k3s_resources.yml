@@ -209,5 +209,8 @@
             jwtSecret: {{ lookup('ansible.builtin.env', 'OPEN_ARCHIVER_JWT_SECRET') | quote }}  
             encryptionKey: {{ lookup('ansible.builtin.env', 'OPEN_ARCHIVER_ENCRYPTION_KEY') | quote }}  
 
+          sunshine:
+            password: {{ lookup('ansible.builtin.env', 'SUNSHINE_PASSWORD') | quote }}
+
           applications: 
             {{ postgres_values | to_nice_yaml(indent=2) | indent(2) }}

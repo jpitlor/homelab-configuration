@@ -17,6 +17,7 @@
     - 'OPEN_ARCHIVER_MEILI_MASTER_KEY'
     - 'OPEN_ARCHIVER_JWT_SECRET'
     - 'OPEN_ARCHIVER_ENCRYPTION_KEY'
+    - 'SUNSHINE_PASSWORD'
 
 - name: Set up Kubernetes
   ansible.builtin.include_tasks: "k3s_system.yml"
