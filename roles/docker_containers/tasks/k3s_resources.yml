@@ -144,7 +144,8 @@
       grafana: 
         postgres: &db_params
           backupId: "{{ homelab_chart_backup_id | default(omit) }}"
-          restoreFromBackupId: "{{ homelab_chart_restore_from_backup_id | default(omit) }}"
+          recoverFromBackupId: "{{ homelab_chart_restore_from_backup_id | default(omit) }}"
+          recoverFromBackupTime: "{{ homelab_chart_restore_from_backup_time | default(omit) }}"
       vaultwarden: 
         postgres: *db_params
       immich: 
@@ -194,7 +195,6 @@
             jwtSecret: {{ lookup('ansible.builtin.env', 'BLUESKY_JWT_SECRET') | quote }}
             adminPassword: {{ lookup('ansible.builtin.env', 'BLUESKY_ADMIN_PASSWORD') | quote }}
             plcRotationKey: {{ lookup('ansible.builtin.env', 'BLUESKY_PLC_ROTATION_KEY') | quote }}
-            emailSmtpUrl: {{ lookup('ansible.builtin.env', 'BLUESKY_EMAIL_SMTP_URL') | quote }}
 
           infisical:
             encryptionKey: {{ lookup('ansible.builtin.env', 'INFISICAL_ENCRYPTION_KEY') | quote }}
