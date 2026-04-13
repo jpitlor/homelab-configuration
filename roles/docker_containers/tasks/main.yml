@@ -23,5 +23,3 @@
 
 - name: Add resources to Kubernetes
   ansible.builtin.include_tasks: "k3s_resources.yml"
-  tags: 
-    - homelab_chart
