@@ -86,6 +86,8 @@
                 volumeMounts:
                   - mountPath: /target
                     name: plugins
+            defaultBackupStorageLocation: gcs-backup-location
+            defaultVolumeSnapshotLocations: gcs-snapshot-location
       - apiVersion: helm.cattle.io/v1
         kind: HelmChart
         metadata:
