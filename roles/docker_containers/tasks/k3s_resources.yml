@@ -74,14 +74,15 @@
               scrapeInterval: 30s
             configuration:
               backupStorageLocation:
-                - name: gcs-backup-location
-                  provider: gcp
-                  bucket: dev-pitlor-homelab-container-backups
+                - name: "gcs-backup-location"
+                  provider: "gcp"
+                  bucket: "dev-pitlor-homelab-container-backups"
               volumeSnapshotLocation:
-                - name: gcs-snapshot-location
-                  provider: gcp
-              defaultBackupStorageLocation: gcs-backup-location
-              defaultVolumeSnapshotLocations: gcs-snapshot-location
+                - name: "gcs-snapshot-location"
+                  provider: "gcp"
+              defaultBackupStorageLocation: "gcs-backup-location"
+              defaultVolumeSnapshotLocations: 
+                gcp: "gcs-snapshot-location"
             initContainers:
               - name: velero-plugin-for-gcp
                 image: velero/velero-plugin-for-gcp:v1.8.0
