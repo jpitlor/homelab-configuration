@@ -80,14 +80,14 @@
               volumeSnapshotLocation:
                 - name: gcs-snapshot-location
                   provider: gcp
+              defaultBackupStorageLocation: gcs-backup-location
+              defaultVolumeSnapshotLocations: gcs-snapshot-location
             initContainers:
               - name: velero-plugin-for-gcp
                 image: velero/velero-plugin-for-gcp:v1.8.0
                 volumeMounts:
                   - mountPath: /target
                     name: plugins
-            defaultBackupStorageLocation: gcs-backup-location
-            defaultVolumeSnapshotLocations: gcs-snapshot-location
       - apiVersion: helm.cattle.io/v1
         kind: HelmChart
         metadata:
