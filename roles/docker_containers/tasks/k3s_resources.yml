@@ -113,6 +113,18 @@
             runtimeClassName: nvidia
             gfd:
               enabled: true
+      - apiVersion: helm.cattle.io/v1
+        kind: HelmChart
+        metadata:
+          name: longhorn-chart
+          namespace: '{{ kubernetes_homelab_namespace }}'
+        spec:
+          repo: https://charts.longhorn.io
+          chart: longhorn
+          version: v1.11.1
+          targetNamespace: '{{ kubernetes_homelab_namespace }}'
+          valuesContent: |-
+            namespaceOverride: '{{ kubernetes_homelab_namespace }}'
 
 - name: Pause for Cert Manager to install
   ansible.builtin.pause:
