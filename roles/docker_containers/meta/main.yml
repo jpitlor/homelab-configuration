@@ -12,4 +12,6 @@ dependencies:
         service-node-port-range: "30000-50000"
       k3s_agent:
         with-node-id: true
+        node-label:
+          - "node.longhorn.io/create-default-disk=true"
       
