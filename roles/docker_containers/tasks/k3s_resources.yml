@@ -127,6 +127,8 @@
             namespaceOverride: '{{ kubernetes_homelab_namespace }}'
             defaultSettings:
               createDefaultDiskLabeledNodes: true
+              storageReservedPercentageForDefaultDisk: 15
+              storageMinimalAvailablePercentage: 15
               defaultReplicaCount: 2
               orphanResourceAutoDeletion: ""
               orphanResourceAutoDeletionGracePeriod: 300
