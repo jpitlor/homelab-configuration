@@ -130,6 +130,8 @@
               defaultReplicaCount: 2
               orphanResourceAutoDeletion: ""
               orphanResourceAutoDeletionGracePeriod: 300
+            persistence:
+              defaultClassReplicaCount: 2
 
 - name: Pause for Cert Manager to install
   ansible.builtin.pause:
