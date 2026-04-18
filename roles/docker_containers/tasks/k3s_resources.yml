@@ -129,7 +129,6 @@
               createDefaultDiskLabeledNodes: true
               storageReservedPercentageForDefaultDisk: 15
               storageMinimalAvailablePercentage: 15
-              defaultReplicaCount: 2
               orphanResourceAutoDeletion: ""
               orphanResourceAutoDeletionGracePeriod: 300
             persistence:
