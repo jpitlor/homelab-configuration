@@ -125,6 +125,9 @@
           targetNamespace: '{{ kubernetes_homelab_namespace }}'
           valuesContent: |-
             namespaceOverride: '{{ kubernetes_homelab_namespace }}'
+            service:
+              ui:
+                type: NodePort
             defaultSettings:
               createDefaultDiskLabeledNodes: true
               storageReservedPercentageForDefaultDisk: 15
