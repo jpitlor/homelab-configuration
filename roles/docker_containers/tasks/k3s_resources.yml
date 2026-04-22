@@ -9,6 +9,7 @@
 
 - name: Clone SnapshotController repo
   become: true
+  run_once: true
   ansible.builtin.git:
     force: true
     repo: 'https://github.com/kubernetes-csi/external-snapshotter'
@@ -17,6 +18,7 @@
 
 - name: Update namespaces
   become: true
+  run_once: true
   ansible.builtin.lineinfile:
     dest: '{{ homelab_data_folder }}/external-snapshotter/{{ item }}'
     regexp: '([ ]+)namespace: .*'
