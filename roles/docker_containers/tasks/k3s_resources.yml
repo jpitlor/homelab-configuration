@@ -120,6 +120,7 @@
               defaultBackupStorageLocation: "gcs-backup-location"
               defaultVolumeSnapshotLocations: 
                 gcp: "gcs-snapshot-location"
+              features: EnableCSI
             initContainers:
               - name: velero-plugin-for-gcp
                 image: velero/velero-plugin-for-gcp:v1.8.0
@@ -177,6 +178,8 @@
           name: longhorn
         driver: driver.longhorn.io
         deletionPolicy: Delete
+        parameters:
+          type: snap
 
 - name: Pause for Cert Manager to install
   ansible.builtin.pause:
