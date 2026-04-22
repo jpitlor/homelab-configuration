@@ -21,7 +21,7 @@
   ansible.builtin.find:
     paths: 
       - "{{ homelab_data_folder }}/external-snapshotter/client/config/crd/"
-      - "{{ homelab_data_folder }}/external-snapshotter/deploy/kubernetes/snapshot-controller/*.yaml"
+      - "{{ homelab_data_folder }}/external-snapshotter/deploy/kubernetes/snapshot-controller/"
     patterns: "*.yaml"
     excludes: "kustomization.yaml"
   register: crd_definitions
