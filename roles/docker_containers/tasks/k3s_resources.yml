@@ -16,17 +16,24 @@
     dest: '{{ homelab_data_folder }}/external-snapshotter'
     version: 'v8.5.0'
 
+- name: Get CRD file list
+  ansible.builtin.find:
+    paths: 
+      - "{{ homelab_data_folder }}/external-snapshotter/client/config/crd/"
+      - "{{ homelab_data_folder }}/external-snapshotter/deploy/kubernetes/snapshot-controller/*.yaml"
+    patterns: "*.yaml"
+  register: crd_definitions
+
 - name: Update namespaces
   become: true
   run_once: true
   ansible.builtin.lineinfile:
-    dest: '{{ homelab_data_folder }}/external-snapshotter/{{ item }}'
+    dest: '{{ item.path }}'
     regexp: '([ ]+)namespace: .*'
     line: '\1namespace: homelab'
     state: present
     backrefs: true
-  with_fileglob:
-    - "{client/config/crd,deploy/kubernetes/snapshot-controller}/*.yaml"
+  with_items: "{{ crd_definitions.files }}"
 
 - name: Install SnapshotController CRDs
   run_once: true
