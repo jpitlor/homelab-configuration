@@ -40,10 +40,8 @@
   run_once: true
   kubernetes.core.k8s:
     state: present
-    src: '{{ homelab_data_folder }}/external-snapshotter/{{ item }}'
-  loop: 
-    - "client/config/crd/"
-    - "deploy/kubernetes/snapshot-controller/"
+    src: '{{ item.path }}'
+  with_items: "{{ crd_definitions.files }}"
 
 - name: Install CRD dependencies
   run_once: true
