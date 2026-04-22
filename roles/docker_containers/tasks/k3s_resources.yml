@@ -20,7 +20,7 @@
   ansible.builtin.lineinfile:
     dest: '{{ homelab_data_folder }}/external-snapshotter/{{ item }}'
     regexp: '([ ]+)namespace: .*'
-    line: "\1namespace: homelab"
+    line: '\1namespace: homelab'
     state: present
     backrefs: true
   with_fileglob:
