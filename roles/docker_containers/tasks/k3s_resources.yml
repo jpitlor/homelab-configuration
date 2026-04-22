@@ -7,6 +7,34 @@
     kind: Namespace
     state: present
 
+- name: Clone SnapshotController repo
+  become: true
+  ansible.builtin.git:
+    force: true
+    repo: 'https://github.com/kubernetes-csi/external-snapshotter'
+    dest: '{{ homelab_data_folder }}/external-snapshotter'
+    version: 'v8.5.0'
+
+- name: Update namespaces
+  become: true
+  ansible.builtin.lineinfile:
+    dest: '{{ homelab_data_folder }}/external-snapshotter/{{ item }}'
+    regexp: '([ ]+)namespace: .*'
+    line: "\1namespace: homelab"
+    state: present
+    backrefs: true
+  with_fileglob:
+    - "{client/config/crd,deploy/kubernetes/snapshot-controller}/*.yaml"
+
+- name: Install SnapshotController CRDs
+  run_once: true
+  kubernetes.core.k8s:
+    state: present
+    src: '{{ homelab_data_folder }}/external-snapshotter/{{ item }}'
+  loop: 
+    - "client/config/crd/"
+    - "deploy/kubernetes/snapshot-controller/"
+
 - name: Install CRD dependencies
   run_once: true
   kubernetes.core.k8s:
@@ -131,6 +159,12 @@
               storageMinimalAvailablePercentage: 15
               orphanResourceAutoDeletion: ""
               orphanResourceAutoDeletionGracePeriod: 300
+      - apiVersion: snapshot.storage.k8s.io/v1
+        kind: VolumeSnapshotClass
+        metadata:
+          name: longhorn
+        driver: driver.longhorn.io
+        deletionPolicy: Delete
 
 - name: Pause for Cert Manager to install
   ansible.builtin.pause:
