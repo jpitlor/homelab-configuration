@@ -23,6 +23,7 @@
       - "{{ homelab_data_folder }}/external-snapshotter/client/config/crd/"
       - "{{ homelab_data_folder }}/external-snapshotter/deploy/kubernetes/snapshot-controller/*.yaml"
     patterns: "*.yaml"
+    excludes: "kustomization.yaml"
   register: crd_definitions
 
 - name: Update namespaces
