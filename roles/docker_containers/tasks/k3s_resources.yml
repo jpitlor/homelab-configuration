@@ -17,6 +17,7 @@
     version: 'v8.5.0'
 
 - name: Get CRD file list
+  run_once: true
   ansible.builtin.find:
     paths: 
       - "{{ homelab_data_folder }}/external-snapshotter/client/config/crd/"
