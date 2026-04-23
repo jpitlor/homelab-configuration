@@ -109,6 +109,7 @@
             metrics:
               enabled: true
               scrapeInterval: 30s
+            deployNodeAgent: true
             configuration:
               backupStorageLocation:
                 - name: "gcs-backup-location"
