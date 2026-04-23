@@ -120,7 +120,6 @@
               defaultBackupStorageLocation: "gcs-backup-location"
               defaultVolumeSnapshotLocations: 
                 gcp: "gcs-snapshot-location"
-              features: EnableCSI
             initContainers:
               - name: velero-plugin-for-gcp
                 image: velero/velero-plugin-for-gcp:v1.8.0
