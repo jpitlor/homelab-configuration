@@ -111,6 +111,7 @@
               scrapeInterval: 30s
             deployNodeAgent: true
             configuration:
+              features: EnableCSI
               backupStorageLocation:
                 - name: "gcs-backup-location"
                   provider: "gcp"
