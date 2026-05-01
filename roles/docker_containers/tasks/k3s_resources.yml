@@ -159,8 +159,8 @@
           namespace: homelab
           type: Opaque
         stringData:
-          AWS_ACCESS_KEY_ID: {{ longhorn_gcp_key }}
-          AWS_SECRET_ACCESS_KEY: {{ longhorn_gcp_secret }}
+          AWS_ACCESS_KEY_ID: "{{ longhorn_gcp_key }}"
+          AWS_SECRET_ACCESS_KEY: "{{ longhorn_gcp_secret }}"
           AWS_ENDPOINTS: https://storage.googleapis.com
       - apiVersion: helm.cattle.io/v1
         kind: HelmChart
