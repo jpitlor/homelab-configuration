@@ -5,6 +5,8 @@ username: jpitlor
 homelab_chart_version: 2.0.5
 # homelab_chart_restore_from_backup_id: 2025-04-08
 homelab_chart_backup_id: 2026-01-04
+longhorn_gcp_key: changeme
+longhorn_gcp_secret: changeme
 
 nas_ip_address: 192.168.0.31  # TODO - is there a way to make this a 10.x IP?
 nas_homelab_data_folder: Homelab

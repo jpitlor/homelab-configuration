@@ -115,7 +115,7 @@
               backupStorageLocation:
                 - name: "gcs-backup-location"
                   provider: "gcp"
-                  bucket: "dev-pitlor-homelab-container-backups"
+                  bucket: "dev-pitlor-homelab-velero-backups"
               volumeSnapshotLocation:
                 - name: "gcs-snapshot-location"
                   provider: "gcp"
@@ -152,6 +152,16 @@
             runtimeClassName: nvidia
             gfd:
               enabled: true
+      - apiVersion: v1
+        kind: Secret
+        metadata:
+          name: longhorn-gcp-credentials
+          namespace: homelab
+          type: Opaque
+        stringData:
+          AWS_ACCESS_KEY_ID: {{ longhorn_gcp_key }}
+          AWS_SECRET_ACCESS_KEY: {{ longhorn_gcp_secret }}
+          AWS_ENDPOINTS: https://storage.googleapis.com
       - apiVersion: helm.cattle.io/v1
         kind: HelmChart
         metadata:
@@ -168,6 +178,8 @@
               ui:
                 type: NodePort
             defaultSettings:
+              backupTarget: s3://dev-pitlor-homelab-longhorn-backups
+              backupTargetCredentialSecret: longhorn-gcp-credentials
               createDefaultDiskLabeledNodes: true
               storageReservedPercentageForDefaultDisk: 15
               storageMinimalAvailablePercentage: 15
