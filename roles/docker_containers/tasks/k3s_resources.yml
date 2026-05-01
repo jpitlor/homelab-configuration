@@ -178,13 +178,14 @@
               ui:
                 type: NodePort
             defaultSettings:
-              backupTarget: s3://dev-pitlor-homelab-longhorn-backups
-              backupTargetCredentialSecret: longhorn-gcp-credentials
               createDefaultDiskLabeledNodes: true
               storageReservedPercentageForDefaultDisk: 15
               storageMinimalAvailablePercentage: 15
               orphanResourceAutoDeletion: ""
               orphanResourceAutoDeletionGracePeriod: 300
+            defaultBackupStore:
+              backupTarget: s3://dev-pitlor-homelab-longhorn-backups
+              backupTargetCredentialSecret: longhorn-gcp-credentials
       - apiVersion: snapshot.storage.k8s.io/v1
         kind: VolumeSnapshotClass
         metadata:
