@@ -184,7 +184,7 @@
               orphanResourceAutoDeletion: ""
               orphanResourceAutoDeletionGracePeriod: 300
             defaultBackupStore:
-              backupTarget: s3://dev-pitlor-homelab-longhorn-backups
+              backupTarget: s3://dev-pitlor-homelab-longhorn_backups@us-central1/
               backupTargetCredentialSecret: longhorn-gcp-credentials
       - apiVersion: snapshot.storage.k8s.io/v1
         kind: VolumeSnapshotClass
