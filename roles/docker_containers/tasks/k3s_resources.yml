@@ -104,7 +104,7 @@
           valuesContent: |-
             credentials:
               secretContents:
-                cloud: {{ lookup('ansible.builtin.env', 'GOOGLE_SERVICE_ACCOUNT_JSON') | quote }}
+                cloud: {{ velero_service_account_json | quote }}
             snapshotsEnabled: true
             metrics:
               enabled: true
@@ -115,7 +115,7 @@
               backupStorageLocation:
                 - name: "gcs-backup-location"
                   provider: "gcp"
-                  bucket: "dev-pitlor-homelab-velero-backups"
+                  bucket: "dev-pitlor-homelab-velero_backups"
               volumeSnapshotLocation:
                 - name: "gcs-snapshot-location"
                   provider: "gcp"
@@ -270,7 +270,7 @@
         targetNamespace: '{{ kubernetes_homelab_namespace }}'
         valuesContent: |-
           google:
-            serviceAccountJson: {{ lookup('ansible.builtin.env', 'GOOGLE_SERVICE_ACCOUNT_JSON') | quote }}
+            serviceAccountJson: {{ lookup('ansible.builtin.env', 'POSTGRES_SERVICE_ACCOUNT_JSON') | quote }}
 
           nas:
             password: {{ lookup('ansible.builtin.env', 'NAS_PASSWORD') | quote }}
