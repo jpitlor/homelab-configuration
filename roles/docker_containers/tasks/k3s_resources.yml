@@ -30,12 +30,10 @@
 - name: Update namespaces
   become: true
   run_once: true
-  ansible.builtin.lineinfile:
-    dest: '{{ item.path }}'
-    regexp: '([ ]+)namespace: .*'
-    line: '\1namespace: homelab'
-    state: present
-    backrefs: true
+  ansible.builtin.replace:
+    path: '{{ item.path }}'
+    regexp: '(.*)namespace: .*'
+    replace: '\1namespace: homelab'
   with_items: "{{ crd_definitions.files }}"
 
 - name: Install SnapshotController CRDs
