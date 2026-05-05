@@ -7,42 +7,6 @@
     kind: Namespace
     state: present
 
-- name: Clone SnapshotController repo
-  become: true
-  run_once: true
-  ansible.builtin.git:
-    force: true
-    repo: 'https://github.com/kubernetes-csi/external-snapshotter'
-    dest: '{{ homelab_data_folder }}/external-snapshotter'
-    version: 'v8.5.0'
-
-- name: Get CRD file list
-  run_once: true
-  ansible.builtin.find:
-    paths: 
-      - "{{ homelab_data_folder }}/external-snapshotter/client/config/crd/"
-      - "{{ homelab_data_folder }}/external-snapshotter/deploy/kubernetes/snapshot-controller/"
-      - "{{ homelab_data_folder }}/external-snapshotter/deploy/kubernetes/csi-snapshotter/"
-    patterns: "*.yaml"
-    excludes: "kustomization.yaml"
-  register: crd_definitions
-
-- name: Update namespaces
-  become: true
-  run_once: true
-  ansible.builtin.replace:
-    path: '{{ item.path }}'
-    regexp: '(.*)namespace: .*'
-    replace: '\1namespace: homelab'
-  with_items: "{{ crd_definitions.files }}"
-
-- name: Install SnapshotController CRDs
-  run_once: true
-  kubernetes.core.k8s:
-    state: present
-    src: '{{ item.path }}'
-  with_items: "{{ crd_definitions.files }}"
-
 - name: Install CRD dependencies
   run_once: true
   kubernetes.core.k8s:
@@ -185,18 +149,6 @@
             defaultBackupStore:
               backupTarget: s3://dev-pitlor-homelab-longhorn_backups@us-central1/
               backupTargetCredentialSecret: longhorn-gcp-credentials
-      - apiVersion: snapshot.storage.k8s.io/v1
-        kind: VolumeSnapshotClass
-        metadata:
-          name: longhorn
-          annotations:
-            snapshot.storage.kubernetes.io/is-default-class: "true"
-          labels:
-            velero.io/csi-volumesnapshot-class: "true"
-        driver: driver.longhorn.io
-        deletionPolicy: Retain
-        parameters:
-          type: snap
 
 - name: Pause for Cert Manager to install
   ansible.builtin.pause:
