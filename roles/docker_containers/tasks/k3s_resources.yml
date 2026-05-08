@@ -132,6 +132,8 @@
           targetNamespace: '{{ kubernetes_homelab_namespace }}'
           valuesContent: |-
             namespaceOverride: '{{ kubernetes_homelab_namespace }}'
+            persistence:
+              defaultClass: false
             service:
               ui:
                 type: NodePort
