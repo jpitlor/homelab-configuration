@@ -178,7 +178,7 @@
       apiVersion: v1
       kind: Secret
       metadata:
-        name: "{{ nasCredentialsName }}"
+        name: "{{ nas_credentials_name }}"
         namespace: homelab
       stringData:
         username: "{{ nas_username }}"
