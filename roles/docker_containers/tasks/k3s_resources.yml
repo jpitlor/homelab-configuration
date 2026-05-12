@@ -68,7 +68,7 @@
             credentials:
               secretContents:
                 cloud: {{ velero_service_account_json | quote }}
-            snapshotsEnabled: true
+            snapshotsEnabled: false
             metrics:
               enabled: true
               scrapeInterval: 30s
@@ -79,12 +79,7 @@
                 - name: "gcs-backup-location"
                   provider: "gcp"
                   bucket: "dev-pitlor-homelab-velero_backups"
-              volumeSnapshotLocation:
-                - name: "gcs-snapshot-location"
-                  provider: "gcp"
               defaultBackupStorageLocation: "gcs-backup-location"
-              defaultVolumeSnapshotLocations: 
-                gcp: "gcs-snapshot-location"
             initContainers:
               - name: velero-plugin-for-gcp
                 image: velero/velero-plugin-for-gcp:v1.8.0
@@ -137,6 +132,8 @@
           targetNamespace: '{{ kubernetes_homelab_namespace }}'
           valuesContent: |-
             namespaceOverride: '{{ kubernetes_homelab_namespace }}'
+            persistence:
+              defaultClass: false
             service:
               ui:
                 type: NodePort
