@@ -12,3 +12,4 @@ nas_ip_address: 192.168.0.31  # TODO - is there a way to make this a 10.x IP?
 nas_homelab_data_folder: Homelab
 nas_username: docker_containers
 nas_mount_folder: /mnt/nas
+nas_credentials_name: nas-credentials

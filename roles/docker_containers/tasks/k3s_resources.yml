@@ -174,6 +174,93 @@
     state: present
     src: ~/barman-cloud-plugin.yaml
 
+- name: Add NAS credentials
+  run_once: true
+  kubernetes.core.k8s:
+    definition:
+      apiVersion: v1
+      kind: Secret
+      metadata:
+        name: "{{ nasCredentialsName }}"
+        namespace: homelab
+      stringData:
+        username: "{{ nas_username }}"
+        password: "{{ lookup('ansible.builtin.env', 'NAS_PASSWORD') }}"
+
+- name: Add NAS storage classes
+  run_once: true
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: storage.k8s.io/v1
+      kind: StorageClass
+      metadata:
+        name: "{{ item.name }}"
+        namespace: homelab
+      provisioner: smb.csi.k8s.io
+      parameters:
+        source: "//{{ nas_ip_address }}/{{ item.shareName }}/"
+        subDir: "{{ '${pvc.metadata.name}' if item.enableProvisioner else omit }}"
+        csi.storage.k8s.io/provisioner-secret-name: "{{ nasCredentialsName if item.enableProvisioner else omit }}"
+        csi.storage.k8s.io/provisioner-secret-namespace: "{{ 'homelab' if item.enableProvisioner else omit }}"
+        csi.storage.k8s.io/node-stage-secret-name: "{{ nasCredentialsName }}"
+        csi.storage.k8s.io/node-stage-secret-namespace: homelab
+      reclaimPolicy: "{{ item.reclaimPolicy }}"
+      volumeBindingMode: Immediate
+      allowVolumeExpansion: true
+      mountOptions:
+        - dir_mode=0{{ item.mode }}
+        - file_mode=0{{ item.mode }}
+        - uid={{ item.uid }}
+        - gid={{ item.uid }}
+  loop:
+    - name: nas
+      mode: 777
+      uid: 1000
+      shareName: Homelab
+      reclaimPolicy: Delete
+      enableProvisioner: true
+    - name: nextcloud
+      mode: 770
+      uid: 33
+      shareName: Documents
+      reclaimPolicy: Retain
+      enableProvisioner: false
+    - name: media
+      mode: 770
+      uid: 1000
+      shareName: Media
+      reclaimPolicy: Retain
+      enableProvisioner: false
+    - name: ingest
+      mode: 770
+      uid: 1000
+      shareName: Ingest
+      reclaimPolicy: Delete
+      enableProvisioner: true
+
+- name: Add Longhorn storage classes
+  run_once: true
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: storage.k8s.io/v1
+      kind: StorageClass
+      metadata:
+        name: "{{ item.name }}"
+        annotations:
+          "storageclass.kubernetes.io/is-default-class": "{{ item.isDefault }}"
+      provisioner: driver.longhorn.io
+      parameters:
+        numberOfReplicas: "{{ item.replicas }}"
+  loop:
+    - name: ssd
+      replicas: 2
+      isDefault: false
+    - name: ssd-large
+      replicas: 1
+      isDefault: true
+
 - name: Install homelab chart
   run_once: true
   tags:
