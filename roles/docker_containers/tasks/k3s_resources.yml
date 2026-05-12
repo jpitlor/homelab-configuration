@@ -198,9 +198,9 @@
       parameters:
         source: "//{{ nas_ip_address }}/{{ item.shareName }}/"
         subDir: "{{ '${pvc.metadata.name}' if item.enableProvisioner else omit }}"
-        csi.storage.k8s.io/provisioner-secret-name: "{{ nasCredentialsName if item.enableProvisioner else omit }}"
+        csi.storage.k8s.io/provisioner-secret-name: "{{ nas_credentials_name if item.enableProvisioner else omit }}"
         csi.storage.k8s.io/provisioner-secret-namespace: "{{ 'homelab' if item.enableProvisioner else omit }}"
-        csi.storage.k8s.io/node-stage-secret-name: "{{ nasCredentialsName }}"
+        csi.storage.k8s.io/node-stage-secret-name: "{{ nas_credentials_name }}"
         csi.storage.k8s.io/node-stage-secret-namespace: homelab
       reclaimPolicy: "{{ item.reclaimPolicy }}"
       volumeBindingMode: Immediate
