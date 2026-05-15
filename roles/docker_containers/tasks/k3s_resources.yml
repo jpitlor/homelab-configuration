@@ -248,6 +248,7 @@
         annotations:
           "storageclass.kubernetes.io/is-default-class": "{{ item.isDefault | string }}"
       provisioner: driver.longhorn.io
+      allowVolumeExpansion: true
       parameters:
         numberOfReplicas: "{{ item.replicas }}"
   loop:
