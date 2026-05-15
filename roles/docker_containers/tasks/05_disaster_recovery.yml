@@ -1,0 +1,38 @@
+---
+- name: Install Velero
+  run_once: true
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: helm.cattle.io/v1
+      kind: HelmChart
+      metadata:
+        name: velero
+        namespace: '{{ kubernetes_homelab_namespace }}'
+      spec:
+        chart: velero
+        repo: https://vmware-tanzu.github.io/helm-charts
+        version: 12.0.0
+        targetNamespace: '{{ kubernetes_homelab_namespace }}'
+        valuesContent: |-
+          credentials:
+            secretContents:
+              cloud: {{ velero_service_account_json | quote }}
+          snapshotsEnabled: false
+          metrics:
+            enabled: true
+            scrapeInterval: 30s
+          deployNodeAgent: true
+          configuration:
+            features: EnableCSI
+            backupStorageLocation:
+              - name: "gcs-backup-location"
+                provider: "gcp"
+                bucket: "dev-pitlor-homelab-velero_backups"
+            defaultBackupStorageLocation: "gcs-backup-location"
+          initContainers:
+            - name: velero-plugin-for-gcp
+              image: velero/velero-plugin-for-gcp:v1.8.0
+              volumeMounts:
+                - mountPath: /target
+                  name: plugins

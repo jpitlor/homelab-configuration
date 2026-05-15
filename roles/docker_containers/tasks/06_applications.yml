@@ -1,0 +1,80 @@
+---
+- name: Install homelab chart
+  run_once: true
+  tags:
+    - homelab_chart
+  vars:
+    postgres_values:
+      grafana: 
+        postgres: &db_params
+          backupId: "{{ homelab_chart_backup_id | default(omit) }}"
+          recoverFromBackupId: "{{ homelab_chart_restore_from_backup_id | default(omit) }}"
+          recoverFromBackupTime: "{{ homelab_chart_restore_from_backup_time | default(omit) }}"
+      vaultwarden: 
+        postgres: *db_params
+      immich: 
+        postgres: *db_params
+      nextcloud: 
+        postgres: *db_params
+      gitea: 
+        postgres: *db_params
+      infisical-standalone: 
+        postgres: *db_params
+      guacamole: 
+        postgres: *db_params
+      mealie: 
+        postgres: *db_params
+      coder: 
+        postgres: *db_params
+      authentik: 
+        postgres: *db_params
+      dawarich: 
+        postgres: *db_params
+      open-webui: 
+        postgres: *db_params
+      homebox: 
+        postgres: *db_params
+      open-archiver: 
+        postgres: *db_params
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: helm.cattle.io/v1
+      kind: HelmChart
+      metadata:
+        name: homelab-chart
+        namespace: '{{ kubernetes_homelab_namespace }}'
+      spec:
+        chart: oci://us-central1-docker.pkg.dev/dev-pitlor-homelab/homelab-chart/homelab-containers
+        version: '{{ homelab_chart_version }}'
+        targetNamespace: '{{ kubernetes_homelab_namespace }}'
+        valuesContent: |-
+          google:
+            serviceAccountJson: {{ lookup('ansible.builtin.env', 'POSTGRES_SERVICE_ACCOUNT_JSON') | quote }}
+
+          nas:
+            password: {{ lookup('ansible.builtin.env', 'NAS_PASSWORD') | quote }}
+
+          blueskyPds:
+            jwtSecret: {{ lookup('ansible.builtin.env', 'BLUESKY_JWT_SECRET') | quote }}
+            adminPassword: {{ lookup('ansible.builtin.env', 'BLUESKY_ADMIN_PASSWORD') | quote }}
+            plcRotationKey: {{ lookup('ansible.builtin.env', 'BLUESKY_PLC_ROTATION_KEY') | quote }}
+
+          infisical:
+            encryptionKey: {{ lookup('ansible.builtin.env', 'INFISICAL_ENCRYPTION_KEY') | quote }}
+            authSecret: {{ lookup('ansible.builtin.env', 'INFISICAL_AUTH_SECRET') | quote }}   
+
+          postfix:
+            username: {{ lookup('ansible.builtin.env', 'POSTFIX_USERNAME') | quote }}  
+            password: {{ lookup('ansible.builtin.env', 'POSTFIX_PASSWORD') | quote }}  
+
+          openArchiver:
+            meiliMasterKey: {{ lookup('ansible.builtin.env', 'OPEN_ARCHIVER_MEILI_MASTER_KEY') | quote }}  
+            jwtSecret: {{ lookup('ansible.builtin.env', 'OPEN_ARCHIVER_JWT_SECRET') | quote }}  
+            encryptionKey: {{ lookup('ansible.builtin.env', 'OPEN_ARCHIVER_ENCRYPTION_KEY') | quote }}  
+
+          sunshine:
+            password: {{ lookup('ansible.builtin.env', 'SUNSHINE_PASSWORD') | quote }}
+
+          applications: 
+            {{ postgres_values | to_nice_yaml(indent=2) | indent(2) }}

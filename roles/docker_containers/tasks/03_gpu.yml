@@ -1,0 +1,39 @@
+---
+- name: Create feature discovery namespace
+  run_once: true
+  kubernetes.core.k8s:
+    name: feature-discovery
+    api_version: v1
+    kind: Namespace
+    state: present
+
+- name: Install feature discovery agent
+  run_once: true
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      -
+      - apiVersion: helm.cattle.io/v1
+        kind: HelmChart
+        metadata:
+          name: feature-discovery-chart
+          namespace: '{{ kubernetes_homelab_namespace }}'
+        spec:
+          repo: https://kubernetes-sigs.github.io/node-feature-discovery/charts
+          chart: node-feature-discovery
+          version: v0.18.3
+          targetNamespace: feature-discovery
+      - apiVersion: helm.cattle.io/v1
+        kind: HelmChart
+        metadata:
+          name: nvidia-k8s-device-plugin-chart
+          namespace: '{{ kubernetes_homelab_namespace }}'
+        spec:
+          repo: https://nvidia.github.io/k8s-device-plugin
+          chart: nvidia-device-plugin
+          version: v0.18.2
+          targetNamespace: feature-discovery
+          valuesContent: |-
+            runtimeClassName: nvidia
+            gfd:
+              enabled: true

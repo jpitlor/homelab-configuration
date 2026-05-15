@@ -18,8 +18,20 @@
     - 'OPEN_ARCHIVER_ENCRYPTION_KEY'
     - 'SUNSHINE_PASSWORD'
 
-- name: Set up Kubernetes
-  ansible.builtin.include_tasks: "k3s_system.yml"
+- name: Install packages
+  ansible.builtin.include_tasks: "01_packages.yml"
 
-- name: Add resources to Kubernetes
-  ansible.builtin.include_tasks: "k3s_resources.yml"
+- name: Install CRDs
+  ansible.builtin.include_tasks: "02_crds.yml"
+
+- name: Add GPU capabilities
+  ansible.builtin.include_tasks: "03_gpu.yml"
+
+- name: Add storage classes
+  ansible.builtin.include_tasks: "04_storage.yml"
+
+- name: Add backups/restores
+  ansible.builtin.include_tasks: "05_disaster_recovery.yml"
+
+- name: Add applications
+  ansible.builtin.include_tasks: "06_applications.yml"

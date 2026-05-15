@@ -1,0 +1,137 @@
+---
+- name: Add NAS credentials
+  run_once: true
+  kubernetes.core.k8s:
+    definition:
+      apiVersion: v1
+      kind: Secret
+      metadata:
+        name: "{{ nas_credentials_name }}"
+        namespace: '{{ kubernetes_homelab_namespace }}'
+      stringData:
+        username: "{{ nas_username }}"
+        password: "{{ lookup('ansible.builtin.env', 'NAS_PASSWORD') }}"
+
+- name: Create longhorn-system namespace
+  run_once: true
+  kubernetes.core.k8s:
+    name: longhorn-system
+    api_version: v1
+    kind: Namespace
+    state: present
+
+- name: Install Longhorn
+  run_once: true
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      - apiVersion: v1
+        kind: Secret
+        metadata:
+          name: longhorn-gcp-credentials
+          namespace: longhorn-system
+          type: Opaque
+        stringData:
+          AWS_ACCESS_KEY_ID: "{{ longhorn_gcp_key }}"
+          AWS_SECRET_ACCESS_KEY: "{{ longhorn_gcp_secret }}"
+          AWS_ENDPOINTS: https://storage.googleapis.com
+      - apiVersion: helm.cattle.io/v1
+        kind: HelmChart
+        metadata:
+          name: longhorn-chart
+          namespace: '{{ kubernetes_homelab_namespace }}'
+        spec:
+          repo: https://charts.longhorn.io
+          chart: longhorn
+          version: v1.11.1
+          targetNamespace: longhorn-system
+          valuesContent: |-
+            persistence:
+              defaultClass: false
+            service:
+              ui:
+                type: NodePort
+            defaultSettings:
+              createDefaultDiskLabeledNodes: true
+              storageReservedPercentageForDefaultDisk: 15
+              storageMinimalAvailablePercentage: 15
+              orphanResourceAutoDeletion: ""
+              orphanResourceAutoDeletionGracePeriod: 300
+            defaultBackupStore:
+              backupTarget: s3://dev-pitlor-homelab-longhorn_backups@us-central1/
+              backupTargetCredentialSecret: longhorn-gcp-credentials
+
+- name: Add NAS storage classes
+  run_once: true
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: storage.k8s.io/v1
+      kind: StorageClass
+      metadata:
+        name: "{{ item.name }}"
+      provisioner: smb.csi.k8s.io
+      parameters:
+        source: "//{{ nas_ip_address }}/{{ item.shareName }}/"
+        subDir: "{{ '${pvc.metadata.name}' if item.enableProvisioner else omit }}"
+        csi.storage.k8s.io/provisioner-secret-name: "{{ nas_credentials_name if item.enableProvisioner else omit }}"
+        csi.storage.k8s.io/provisioner-secret-namespace: "{{ kubernetes_homelab_namespace if item.enableProvisioner else omit }}"
+        csi.storage.k8s.io/node-stage-secret-name: "{{ nas_credentials_name }}"
+        csi.storage.k8s.io/node-stage-secret-namespace: '{{ kubernetes_homelab_namespace }}'
+      reclaimPolicy: "{{ item.reclaimPolicy }}"
+      volumeBindingMode: Immediate
+      allowVolumeExpansion: true
+      mountOptions:
+        - dir_mode=0{{ item.mode }}
+        - file_mode=0{{ item.mode }}
+        - uid={{ item.uid }}
+        - gid={{ item.uid }}
+  loop:
+    - name: nas
+      mode: 777
+      uid: 1000
+      shareName: Homelab
+      reclaimPolicy: Delete
+      enableProvisioner: true
+    - name: nextcloud
+      mode: 770
+      uid: 33
+      shareName: Documents
+      reclaimPolicy: Retain
+      enableProvisioner: false
+    - name: media
+      mode: 770
+      uid: 1000
+      shareName: Media
+      reclaimPolicy: Retain
+      enableProvisioner: false
+    - name: ingest
+      mode: 770
+      uid: 1000
+      shareName: Ingest
+      reclaimPolicy: Delete
+      enableProvisioner: true
+
+- name: Add Longhorn storage classes
+  run_once: true
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: storage.k8s.io/v1
+      kind: StorageClass
+      metadata:
+        name: "{{ item.name }}"
+        annotations:
+          "storageclass.kubernetes.io/is-default-class": "{{ item.isDefault | string }}"
+      provisioner: driver.longhorn.io
+      allowVolumeExpansion: true
+      parameters:
+        numberOfReplicas: "{{ item.replicas }}"
+  loop:
+    - name: ssd
+      replicas: 2
+      isDefault: false
+    - name: ssd-large
+      replicas: 1
+      isDefault: true
+

@@ -1,0 +1,64 @@
+---
+- name: Install CRD dependencies
+  run_once: true
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      - apiVersion: helm.cattle.io/v1
+        kind: HelmChart
+        metadata:
+          name: cloudnative-pg-chart
+          namespace: '{{ kubernetes_homelab_namespace }}'
+        spec:
+          repo: https://cloudnative-pg.github.io/charts
+          chart: cloudnative-pg
+          version: 0.26.0
+          targetNamespace: cnpg-system
+          createNamespace: true
+      - apiVersion: helm.cattle.io/v1
+        kind: HelmChart
+        metadata:
+          name: prometheus-operator-crds-chart
+          namespace: '{{ kubernetes_homelab_namespace }}'
+        spec:
+          repo: https://prometheus-community.github.io/helm-charts
+          chart: prometheus-operator-crds
+          version: 17.0.2
+          targetNamespace: '{{ kubernetes_homelab_namespace }}'
+      - apiVersion: helm.cattle.io/v1
+        kind: HelmChart
+        metadata:
+          name: csi-driver-smb-chart
+          namespace: '{{ kubernetes_homelab_namespace }}'
+        spec:
+          repo: https://raw.githubusercontent.com/kubernetes-csi/csi-driver-smb/master/charts
+          chart: csi-driver-smb
+          version: v1.16.0
+          targetNamespace: '{{ kubernetes_homelab_namespace }}'
+      - apiVersion: helm.cattle.io/v1
+        kind: HelmChart
+        metadata:
+          name: cert-manager-chart
+          namespace: '{{ kubernetes_homelab_namespace }}'
+        spec:
+          chart: oci://quay.io/jetstack/charts/cert-manager
+          version: v1.18.2
+          targetNamespace: '{{ kubernetes_homelab_namespace }}'
+          valuesContent: |-
+            crds:
+              enabled: true
+
+- name: Pause for Cert Manager to install
+  ansible.builtin.pause:
+    seconds: 90
+    
+- name: Download barman cloud plugin manifest to the cluster.
+  ansible.builtin.get_url:
+    url: https://github.com/cloudnative-pg/plugin-barman-cloud/releases/download/v0.6.0/manifest.yaml
+    dest: ~/plugin-barman-cloud.yaml
+    mode: '0664'
+
+- name: Apply barman cloud plugin manifest to the cluster.
+  kubernetes.core.k8s:
+    state: present
+    src: ~/plugin-barman-cloud.yaml
