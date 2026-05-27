@@ -99,6 +99,12 @@
       shareName: Media
       reclaimPolicy: Retain
       enableProvisioner: false
+    - name: photos
+      mode: 770
+      uid: 1000
+      shareName: Media/PhotosTest
+      reclaimPolicy: Retain
+      enableProvisioner: false
     - name: ingest
       mode: 770
       uid: 1000
