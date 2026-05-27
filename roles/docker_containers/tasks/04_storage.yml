@@ -116,7 +116,7 @@
       metadata:
         name: "{{ item.name }}"
         annotations:
-          "storageclass.kubernetes.io/is-default-class": "{{ item.isDefault | string }}"
+          "storageclass.kubernetes.io/is-default-class": "{{ item.isDefault | string | lower | quote }}"
       provisioner: driver.longhorn.io
       allowVolumeExpansion: true
       parameters:
