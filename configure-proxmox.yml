@@ -2,9 +2,13 @@
 - name: Bootstrap all proxmox nodes
   hosts: all
   roles:
-    - proxmox_node
+    - role: proxmox_node
+      tags:
+        - proxmox_node
 
 - name: Install NUT
   hosts: all
   roles:
-    - on_prem_power
+    - role: on_prem_power
+      tags:
+        - on_prem_power
