@@ -1,0 +1,6 @@
+[Unit]
+Description=Reboots machine if filesystem is read-only
+
+[Service]
+ExecCondition=test -w /
+ExecStart=reboot

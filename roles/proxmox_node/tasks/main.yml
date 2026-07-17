@@ -1,0 +1,16 @@
+---
+- name: Install service and timer for bad disk checking
+  become: true
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "/etc/systemd/system/{{ item }}"
+    owner: root
+  loop:
+    - bad-disk.service
+    - bad-disk.timer
+    
+- name: Start bad-disk timer
+  become: true
+  ansible.builtin.service:
+    name: bad-disk
+    state: started

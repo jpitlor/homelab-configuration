@@ -55,6 +55,7 @@
               createDefaultDiskLabeledNodes: true
               storageReservedPercentageForDefaultDisk: 15
               storageMinimalAvailablePercentage: 15
+              backupstorePollInterval: 86400
               orphanResourceAutoDeletion: ""
               orphanResourceAutoDeletionGracePeriod: 300
             defaultBackupStore:
