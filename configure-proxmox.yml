@@ -1,10 +1,16 @@
 ---
-- name: Bootstrap all proxmox nodes
+- name: Bootstrap all machines
   hosts: all
   roles:
-    - role: proxmox_node
+    - role: internal_dns
       tags:
-        - proxmox_node
+        - internal_dns
+    - role: certificates
+      tags:
+        - certificates
+    - role: ssh_server
+      tags:
+        - ssh_server
 
 - name: Install NUT
   hosts: all

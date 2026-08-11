@@ -132,7 +132,8 @@
     - name: ssd
       replicas: 2
       isDefault: false
+      enableProvisioner: true
     - name: ssd-large
       replicas: 1
       isDefault: true
-
+      enableProvisioner: true

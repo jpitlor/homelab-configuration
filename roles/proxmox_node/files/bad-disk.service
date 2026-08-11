@@ -1,6 +1,0 @@
-[Unit]
-Description=Reboots machine if filesystem is read-only
-
-[Service]
-ExecCondition=/bin/bash -c '! test -w /'
-ExecStart=reboot
