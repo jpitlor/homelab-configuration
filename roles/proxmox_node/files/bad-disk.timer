@@ -1,9 +1,0 @@
-[Unit]
-Description=Every minute
-
-[Timer]
-OnBootSec=1h
-OnUnitActiveSec=5m
-
-[Install]
-WantedBy=timers.target
