@@ -4,38 +4,80 @@
   tags:
     - homelab_chart
   vars:
-    postgres_values:
+    values_content:
+      velero:
+        restore: {{ homelab_chart_restore_volume_version > 0 }}
+        version: {{ homelab_chart_restore_volume_version }}
+      google:
+        serviceAccountJson: {{ lookup('ansible.builtin.env', 'POSTGRES_SERVICE_ACCOUNT_JSON') | quote }}
       grafana: 
         postgres: &db_params
           backupId: "{{ homelab_chart_backup_id | default(omit) }}"
           recoverFromBackupId: "{{ homelab_chart_restore_from_backup_id | default(omit) }}"
-          recoverFromBackupTime: "{{ homelab_chart_restore_from_backup_time | default(omit) }}"
-      vaultwarden: 
+          # recoverFromBackupTime: "{{ homelab_chart_restore_from_backup_time | default(omit) }}"
+      bluesky-pds:
+        jwtSecret: {{ lookup('ansible.builtin.env', 'BLUESKY_JWT_SECRET') | quote }}
+        adminPassword: {{ lookup('ansible.builtin.env', 'BLUESKY_ADMIN_PASSWORD') | quote }}
+        plcRotationKey: {{ lookup('ansible.builtin.env', 'BLUESKY_PLC_ROTATION_KEY') | quote }}
+      infisical-standalone: 
+        encryptionKey: {{ lookup('ansible.builtin.env', 'INFISICAL_ENCRYPTION_KEY') | quote }}
+        authSecret: {{ lookup('ansible.builtin.env', 'INFISICAL_AUTH_SECRET') | quote }}   
         postgres: *db_params
+      postfix:
+        username: {{ lookup('ansible.builtin.env', 'POSTFIX_USERNAME') | quote }}  
+        password: {{ lookup('ansible.builtin.env', 'POSTFIX_PASSWORD') | quote }}  
+      sunshine:
+        password: {{ lookup('ansible.builtin.env', 'SUNSHINE_PASSWORD') | quote }}
+      homebox: 
+        postgres: *db_params
+        oidcClientId: {{ lookup('ansible.builtin.env', 'HOMEBOX_OIDC_CLIENT_ID') | quote }}
+        oidcClientSecret: {{ lookup('ansible.builtin.env', 'HOMEBOX_OIDC_CLIENT_SECRET') | quote }}
+      open-webui: 
+        postgres: *db_params
+        oidcClientId: {{ lookup('ansible.builtin.env', 'OPEN_WEBUI_OIDC_CLIENT_ID') | quote }}
+        oidcClientSecret: {{ lookup('ansible.builtin.env', 'OPEN_WEBUI_OIDC_CLIENT_SECRET') | quote }}
+      dawarich: 
+        postgres: *db_params
+        oidcClientId: {{ lookup('ansible.builtin.env', 'DAWARICH_OIDC_CLIENT_ID') | quote }}
+        oidcClientSecret: {{ lookup('ansible.builtin.env', 'DAWARICH_OIDC_CLIENT_SECRET') | quote }}
+      coder: 
+        postgres: *db_params
+        oidcClientId: {{ lookup('ansible.builtin.env', 'CODER_OIDC_CLIENT_ID') | quote }}
+        oidcClientSecret: {{ lookup('ansible.builtin.env', 'CODER_OIDC_CLIENT_SECRET') | quote }}
+      mealie: 
+        postgres: *db_params
+        oidcClientId: {{ lookup('ansible.builtin.env', 'MEALIE_OIDC_CLIENT_ID') | quote }}
+        oidcClientSecret: {{ lookup('ansible.builtin.env', 'MEALIE_OIDC_CLIENT_SECRET') | quote }}
       immich: 
-        postgres: *db_params
-      nextcloud: 
         postgres: *db_params
       gitea: 
         postgres: *db_params
-      infisical-standalone: 
+        oidcClientId: {{ lookup('ansible.builtin.env', 'GITEA_OIDC_CLIENT_ID') | quote }}
+        oidcClientSecret: {{ lookup('ansible.builtin.env', 'GITEA_OIDC_CLIENT_SECRET') | quote }}
+      vaultwarden: 
         postgres: *db_params
-      guacamole: 
-        postgres: *db_params
-      mealie: 
-        postgres: *db_params
-      coder: 
+        oidcClientId: {{ lookup('ansible.builtin.env', 'VAULTWARDEN_OIDC_CLIENT_ID') | quote }}
+        oidcClientSecret: {{ lookup('ansible.builtin.env', 'VAULTWARDEN_OIDC_CLIENT_SECRET') | quote }}
+      nextcloud: 
         postgres: *db_params
       authentik: 
         postgres: *db_params
-      dawarich: 
-        postgres: *db_params
-      open-webui: 
-        postgres: *db_params
-      homebox: 
-        postgres: *db_params
       open-archiver: 
         postgres: *db_params
+        oidcClientId: {{ lookup('ansible.builtin.env', 'OPEN_ARCHIVER_OIDC_CLIENT_ID') | quote }}
+        oidcClientSecret: {{ lookup('ansible.builtin.env', 'OPEN_ARCHIVER_OIDC_CLIENT_SECRET') | quote }}
+        meiliMasterKey: {{ lookup('ansible.builtin.env', 'OPEN_ARCHIVER_MEILI_MASTER_KEY') | quote }}  
+        jwtSecret: {{ lookup('ansible.builtin.env', 'OPEN_ARCHIVER_JWT_SECRET') | quote }}  
+        encryptionKey: {{ lookup('ansible.builtin.env', 'OPEN_ARCHIVER_ENCRYPTION_KEY') | quote }}  
+      guacamole:
+        postgres: *db_params
+        oidcClientId: {{ lookup('ansible.builtin.env', 'GUACAMOLE_OIDC_CLIENT_ID') | quote }}
+        oidcClientSecret: {{ lookup('ansible.builtin.env', 'GUACAMOLE_OIDC_CLIENT_SECRET') | quote }}
+      donetick:
+        postgres: *db_params
+        jwtSecret: {{ lookup('ansible.builtin.env', 'DONETICK_JWT_SECRET') | quote }} 
+        oidcClientId: {{ lookup('ansible.builtin.env', 'DONETICK_OIDC_CLIENT_ID') | quote }}
+        oidcClientSecret: {{ lookup('ansible.builtin.env', 'DONETICK_OIDC_CLIENT_SECRET') | quote }}
   kubernetes.core.k8s:
     state: present
     definition:
@@ -48,33 +90,4 @@
         chart: oci://us-central1-docker.pkg.dev/dev-pitlor-homelab/homelab-chart/homelab-containers
         version: '{{ homelab_chart_version }}'
         targetNamespace: '{{ kubernetes_homelab_namespace }}'
-        valuesContent: |-
-          google:
-            serviceAccountJson: {{ lookup('ansible.builtin.env', 'POSTGRES_SERVICE_ACCOUNT_JSON') | quote }}
-
-          nas:
-            password: {{ lookup('ansible.builtin.env', 'NAS_PASSWORD') | quote }}
-
-          blueskyPds:
-            jwtSecret: {{ lookup('ansible.builtin.env', 'BLUESKY_JWT_SECRET') | quote }}
-            adminPassword: {{ lookup('ansible.builtin.env', 'BLUESKY_ADMIN_PASSWORD') | quote }}
-            plcRotationKey: {{ lookup('ansible.builtin.env', 'BLUESKY_PLC_ROTATION_KEY') | quote }}
-
-          infisical:
-            encryptionKey: {{ lookup('ansible.builtin.env', 'INFISICAL_ENCRYPTION_KEY') | quote }}
-            authSecret: {{ lookup('ansible.builtin.env', 'INFISICAL_AUTH_SECRET') | quote }}   
-
-          postfix:
-            username: {{ lookup('ansible.builtin.env', 'POSTFIX_USERNAME') | quote }}  
-            password: {{ lookup('ansible.builtin.env', 'POSTFIX_PASSWORD') | quote }}  
-
-          openArchiver:
-            meiliMasterKey: {{ lookup('ansible.builtin.env', 'OPEN_ARCHIVER_MEILI_MASTER_KEY') | quote }}  
-            jwtSecret: {{ lookup('ansible.builtin.env', 'OPEN_ARCHIVER_JWT_SECRET') | quote }}  
-            encryptionKey: {{ lookup('ansible.builtin.env', 'OPEN_ARCHIVER_ENCRYPTION_KEY') | quote }}  
-
-          sunshine:
-            password: {{ lookup('ansible.builtin.env', 'SUNSHINE_PASSWORD') | quote }}
-
-          applications: 
-            {{ postgres_values | to_nice_yaml(indent=2) | indent(2) }}
+        valuesContent: {{ values_content | to_nice_yaml(indent=2) }}

@@ -2,9 +2,10 @@
 homelab_data_folder: /etc/dev.pitlor
 kubernetes_homelab_namespace: homelab
 username: jpitlor
-homelab_chart_version: 2.0.5
-# homelab_chart_restore_from_backup_id: 2025-04-08
-homelab_chart_backup_id: 2026-01-04
+homelab_chart_version: 3.0.0
+homelab_chart_restore_from_backup_id: 2026-07-17-3
+homelab_chart_backup_id: 2026-08-11
+homelab_chart_restore_volume_version: 1
 longhorn_gcp_key: changeme
 longhorn_gcp_secret: changeme
 
