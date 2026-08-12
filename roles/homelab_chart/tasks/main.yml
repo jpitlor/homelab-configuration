@@ -1,4 +1,23 @@
 ---
+- name: Fail if neccessary environment variables are missing
+  ansible.builtin.fail:
+    msg: "Environment variable {{ item }} is missing"
+  when: lookup('ansible.builtin.env', item) is falsy
+  loop:
+    - 'NAS_PASSWORD'
+    - 'BLUESKY_JWT_SECRET'
+    - 'BLUESKY_ADMIN_PASSWORD'
+    - 'BLUESKY_PLC_ROTATION_KEY'
+    - 'INFISICAL_ENCRYPTION_KEY'
+    - 'INFISICAL_AUTH_SECRET'
+    - 'POSTGRES_SERVICE_ACCOUNT_JSON'
+    - 'POSTFIX_USERNAME'
+    - 'POSTFIX_PASSWORD'
+    - 'OPEN_ARCHIVER_MEILI_MASTER_KEY'
+    - 'OPEN_ARCHIVER_JWT_SECRET'
+    - 'OPEN_ARCHIVER_ENCRYPTION_KEY'
+    - 'SUNSHINE_PASSWORD'
+    
 - name: Install homelab chart
   run_once: true
   tags:

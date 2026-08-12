@@ -32,6 +32,3 @@
 
 - name: Add backups/restores
   ansible.builtin.include_tasks: "05_disaster_recovery.yml"
-
-- name: Add applications
-  ansible.builtin.include_tasks: "06_applications.yml"

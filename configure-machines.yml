@@ -41,6 +41,9 @@
     - role: docker_containers
       tags:
         - docker_containers
+    - role: homelab_chart
+      tags:
+        - homelab_chart
 
 - name: Configure dev playground
   hosts: dev_playground_group
