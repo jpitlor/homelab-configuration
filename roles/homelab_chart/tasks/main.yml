@@ -28,7 +28,7 @@
         restore: "{{ homelab_chart_restore_volume_version > 0 }}"
         version: "{{ homelab_chart_restore_volume_version }}"
       google:
-        serviceAccountJson: "{{ lookup('ansible.builtin.env', 'POSTGRES_SERVICE_ACCOUNT_JSON') }}"
+        serviceAccountJson: "{{ lookup('ansible.builtin.env', 'POSTGRES_SERVICE_ACCOUNT_JSON') | quote }}"
       grafana: 
         postgres: &db_params
           backupId: "{{ homelab_chart_backup_id | default(omit) }}"
