@@ -109,6 +109,7 @@
         timeout: "2h"
         serverSide: "true"
         forceConflicts: true
+        takeOwnership: true
         chart: oci://us-central1-docker.pkg.dev/dev-pitlor-homelab/homelab-chart/homelab-containers
         version: '{{ homelab_chart_version }}'
         targetNamespace: '{{ kubernetes_homelab_namespace }}'
