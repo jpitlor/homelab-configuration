@@ -114,4 +114,4 @@
         chart: oci://us-central1-docker.pkg.dev/dev-pitlor-homelab/homelab-chart/homelab-containers
         version: '{{ homelab_chart_version }}'
         targetNamespace: '{{ kubernetes_homelab_namespace }}'
-        valuesContent: "{{ values_content | to_nice_yaml(indent=2) }}"
+        valuesContent: "{{ values_content | to_nice_yaml(indent=2, default_style='|') }}"
