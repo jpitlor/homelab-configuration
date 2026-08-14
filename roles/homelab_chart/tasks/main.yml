@@ -95,6 +95,9 @@
         jwtSecret: "{{ lookup('ansible.builtin.env', 'DONETICK_JWT_SECRET') | quote }}"
         oidcClientId: "{{ lookup('ansible.builtin.env', 'DONETICK_OIDC_CLIENT_ID') | quote }}"
         oidcClientSecret: "{{ lookup('ansible.builtin.env', 'DONETICK_OIDC_CLIENT_SECRET') | quote }}"
+      actualbudget:
+        oidcClientId: "{{ lookup('ansible.builtin.env', 'ACTUALBUDGET_OIDC_CLIENT_ID') | quote }}"
+        oidcClientSecret: "{{ lookup('ansible.builtin.env', 'ACTUALBUDGET_OIDC_CLIENT_SECRET') | quote }}"
   kubernetes.core.k8s:
     state: present
     definition:
