@@ -37,12 +37,13 @@
 
 - name: Configure Docker Containers
   hosts: docker_containers_group
-  tasks:
-    - name: Docker Containers role
-      include_role:
-        name: docker_containers
+  roles:
+    - role: docker_containers
       tags:
         - docker_containers
+    - role: homelab_chart
+      tags:
+        - homelab_chart
 
 - name: Configure dev playground
   hosts: dev_playground_group

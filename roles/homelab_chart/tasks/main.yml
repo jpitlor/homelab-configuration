@@ -1,4 +1,23 @@
 ---
+- name: Fail if neccessary environment variables are missing
+  ansible.builtin.fail:
+    msg: "Environment variable {{ item }} is missing"
+  when: lookup('ansible.builtin.env', item) is falsy
+  loop:
+    - 'NAS_PASSWORD'
+    - 'BLUESKY_JWT_SECRET'
+    - 'BLUESKY_ADMIN_PASSWORD'
+    - 'BLUESKY_PLC_ROTATION_KEY'
+    - 'INFISICAL_ENCRYPTION_KEY'
+    - 'INFISICAL_AUTH_SECRET'
+    - 'POSTGRES_SERVICE_ACCOUNT_JSON'
+    - 'POSTFIX_USERNAME'
+    - 'POSTFIX_PASSWORD'
+    - 'OPEN_ARCHIVER_MEILI_MASTER_KEY'
+    - 'OPEN_ARCHIVER_JWT_SECRET'
+    - 'OPEN_ARCHIVER_ENCRYPTION_KEY'
+    - 'SUNSHINE_PASSWORD'
+    
 - name: Install homelab chart
   run_once: true
   tags:
@@ -8,8 +27,6 @@
       velero:
         restore: "{{ homelab_chart_restore_volume_version > 0 }}"
         version: "{{ homelab_chart_restore_volume_version }}"
-      google:
-        serviceAccountJson: "{{ lookup('ansible.builtin.env', 'POSTGRES_SERVICE_ACCOUNT_JSON') | quote }}"
       grafana: 
         postgres: &db_params
           backupId: "{{ homelab_chart_backup_id | default(omit) }}"
@@ -78,6 +95,9 @@
         jwtSecret: "{{ lookup('ansible.builtin.env', 'DONETICK_JWT_SECRET') | quote }}"
         oidcClientId: "{{ lookup('ansible.builtin.env', 'DONETICK_OIDC_CLIENT_ID') | quote }}"
         oidcClientSecret: "{{ lookup('ansible.builtin.env', 'DONETICK_OIDC_CLIENT_SECRET') | quote }}"
+      actualbudget:
+        oidcClientId: "{{ lookup('ansible.builtin.env', 'ACTUALBUDGET_OIDC_CLIENT_ID') | quote }}"
+        oidcClientSecret: "{{ lookup('ansible.builtin.env', 'ACTUALBUDGET_OIDC_CLIENT_SECRET') | quote }}"
   kubernetes.core.k8s:
     state: present
     definition:
@@ -87,7 +107,16 @@
         name: homelab-chart
         namespace: '{{ kubernetes_homelab_namespace }}'
       spec:
+        timeout: "2h"
+        serverSide: "true"
+        forceConflicts: true
+        takeOwnership: true
+        failurePolicy: "retry"
         chart: oci://us-central1-docker.pkg.dev/dev-pitlor-homelab/homelab-chart/homelab-containers
         version: '{{ homelab_chart_version }}'
         targetNamespace: '{{ kubernetes_homelab_namespace }}'
-        valuesContent: "{{ values_content | to_nice_yaml(indent=2) }}"
+        valuesContent: |-
+          google:
+            serviceAccountJson: {{ lookup('ansible.builtin.env', 'POSTGRES_SERVICE_ACCOUNT_JSON') | quote }}
+
+          {{ values_content | to_nice_yaml(indent=2) }}
