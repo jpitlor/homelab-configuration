@@ -1,3 +1,13 @@
+{
+    layer4 {
+        :22 {
+            route {
+                proxy {{ docker_host }}
+            }
+        }
+    }
+}
+
 *.pitlor.dev, *.tweet.pitlor.dev {
     reverse_proxy {{ docker_host }}
 
